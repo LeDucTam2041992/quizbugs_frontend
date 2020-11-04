@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatMenu, MatMenuModule} from '@angular/material/menu';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { FooterComponent } from './footer/footer.component';
     TableComponent,
     DemoNavComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
