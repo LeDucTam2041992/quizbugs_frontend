@@ -8,19 +8,15 @@ import { InputSimpleComponent } from './input-simple/input-simple.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import { TableComponent } from './table/table.component';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
-import { DemoNavComponent } from './demo-nav/demo-nav.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import {MatMenu, MatMenuModule} from '@angular/material/menu';
-import { FooterComponent } from './footer/footer.component';
-import {CategoryModule} from "./questions/category/category.module";
+import {TableComponent} from './table/table.component';
+import {DemoNavComponent} from './demo-nav/demo-nav.component';
+import {LayoutModule} from '@angular/cdk/layout';
+import {FooterComponent} from './footer/footer.component';
+import {LoginComponent} from './login/login.component';
+import {MaterialsModule} from "./materials/materials.module";
+import {LayoutWithSharedComponent} from './layout-with-shared/layout-with-shared.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +24,12 @@ import {CategoryModule} from "./questions/category/category.module";
     TableComponent,
     DemoNavComponent,
     FooterComponent,
+    LoginComponent,
+    LayoutWithSharedComponent,
+    CreateAccountComponent,
   ],
   imports: [
+    MaterialsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -37,16 +37,9 @@ import {CategoryModule} from "./questions/category/category.module";
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
+    LayoutModule,
     CategoryModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
