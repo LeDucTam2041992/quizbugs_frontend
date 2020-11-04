@@ -21,21 +21,23 @@ export class CategoryEditComponent implements OnInit {
   ngOnInit(): void {
     // tslint:disable-next-line:radix
     const id = Number.parseInt(this.router.snapshot.paramMap.get('id'));
+    console.log("now id " + id);
     this.categoryService.findById(id).subscribe(data => {
+      console.log("onInit " + data.category);
       this.currentCategory = data;
     });
     this.updateCategoryForm = this.formBuilder.group({
-      category: ['', [Validators.required]]
+      category: ['', [Validators.required, Validators.maxLength(50)]]
     });
   }
 
   onSubmit() {
     // @ts-ignore
-    console.log(this.currentBook);
-    this.categoryService.update( this.currentCategory.id, this.currentCategory).subscribe(e => {
+    console.log(this.currentCategory.category);
+    this.categoryService.update(this.currentCategory.id, this.currentCategory).subscribe(e => {
       console.log(e);
     });
-    this.route.navigate(['']);
+    // this.route.navigate(['']);
   }
 
 }
