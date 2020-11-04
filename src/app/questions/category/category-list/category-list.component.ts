@@ -14,7 +14,7 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<ICategory>;
-  listCategory: ICategory[] = [];
+  listCategory: ICategory[];
   listCategories: MatTableDataSource<ICategory>;
   displayedColumns: string[];
 

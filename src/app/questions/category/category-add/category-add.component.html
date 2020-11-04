@@ -1,1 +1,25 @@
-<p>category-add works!</p>
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="newCategoryForm">
+    <table class="table table-bordered">
+      <tr>
+        <td>Title</td>
+        <td><input class="form-control" type="text" formControlName="category">
+          <div *ngIf="newCategoryForm.get('category').hasError('required') && newCategoryForm.touched" class="text-danger">
+            field require
+          </div>
+          <div *ngIf="newCategoryForm.get('category').hasError('maxLength')&& newCategoryForm.touched" class="text-danger">
+            filed max length 50
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button class="btn btn-primary mr-2" type="submit" [disabled]="newCategoryForm.invalid">Add</button>
+          <button class="btn btn-secondary" routerLink="">Cancel</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</div>
