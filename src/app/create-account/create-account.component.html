@@ -1,0 +1,38 @@
+
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <!--  <span>HOME</span> -->
+    <span><a href="/">HOME</a></span>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/create_account">Register</a>
+    <a mat-button routerLink="/login">Login</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar>
+  <span>Registration</span>
+</mat-toolbar>
+<mat-card class="my-card">
+  <mat-card-content>
+    <form class="my-form">
+
+      <mat-form-field class="full-width">
+        <mat-label>User Name</mat-label>
+        <input  matInput  placeholder="Last Name" name="lname"  required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input  matInput  placeholder="Email" name="email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input  matInput  placeholder="Password"  name="password">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
+  </mat-card-actions>
+</mat-card>
