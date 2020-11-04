@@ -5,6 +5,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryAddComponent } from './category-add/category-add.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MaterialsModule} from "../../materials/materials.module";
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MaterialsModule
   ]
 })
 export class CategoryModule { }

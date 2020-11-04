@@ -13,12 +13,12 @@ export class CategoryService {
     return this.http.get(environment.urlApi+'questions/categories');
   }
   findById(id): Observable<any> {
-    return this.http.get(environment.urlApi + 'questions/categories'+id);
+    return this.http.get(environment.urlApi + 'questions/categories/'+id);
   }
   update(data,id):Observable<any> {
-    return this.http.put(environment.urlApi+'questions/categories'+id,data);
+    return this.http.put(environment.urlApi+'questions/categories/'+id,data);
   }
   delete(id): Observable<any> {
-    return this.http.delete(environment.urlApi+'questions/categories'+id);
+    return this.http.delete(environment.urlApi+'questions/categories/'+id);
   }
 }
