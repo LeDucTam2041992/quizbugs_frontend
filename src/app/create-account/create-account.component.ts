@@ -12,4 +12,7 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  register() {
+    console.log("aaa");
+  }
 }
