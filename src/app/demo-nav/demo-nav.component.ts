@@ -9,6 +9,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class DemoNavComponent {
 
+  // @ts-ignore
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
