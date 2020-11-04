@@ -14,13 +14,13 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import { DemoNavComponent } from './demo-nav/demo-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatMenu, MatMenuModule} from '@angular/material/menu';
 import { FooterComponent } from './footer/footer.component';
+import {CategoryModule} from "./questions/category/category.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,12 +41,12 @@ import { FooterComponent } from './footer/footer.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    CategoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
