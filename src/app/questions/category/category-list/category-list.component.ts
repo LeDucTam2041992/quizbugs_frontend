@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {CategoryService} from "../../../service/category.service";
+import {CategoryService} from "../../../services/category.service";
 import {ICategory} from "../ICategory";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
