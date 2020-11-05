@@ -11,7 +11,6 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {LoginComponent} from './components/login/login.component';
 import {MaterialsModule} from "./materials/materials.module";
 import {LayoutWithSharedComponent} from './layout-with-shared/layout-with-shared.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
 import {CategoryModule} from "./questions/category/category.module";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from '@angular/material/table';
@@ -24,7 +23,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     AppComponent,
     LoginComponent,
     LayoutWithSharedComponent,
-    CreateAccountComponent,
     RegisterComponent,
     HomeComponent,
   ],
