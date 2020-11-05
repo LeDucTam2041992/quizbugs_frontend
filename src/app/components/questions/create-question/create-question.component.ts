@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Question} from '../../question';
-import {Answer} from '../../answer';
+import {Question} from '../../../question';
+import {Answer} from '../../../answer';
 
 export class Category {
   id: number;
@@ -41,7 +41,7 @@ export class CreateQuestionComponent implements OnInit {
     type: this.typeSelect,
     status: 1,
     category: Category,
-    answers: []
+    answers: [this.answer1, this.answer2, this.answer3, this.answer4]
   };
   categories: Category[];
   checkedA = false;
@@ -80,10 +80,6 @@ export class CreateQuestionComponent implements OnInit {
       this.answer4.answer = this.questionForm.get('answer4').value;
       this.answer4.status = this.checkedD;
       this.question.category = this.questionForm.get('category').value;
-      this.question.answers.push(this.answer1);
-      this.question.answers.push(this.answer2);
-      this.question.answers.push(this.answer3);
-      this.question.answers.push(this.answer4);
       if (this.checkedA) {
         this.count++;
       }
@@ -101,7 +97,6 @@ export class CreateQuestionComponent implements OnInit {
       }
       console.log(this.question);
       this.count = 0;
-      this.question.answers = [];
     } else {
       console.log('Khong thanh cong');
       this.count = 0;
