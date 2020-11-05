@@ -13,7 +13,7 @@
   <mat-table [dataSource]="listCategories" matSort>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      <mat-cell *matCellDef="let element; let i = index"> {{i+1}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="category">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Category</mat-header-cell>
