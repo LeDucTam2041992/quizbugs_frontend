@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Question} from '../../../question';
 import {Answer} from '../../../answer';
+import {QuestionService} from '../../../service/question.service';
+import {Router} from '@angular/router';
 
 export class Category {
   id: number;
@@ -38,20 +40,19 @@ export class CreateQuestionComponent implements OnInit {
   question: Question = {
     id: 0,
     question: '',
-    type: this.typeSelect,
+    type: -1,
     status: 1,
     category: Category,
     answers: [this.answer1, this.answer2, this.answer3, this.answer4]
   };
   categories: Category[];
-  checkedA = false;
-  checkedB = false;
-  checkedC = false;
-  checkedD = false;
   count = 0;
+  message = '';
 
   questionForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private service: QuestionService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
@@ -60,59 +61,58 @@ export class CreateQuestionComponent implements OnInit {
       answer2: ['', Validators.required],
       answer3: ['', Validators.required],
       answer4: ['', Validators.required],
-      category: Category
+      category: [Category, Validators.required]
     });
     this.categories = [
       {id: 1, category: 'Java'},
-      {id: 1, category: 'PHP'},
-      {id: 1, category: 'SQL'}
+      {id: 2, category: 'PHP'},
+      {id: 3, category: 'SQL'}
       ];
   }
   submit(): void {
     if (!this.questionForm.invalid) {
       this.question.question = this.questionForm.get('question').value;
       this.answer1.answer = this.questionForm.get('answer1').value;
-      this.answer1.status = this.checkedA;
       this.answer2.answer = this.questionForm.get('answer2').value;
-      this.answer2.status = this.checkedB;
       this.answer3.answer = this.questionForm.get('answer3').value;
-      this.answer3.status = this.checkedC;
       this.answer4.answer = this.questionForm.get('answer4').value;
-      this.answer4.status = this.checkedD;
       this.question.category = this.questionForm.get('category').value;
-      if (this.checkedA) {
+      if (this.answer1.status) {
         this.count++;
       }
-      if (this.checkedB) {
+      if (this.answer2.status) {
         this.count++;
       }
-      if (this.checkedC) {
+      if (this.answer3.status) {
         this.count++;
       }
-      if (this.checkedD) {
+      if (this.answer4.status) {
         this.count++;
       }
-      if (this.count > 1){
+      if (this.count >= 2){
         this.question.type = this.typeCheckBox;
+      } else {
+        this.question.type = this.typeSelect;
       }
       console.log(this.question);
+      this.message = 'Success!';
       this.count = 0;
     } else {
-      console.log('Khong thanh cong');
+      this.message = 'UnSuccess!';
       this.count = 0;
     }
   }
 
   selectedA(): void{
-    this.checkedA = !this.checkedA;
+    this.answer1.status = !this.answer1.status;
   }
   selectedB(): void{
-    this.checkedB = !this.checkedB;
+    this.answer2.status = !this.answer2.status;
   }
   selectedC(): void{
-    this.checkedC = !this.checkedC;
+    this.answer3.status = !this.answer3.status;
   }
   selectedD(): void{
-    this.checkedD = !this.checkedD;
+    this.answer4.status = !this.answer4.status;
   }
 }

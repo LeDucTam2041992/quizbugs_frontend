@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "material-demo"
+    }
+  },
+  "defaultProject": "material-demo",
+  "cli": {
+    "analytics": "c31d0048-03b4-4560-80e0-2965df34a3dc"
+  }
 }

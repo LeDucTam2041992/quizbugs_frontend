@@ -1,5 +1,6 @@
 <section class="body-margin">
   <h2>Create New Question</h2>
+  <app-message [message]="message"></app-message>
   <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
     <mat-form-field class="example-full-width">
       <mat-label>Question</mat-label>
@@ -53,15 +54,19 @@
       <mat-select formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category">{{category.category}}</mat-option>
       </mat-select>
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="questionForm.get('category').hasError('required')">
+        Category is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <br><br>
     <label class="example-margin">Choice answers right :</label>
-    <mat-checkbox class="example-margin" [checked]="checkedA" (change)="selectedA()">A</mat-checkbox>
-    <mat-checkbox class="example-margin" [checked]="checkedB" (change)="selectedB()">B</mat-checkbox>
-    <mat-checkbox class="example-margin" [checked]="checkedC" (change)="selectedC()">C</mat-checkbox>
-    <mat-checkbox class="example-margin" [checked]="checkedD" (change)="selectedD()">D</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer1.status" (change)="selectedA()">A</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer2.status" (change)="selectedB()">B</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer3.status" (change)="selectedC()">C</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer4.status" (change)="selectedD()">D</mat-checkbox>
     <br><br>
-    <button mat-raised-button color="primary" class="example-margin">Submit</button>
+    <button mat-raised-button color="primary" class="example-margin" [disabled]="questionForm.invalid">Submit</button>
   </form>
 </section>

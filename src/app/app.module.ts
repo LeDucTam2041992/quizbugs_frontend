@@ -21,6 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatMenu, MatMenuModule} from '@angular/material/menu';
 import { FooterComponent } from './footer/footer.component';
+import { CreateQuestionComponent } from './components/questions/create-question/create-question.component';
+import {MatCheckbox, MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import {HttpClientModule} from '@angular/common/http';
+import { MessageComponent } from './components/message/message.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +33,8 @@ import { FooterComponent } from './footer/footer.component';
     TableComponent,
     DemoNavComponent,
     FooterComponent,
+    CreateQuestionComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,9 @@ import { FooterComponent } from './footer/footer.component';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
