@@ -1,8 +1,9 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {EventEmitter} from "events";
 import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
+import {IUser} from "../../user";
 
 
 @Component({
@@ -11,19 +12,33 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  newUserForm: FormGroup;
-
-
-
+  loginForm: FormGroup;
+  message: string;
 
   constructor(private formBuilder: FormBuilder,
               private userService: LoginService,
-              private route: Router) { }
+              private route: Router) {
+  }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(6), Validators.pattern('[a-zA-Z0-9]*')]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    })
   }
 
-  login() {
-    console.log("login");
+  onSubmit(): void {
+    const data: IUser = this.loginForm.value;
+    console.log(this.loginForm.value);
+    this.userService.doLogin(data).subscribe(
+      (response) => {
+        console.log(response.Authorization);
+        localStorage.setItem('token', response.Authorization);
+        this.route.navigate(['home']);
+      },
+      () => {
+        this.message = 'login fail'
+      });
   }
+
 }

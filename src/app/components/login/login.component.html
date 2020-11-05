@@ -3,31 +3,42 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <!--  <span>HOME</span> -->
-    <span><a href="/">HOME</a></span>
-    <span class="spacer"></span>
-    <a mat-button routerLink="/create_account">Register</a>
-    <a mat-button routerLink="/login">Login</a>
+    <span><a routerLink="/">HOME</a></span>
   </mat-toolbar-row>
 </mat-toolbar>
 
-
-<mat-toolbar>
-  <span>LOGIN</span>
-</mat-toolbar>
 <mat-card class="my-card">
   <mat-card-content>
-    <form class="my-form">
+    <form class="my-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input  matInput  placeholder="Email" name="email">
+        <mat-label>Username</mat-label>
+        <input  matInput  placeholder="Username" formControlName="username">
       </mat-form-field>
+      <mat-error *ngIf="loginForm.get('username').hasError('required') && loginForm.touched" class="text-danger">
+          field require
+        </mat-error>
+      <mat-label *ngIf="loginForm.get('username').hasError('minlength')" class="text-danger">
+          field min length 6
+        </mat-label>
+      <mat-label *ngIf="loginForm.get('username').hasError('pattern')" class="text-danger">
+          regex
+        </mat-label>
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input  matInput  placeholder="Password" name="password">
+        <input  matInput type="password"  placeholder="Password" formControlName="password">
       </mat-form-field>
+      <div *ngIf="loginForm.get('password').hasError('required') && loginForm.touched" class="text-danger">
+        field require
+      </div>
+      <div *ngIf="loginForm.get('password').hasError('minlength')" class="text-danger">
+        field min length 6
+      </div>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="loginForm.invalid">LOGIN</button>
+        <button mat-raised-button type="submit" routerLink="/register">REGISTER</button>
+      </mat-card-actions>
     </form>
+    <mat-label *ngIf="message">{{message}}</mat-label>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
-  </mat-card-actions>
 </mat-card>
+
