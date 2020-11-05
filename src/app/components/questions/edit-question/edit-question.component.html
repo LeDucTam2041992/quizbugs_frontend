@@ -4,7 +4,7 @@
   <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
     <mat-form-field class="example-full-width">
       <mat-label>Question</mat-label>
-      <textarea matInput rows="5" formControlName="question" placeholder="Enter the question"></textarea>
+      <textarea matInput rows="4" formControlName="question" placeholder="Enter the question"></textarea>
       <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('question').hasError('required')">
         Question is <strong>required</strong>
@@ -67,6 +67,7 @@
     <mat-checkbox class="example-margin" [checked]="answer3.status" (change)="selectedC()">C</mat-checkbox>
     <mat-checkbox class="example-margin" [checked]="answer4.status" (change)="selectedD()">D</mat-checkbox>
     <br><br>
-    <button mat-raised-button color="primary" class="example-margin" [disabled]="questionForm.invalid">Submit</button>
+    <button mat-raised-button color="primary" class="example-margin" [disabled]="questionForm.invalid">Update</button>
+    <button mat-raised-button color="primary" class="example-margin" routerLink="#" >Cancel</button>
   </form>
 </section>

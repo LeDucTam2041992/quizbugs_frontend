@@ -25,30 +25,17 @@ export class EditQuestionComponent implements OnInit {
   message = '';
   sub: Subscription;
   id: number;
-
   questionForm: FormGroup;
+
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
-    this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
-      this.id = +paramMap.get('id');
-      this.getQuestion(this.id);
-      this.answer1 = this.question.answers[0];
-      this.answer2 = this.question.answers[1];
-      this.answer3 = this.question.answers[2];
-      this.answer4 = this.question.answers[3];
-    });
-  }
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.questionForm = this.fb.group({
-      question: [this.question.question, Validators.required],
-      answer1: [this.answer1.answer, Validators.required],
-      answer2: [this.answer1.answer, Validators.required],
-      answer3: [this.answer1.answer, Validators.required],
-      answer4: [this.answer1.answer, Validators.required],
-      category: [Category, Validators.required]
+    this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+      this.id = +paramMap.get('id');
+      this.getQuestion(16);
     });
     this.categories = [
       {id: 1, category: 'Java'},
@@ -56,44 +43,56 @@ export class EditQuestionComponent implements OnInit {
       {id: 3, category: 'SQL'}
     ];
   }
-
-  getQuestion(id: number): any{
-    // this.service.getQuestion(id).
-    // subscribe(question => {
-    //   this.question = question;
-    // });
-    this.question = {
-      id: 1,
-      question: 'Test Edit',
-      type: 1,
-      status: 1,
-      category: {
-        id: 1,
-        category: 'Java'
-      },
-      answers: [
-        {
-          id: 10,
-          answer: 'Test Edit',
-          status: false
-        },
-        {
-          id: 11,
-          answer: 'Test Edit',
-          status: false
-        },
-        {
-          id: 12,
-          answer: 'Test Edit',
-          status: true
-        },
-        {
-          id: 13,
-          answer: 'Test Edit',
-          status: true
-        }
-      ]
-    };
+  getQuestion(id: number): void {
+    this.service.getQuestion(id).subscribe(qs => {
+      this.question = qs;
+      console.log(this.question);
+      this.answer1 = this.question.answers[0];
+      this.answer2 = this.question.answers[1];
+      this.answer3 = this.question.answers[2];
+      this.answer4 = this.question.answers[3];
+      this.questionForm = this.fb.group({
+        question: [this.question.question, Validators.required],
+        answer1: [this.answer1.answer, Validators.required],
+        answer2: [this.answer1.answer, Validators.required],
+        answer3: [this.answer1.answer, Validators.required],
+        answer4: [this.answer1.answer, Validators.required],
+        category: [Category, Validators.required]
+      });
+      console.log(this.questionForm.value);
+    });
+    // this.question = {
+    //   id: 1,
+    //   question: 'Test Edit',
+    //   type: 1,
+    //   status: 1,
+    //   category: {
+    //     id: 1,
+    //     category: 'Java'
+    //   },
+    //   answers: [
+    //     {
+    //       id: 10,
+    //       answer: 'Test Edit',
+    //       status: false
+    //     },
+    //     {
+    //       id: 11,
+    //       answer: 'Test Edit',
+    //       status: false
+    //     },
+    //     {
+    //       id: 12,
+    //       answer: 'Test Edit',
+    //       status: true
+    //     },
+    //     {
+    //       id: 13,
+    //       answer: 'Test Edit',
+    //       status: true
+    //     }
+    //   ]
+    // };
   }
 
   submit(): void {
@@ -124,10 +123,10 @@ export class EditQuestionComponent implements OnInit {
       console.log(this.question);
       this.message = 'Success!';
       this.count = 0;
-      // this.service.updateQuestion(this.question.id, this.question);
+      // this.service.updateQuestion(this.question.id, this.question)
       //   .subscribe(() => {
-      //     this.router.navigate(['/']);
-      //   });
+          // this.router.navigate(['/']);
+        // });
     } else {
       this.message = 'UnSuccess!';
       this.count = 0;
@@ -146,5 +145,4 @@ export class EditQuestionComponent implements OnInit {
   selectedD(): void{
     this.answer4.status = !this.answer4.status;
   }
-
 }
