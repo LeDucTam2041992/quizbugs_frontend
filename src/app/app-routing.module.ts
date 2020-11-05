@@ -1,22 +1,24 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from "./components/login/login.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+
 import {LayoutWithSharedComponent} from "./layout-with-shared/layout-with-shared.component";
-import {CreateAccountComponent} from "./components/create-account/create-account.component";
-import {AppComponent} from "./app.component";
 import {CategoryModule} from "./components/category/category.module";
-import {DemoNavComponent} from "./demo-nav/demo-nav.component";
-import {CategoryListComponent} from "./components/category/category-list/category-list.component";
-import {QuestionComponent} from "./questions/question/question.component";
+import {ListQuestionComponent} from "./components/questions/list-question/list-question.component";
+import {CreateQuestionComponent} from "./components/questions/create-question/create-question.component";
+import {LoginComponent} from "./components/login/login.component";
+import {CreateAccountComponent} from "./components/create-account/create-account.component";
+// import {EditQuestionComponent} from "./components/questions/edit-question/edit-question.component";
+
 
 const routes: Routes = [
-  // {
-  //   path: 'login' , component: LoginComponent
-  // }, {
-  //   path: 'create_account' , component: CreateAccountComponent
-  // },
   {
-    path:'',
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'create_account', component: CreateAccountComponent
+  },
+  {
+    path: '',
     component: LayoutWithSharedComponent
   },
   {
@@ -25,7 +27,19 @@ const routes: Routes = [
       {
         path: 'categories',
         loadChildren: (() => import('./components/category/category.module').then(() => CategoryModule))
+      },
+      {
+        path: '',
+        component: ListQuestionComponent
+      },
+      {
+        path: 'add',
+        component: CreateQuestionComponent
       }
+      // {
+      //   path: 'edit',
+      //   component: EditQuestionComponent
+      // }
     ]
   }
 ];
@@ -34,4 +48,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputSimpleComponent } from './input-simple/input-simple.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -18,7 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from '@angular/material/table';
 import {DemoNavComponent} from "./demo-nav/demo-nav.component";
 import {FooterComponent} from "./footer/footer.component";
-import { QuestionComponent } from './questions/question/question.component';
+import {QuestionModule} from "./components/questions/question.module";
 
 @NgModule({
   declarations: [
@@ -28,8 +27,6 @@ import { QuestionComponent } from './questions/question/question.component';
     CreateAccountComponent,
     DemoNavComponent,
     FooterComponent,
-    CreateQuestionComponent,
-    MessageComponent,
   ],
   imports: [
     MaterialsModule,
@@ -43,7 +40,8 @@ import { QuestionComponent } from './questions/question/question.component';
     LayoutModule,
     CategoryModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    QuestionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

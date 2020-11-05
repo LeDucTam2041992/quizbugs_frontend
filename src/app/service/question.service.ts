@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {Question} from '../model/question';
 import {environment} from '../../environments/environment';
 
-const API_URL = `${environment.API_URL}`;
 
 @Injectable({
   providedIn: 'root'
@@ -14,26 +13,26 @@ export class QuestionService {
   }
 
   getAllQuestion(): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(API_URL + '/questions');
+    return this.httpClient.get<Question[]>(environment.urlApi + 'questions');
   }
 
   createQuestion(question: Question): Observable<Question>{
-    return this.httpClient.post<Question>(API_URL + '/questions/', question);
+    return this.httpClient.post<Question>(environment.urlApi + 'questions/', question);
   }
 
   getQuestion(id: number): Observable<Question>{
-    return this.httpClient.get<Question>(API_URL + `/questions/${id}`);
+    return this.httpClient.get<Question>(environment.urlApi + `/questions/${id}`);
   }
 
   updateQuestion(id: number, question: Question): Observable<Question>{
-    return this.httpClient.put<Question>(API_URL + `/questions/${id}`, question);
+    return this.httpClient.put<Question>(environment.urlApi+ `/questions/${id}`, question);
   }
 
   deleteQuestion(id: number): Observable<Question>{
-    return this.httpClient.delete<Question>(API_URL + `/questions/${id}`);
+    return this.httpClient.delete<Question>(environment.urlApi + `/questions/${id}`);
   }
 
   getAllQuestionByCategory(id: number): Observable<Question[]>{
-    return this.httpClient.get<Question[]>(API_URL + `/category/${id}/questions`);
+    return this.httpClient.get<Question[]>(environment.urlApi + `/category/${id}/questions`);
   }
 }
