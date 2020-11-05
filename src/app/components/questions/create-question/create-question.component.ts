@@ -97,6 +97,10 @@ export class CreateQuestionComponent implements OnInit {
       console.log(this.question);
       this.message = 'Success!';
       this.count = 0;
+      // this.service.createQuestion(this.question)
+      //   .subscribe(() => {
+      //     this.router.navigate(['/']);
+      //   });
     } else {
       this.message = 'UnSuccess!';
       this.count = 0;
