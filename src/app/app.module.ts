@@ -39,9 +39,9 @@ import {QuestionModule} from "./components/questions/question.module";
     ReactiveFormsModule,
     LayoutModule,
     CategoryModule,
+    QuestionModule,
     HttpClientModule,
     MatTableModule,
-    QuestionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
