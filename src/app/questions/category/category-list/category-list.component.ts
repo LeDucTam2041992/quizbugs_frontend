@@ -10,68 +10,51 @@ import {MatTableDataSource} from "@angular/material/table";
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
-export class CategoryListComponent implements OnInit, AfterViewInit {
+export class CategoryListComponent implements OnInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<ICategory>;
   listCategory: ICategory[];
-  listCategories: MatTableDataSource<ICategory>;
-  displayedColumns: string[];
-
-  fil
+  listCategories: MatTableDataSource<any>;
+  displayedColumns = ['id', 'category', 'option'];
+  searchKey: string;
 
   constructor(private categoryService: CategoryService
   ) {
   }
 
-  ngAfterViewInit(): void {
-    this.listCategories.paginator = this.paginator;
-    this.listCategories.sort = this.sort;
-  }
-
-  applyFilter(event: Event): void {
-    const filterValue: any = (event.target as HTMLInputElement).value.trim().toLowerCase().toString();
-    // @ts-ignore
-    // console.log(this.listCategories);
-    // this.listCategory.filter(obj =>
-    //   obj.category.toString().includes(filterValue));
-
-    // this.listCategories.filter(filterValue);
-    //   this.listCategories = this.listCategory;
-    this.categoryService.getAllCategories().subscribe(
-      res => {
-
-          // console.log(res.)
-        }
-    );
-    console.log("doing filter " + this.listCategories.data)
-    if (this.listCategories.paginator) {
-      this.listCategories.paginator.firstPage();
-    }
-  }
-
   ngOnInit(): void {
-    this.displayedColumns = ['id', 'category', 'option'];
-    this.getAll();
-    // @ts-ignore
-    // this.dataSource = new MatTableDataSource<ICategory>(this.listCategory);
-    // this.listCategories = new MatTableDataSource<ICategorany>(this.listCategory)
-  }
-
-  getAll() {
-    this.categoryService.getAllCategories().subscribe(res => {
-        this.listCategory = res;
-        this.listCategories = res;
+    this.categoryService.getAllCategories().subscribe(list => {
+        let array = list.map(item => {
+          return {
+            id: item.id,
+            category: item.category
+          }
+        });
+        this.listCategories = new MatTableDataSource(array);
+      this.listCategories.paginator = this.paginator;
+      this.listCategories.sort = this.sort;
         // console.log(this.listCategory)
       }
     )
+    // @ts-ignore
+    // this.dataSource = new MatTableDataSource<ICategory>(this.listCategory);
+    // this.listCategories = new MatTableDataSource<ICategorany>(this.listCategory)
+
   }
 
+  onSearchClear() {
+    this.searchKey = "";
+    this.applyFilter();
+  }
+  applyFilter() {
+    this.listCategories.filter = this.searchKey.trim().toLowerCase();
+  }
   delete(id) {
     if (confirm('Are you sure want to delete?')) {
       this.categoryService.delete(id).subscribe(res => {
         if (res.status == 'success') {
-          this.getAll();
+          // this.getAll();
           console.log(res.message);
         }
       })

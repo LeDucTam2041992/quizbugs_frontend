@@ -12,6 +12,9 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {CommonModule} from "@angular/common";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
 
 const modules = [
   MatCardModule,
@@ -27,6 +30,9 @@ const modules = [
   MatMenuModule,
   MatPaginatorModule,
   MatSortModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatRadioModule,
   CommonModule
 ];
 

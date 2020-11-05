@@ -2,14 +2,18 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="updateCategoryForm">
     <table class="table table-bordered">
       <tr>
-        <td>Title</td>
-        <td><input class="form-control" type="text" formControlName="category" [(ngModel)]="currentCategory.category">
-          <div *ngIf="updateCategoryForm.get('category').hasError('required') && updateCategoryForm.touched" class="text-danger">
+        <td>Category:</td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Input</mat-label>
+            <input matInput class="form-control" type="text" formControlName="category" [(ngModel)]="currentCategory.category">
+          </mat-form-field>
+          <mat-label *ngIf="updateCategoryForm.get('category').hasError('required') && updateCategoryForm.touched" class="text-danger">
             field require
-          </div>
-          <div *ngIf="updateCategoryForm.get('category').hasError('maxLength')&& updateCategoryForm.touched" class="text-danger">
+          </mat-label>
+          <mat-label *ngIf="updateCategoryForm.get('category').hasError('maxLength')&& updateCategoryForm.touched" class="text-danger">
             filed max length 50
-          </div>
+          </mat-label>
         </td>
       </tr>
       <tr>
