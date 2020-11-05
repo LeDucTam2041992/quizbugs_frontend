@@ -1,29 +1,39 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from "../../../service/category.service";
-import {ICategory} from "../ICategory";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
-export class CategoryListComponent implements OnInit{
+export class CategoryListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<ICategory>;
-  listCategory: ICategory[];
   listCategories: MatTableDataSource<any>;
   displayedColumns = ['id', 'category', 'option'];
   searchKey: string;
 
-  constructor(private categoryService: CategoryService
-  ) {
+  constructor(private categoryService: CategoryService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getAll()
+  }
+
+  onSearchClear() {
+    this.searchKey = "";
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.listCategories.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  getAll() {
     this.categoryService.getAllCategories().subscribe(list => {
         let array = list.map(item => {
           return {
@@ -32,31 +42,16 @@ export class CategoryListComponent implements OnInit{
           }
         });
         this.listCategories = new MatTableDataSource(array);
-      this.listCategories.paginator = this.paginator;
-      this.listCategories.sort = this.sort;
-        // console.log(this.listCategory)
+        this.listCategories.paginator = this.paginator;
+        this.listCategories.sort = this.sort;
       }
     )
-    // @ts-ignore
-    // this.dataSource = new MatTableDataSource<ICategory>(this.listCategory);
-    // this.listCategories = new MatTableDataSource<ICategorany>(this.listCategory)
-
   }
 
-  onSearchClear() {
-    this.searchKey = "";
-    this.applyFilter();
-  }
-  applyFilter() {
-    this.listCategories.filter = this.searchKey.trim().toLowerCase();
-  }
   delete(id) {
     if (confirm('Are you sure want to delete?')) {
       this.categoryService.delete(id).subscribe(res => {
-        if (res.status == 'success') {
-          // this.getAll();
-          console.log(res.message);
-        }
+          this.getAll();
       })
     }
   }
