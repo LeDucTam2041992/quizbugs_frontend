@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Question} from '../question';
+import {Question} from '../model/question';
 import {environment} from '../../environments/environment';
 
 const API_URL = `${environment.API_URL}`;

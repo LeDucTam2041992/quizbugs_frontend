@@ -5,7 +5,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryAddComponent } from './category-add/category-add.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MaterialsModule} from "../../materials/materials.module";
+import {MaterialsModule} from "../../materials.module";
 
 
 const routes: Routes = [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Answer} from '../../../answer';
-import {Question} from '../../../question';
+import {Question} from '../../../model/question';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';

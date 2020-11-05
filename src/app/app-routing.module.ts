@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from "./login/login.component";
+import {LoginComponent} from "./components/login/login.component";
 import {LayoutWithSharedComponent} from "./layout-with-shared/layout-with-shared.component";
-import {CreateAccountComponent} from "./create-account/create-account.component";
+import {CreateAccountComponent} from "./components/create-account/create-account.component";
 import {AppComponent} from "./app.component";
-import {CategoryModule} from "./questions/category/category.module";
+import {CategoryModule} from "./components/category/category.module";
 import {DemoNavComponent} from "./demo-nav/demo-nav.component";
-import {CategoryListComponent} from "./questions/category/category-list/category-list.component";
+import {CategoryListComponent} from "./components/category/category-list/category-list.component";
 import {QuestionComponent} from "./questions/question/question.component";
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
     children: [
       {
         path: 'categories',
-        loadChildren: (() => import('./questions/category/category.module').then(() => CategoryModule))
+        loadChildren: (() => import('./components/category/category.module').then(() => CategoryModule))
       }
     ]
   }
