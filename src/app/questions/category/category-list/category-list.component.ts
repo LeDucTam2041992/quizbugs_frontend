@@ -18,6 +18,8 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   listCategories: MatTableDataSource<ICategory>;
   displayedColumns: string[];
 
+  fil
+
   constructor(private categoryService: CategoryService
   ) {
   }
@@ -28,17 +30,20 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase().toString();
-    this.listCategories.filter = filterValue;
-    console.log(this.listCategories)
-    // this.categoryService.getAllCategories().subscribe(
-    //   res => {
-    //     {
-    //       this.listCategories = res;
-    //       this.listCategories.filteredData = filterValue;
-    //     }
-    //   }
-    // )
+    const filterValue: any = (event.target as HTMLInputElement).value.trim().toLowerCase().toString();
+    // @ts-ignore
+    // console.log(this.listCategories);
+    // this.listCategory.filter(obj =>
+    //   obj.category.toString().includes(filterValue));
+
+    // this.listCategories.filter(filterValue);
+    //   this.listCategories = this.listCategory;
+    this.categoryService.getAllCategories().subscribe(
+      res => {
+
+          // console.log(res.)
+        }
+    );
     console.log("doing filter " + this.listCategories.data)
     if (this.listCategories.paginator) {
       this.listCategories.paginator.firstPage();
@@ -50,13 +55,14 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
     this.getAll();
     // @ts-ignore
     // this.dataSource = new MatTableDataSource<ICategory>(this.listCategory);
+    // this.listCategories = new MatTableDataSource<ICategorany>(this.listCategory)
   }
 
   getAll() {
     this.categoryService.getAllCategories().subscribe(res => {
         this.listCategory = res;
         this.listCategories = res;
-        console.log(this.listCategory)
+        // console.log(this.listCategory)
       }
     )
   }

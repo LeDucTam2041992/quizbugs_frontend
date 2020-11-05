@@ -5,6 +5,9 @@ import {LayoutWithSharedComponent} from "./layout-with-shared/layout-with-shared
 import {CreateAccountComponent} from "./create-account/create-account.component";
 import {AppComponent} from "./app.component";
 import {CategoryModule} from "./questions/category/category.module";
+import {DemoNavComponent} from "./demo-nav/demo-nav.component";
+import {CategoryListComponent} from "./questions/category/category-list/category-list.component";
+import {QuestionComponent} from "./questions/question/question.component";
 
 const routes: Routes = [
   // {
@@ -12,13 +15,12 @@ const routes: Routes = [
   // }, {
   //   path: 'create_account' , component: CreateAccountComponent
   // },
-  // {
-  //   path:'',
-  //   component: LayoutWithSharedComponent
-  // },
+  {
+    path:'',
+    component: LayoutWithSharedComponent
+  },
   {
     path: 'questions',
-    component: AppComponent,
     children: [
       {
         path: 'categories',

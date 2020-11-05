@@ -37,7 +37,7 @@ export class CategoryEditComponent implements OnInit {
     this.categoryService.update(this.currentCategory.id, this.currentCategory).subscribe(e => {
       console.log(e);
     });
-    // this.route.navigate(['']);
+    this.route.navigate(['/questions/categories']);
   }
 
 }

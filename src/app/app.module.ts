@@ -15,6 +15,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import {CategoryModule} from "./questions/category/category.module";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from '@angular/material/table';
+import {DemoNavComponent} from "./demo-nav/demo-nav.component";
+import {FooterComponent} from "./footer/footer.component";
+import { QuestionComponent } from './questions/question/question.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import {MatTableModule} from '@angular/material/table';
     LoginComponent,
     LayoutWithSharedComponent,
     CreateAccountComponent,
+    DemoNavComponent,
+    FooterComponent,
+    QuestionComponent,
   ],
   imports: [
     MaterialsModule,
