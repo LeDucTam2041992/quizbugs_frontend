@@ -26,15 +26,6 @@ export class ListQuestionComponent implements OnInit {
     this.getAll()
   }
 
-  onSearchClear() {
-    this.searchKey = "";
-    this.applyFilter();
-  }
-
-  applyFilter() {
-    this.listQuestions.filter = this.searchKey.trim().toLowerCase();
-  }
-
   getAll() {
     this.questionService.getAllQuestion().subscribe(list => {
         let array = list.map(item => {

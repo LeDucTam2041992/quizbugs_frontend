@@ -5,7 +5,6 @@
     <mat-form-field class="example-full-width">
       <mat-label>Question</mat-label>
       <textarea matInput rows="4" formControlName="question" placeholder="Enter the question"></textarea>
-      <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('question').hasError('required')">
         Question is <strong>required</strong>
       </mat-error>
@@ -15,7 +14,6 @@
     <mat-form-field class="example-full-width">
       <mat-label>Answer A</mat-label>
       <textarea matInput formControlName="answer1" placeholder="Enter the answer"></textarea>
-      <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('answer1').hasError('required')">
         Answer is <strong>required</strong>
       </mat-error>
@@ -24,7 +22,6 @@
     <mat-form-field class="example-full-width">
       <mat-label>Answer B</mat-label>
       <textarea matInput formControlName="answer2" placeholder="Enter the answer"></textarea>
-      <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('answer2').hasError('required')">
         Answer is <strong>required</strong>
       </mat-error>
@@ -33,7 +30,6 @@
     <mat-form-field class="example-full-width">
       <mat-label>Answer C</mat-label>
       <textarea matInput formControlName="answer3" placeholder="Enter the answer"></textarea>
-      <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('answer3').hasError('required')">
         Answer is <strong>required</strong>
       </mat-error>
@@ -42,7 +38,6 @@
     <mat-form-field class="example-full-width">
       <mat-label>Answer D</mat-label>
       <textarea matInput formControlName="answer4" placeholder="Enter the answer"></textarea>
-      <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('answer4').hasError('required')">
         Answer is <strong>required</strong>
       </mat-error>
@@ -54,7 +49,6 @@
       <mat-select formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category">{{category.category}}</mat-option>
       </mat-select>
-      <mat-hint>Errors appear instantly!</mat-hint>
       <mat-error *ngIf="questionForm.get('category').hasError('required')">
         Category is <strong>required</strong>
       </mat-error>
