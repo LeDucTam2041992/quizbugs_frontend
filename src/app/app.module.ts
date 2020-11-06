@@ -26,6 +26,10 @@ import {MatCheckbox, MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
 import { MessageComponent } from './components/message/message.component';
+import { EditQuestionComponent } from './components/questions/edit-question/edit-question.component';
+import { DetailQuestionComponent } from './components/questions/detail-question/detail-question.component';
+import {MatCard, MatCardContent, MatCardModule, MatCardTitle} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +39,8 @@ import { MessageComponent } from './components/message/message.component';
     FooterComponent,
     CreateQuestionComponent,
     MessageComponent,
+    EditQuestionComponent,
+    DetailQuestionComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,9 @@ import { MessageComponent } from './components/message/message.component';
     MatMenuModule,
     MatCheckboxModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
