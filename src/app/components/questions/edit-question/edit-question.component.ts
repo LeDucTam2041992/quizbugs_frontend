@@ -41,7 +41,10 @@ export class EditQuestionComponent implements OnInit {
     question: 'ABC',
     type: 0,
     status: 0,
-    category: {},
+    category: {
+      id: 0,
+      category: ''
+    },
     answers: []
   };
   categories: ICategory[] = [];

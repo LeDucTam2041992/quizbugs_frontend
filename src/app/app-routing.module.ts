@@ -11,6 +11,7 @@ import {QuestionModule} from "./components/questions/question.module";
 // import {EditQuestionComponent} from "./components/questions/edit-question/edit-question.component";
 
 
+// @ts-ignore
 const routes: Routes = [
   {
     path: 'login', component: LoginComponent
@@ -23,14 +24,14 @@ const routes: Routes = [
     component: LayoutWithSharedComponent
   },
   {
-    path: 'questions',
+    path: 'admin',
     children: [
       {
         path: 'categories',
         loadChildren: (() => import('./components/category/category.module').then(() => CategoryModule))
       },
       {
-        path:'',
+        path: 'questions',
         loadChildren: () => import('./components/questions/question.module').then(() => QuestionModule)
       }
     ]
