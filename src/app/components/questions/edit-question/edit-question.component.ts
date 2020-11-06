@@ -3,11 +3,10 @@ import {Answer} from '../../../answer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Category} from '../create-question/create-question.component';
 import {Subscription} from 'rxjs';
-import {Question} from '../../../model/question';
-import {ICategory} from '../../../model/ICategory';
-import {CategoryService} from '../../../service/category.service';
+import {Question} from "../../../model/question";
+import {CategoryService} from "../../../service/category.service";
+import {ICategory} from "../../../model/ICategory";
 
 @Component({
   selector: 'app-edit-question',
@@ -45,7 +44,7 @@ export class EditQuestionComponent implements OnInit {
     category: {},
     answers: []
   };
-  categories: Category[];
+  categories: ICategory[] = [];
   count = 0;
   message = '';
   sub: Subscription;
@@ -62,7 +61,8 @@ export class EditQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
-      this.getQuestion(16);
+     // @ts-ignore
+      this.question = this.getQuestion(this.id);
     });
     this.questionForm = this.fb.group({
       question: ['', Validators.required],
@@ -70,13 +70,11 @@ export class EditQuestionComponent implements OnInit {
       answer2: ['', Validators.required],
       answer3: ['', Validators.required],
       answer4: ['', Validators.required],
-      category: [Category, Validators.required]
+      category: ['', Validators.required]
     });
-    this.categories = [
-      {id: 1, category: 'Java'},
-      {id: 2, category: 'PHP'},
-      {id: 3, category: 'SQL'}
-    ];
+    this.categoryService.getAllCategories().subscribe(res => {
+        this.categories = res;
+    })
   }
   getQuestion(id: number): void {
     this.service.getQuestion(id).subscribe(qs => {
@@ -91,7 +89,7 @@ export class EditQuestionComponent implements OnInit {
         answer2: [this.answer2.answer, Validators.required],
         answer3: [this.answer3.answer, Validators.required],
         answer4: [this.answer4.answer, Validators.required],
-        category: [Category, Validators.required]
+        category: [this.question.category, Validators.required]
       });
     });
   }

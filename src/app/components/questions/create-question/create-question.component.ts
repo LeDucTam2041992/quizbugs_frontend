@@ -3,12 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Answer} from '../../../answer';
 import {QuestionService} from '../../../service/question.service';
 import {Router} from '@angular/router';
-import {Question} from '../../../model/question';
+import {Question} from "../../../model/question";
+import {ICategory} from "../../../model/ICategory";
+import {CategoryService} from "../../../service/category.service";
 
-export class Category {
-  id: number;
-  category: string;
-}
 @Component({
   selector: 'app-create-question',
   templateUrl: './create-question.component.html',
@@ -37,22 +35,25 @@ export class CreateQuestionComponent implements OnInit {
   };
   typeCheckBox = 1;
   typeSelect = 0;
+
   question: Question = {
     id: 0,
     question: '',
     type: -1,
     status: 1,
-    category: Category,
+    // @ts-ignore
+    category: {},
     answers: [this.answer1, this.answer2, this.answer3, this.answer4]
   };
-  categories: Category[];
+  categories: ICategory[];
   count = 0;
   message = '';
 
   questionForm: FormGroup;
   constructor(private fb: FormBuilder,
               private service: QuestionService,
-              private router: Router) { }
+              private router: Router,
+              private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
@@ -61,13 +62,11 @@ export class CreateQuestionComponent implements OnInit {
       answer2: ['', Validators.required],
       answer3: ['', Validators.required],
       answer4: ['', Validators.required],
-      category: [Category, Validators.required]
+      category: ['', Validators.required]
     });
-    this.categories = [
-      {id: 1, category: 'Java'},
-      {id: 2, category: 'PHP'},
-      {id: 3, category: 'SQL'}
-    ];
+    this.categoryService.getAllCategories().subscribe(res => {
+      this.categories = res;
+    })
   }
   submit(): void {
     if (!this.questionForm.invalid) {

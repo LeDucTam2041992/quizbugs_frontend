@@ -1,7 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {QuestionService} from '../../../service/question.service';
-import {Question} from '../../../model/question';
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
+import {Router} from "@angular/router";
+import {QuestionService} from "../../../service/question.service";
 
 @Component({
   selector: 'app-list-question',
@@ -31,7 +33,7 @@ export class ListQuestionComponent implements OnInit {
         });
         this.listQuestions = array;
       }
-    );
+    )
   }
 
   delete(id): void {
