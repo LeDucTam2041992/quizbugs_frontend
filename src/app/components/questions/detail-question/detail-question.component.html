@@ -4,7 +4,7 @@
       <h3 class="header">Question: {{question.question}}</h3>
       <br>
       <section class="example-section" *ngFor="let answer of question.answers">
-        <mat-radio-button color="primary" [checked]="answer.status" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
+        <mat-radio-button color="primary" [checked]="answer.status" [disabled]="!answer.status" name="group {{question.id}}">{{answer.answer}}</mat-radio-button>
       </section>
     </mat-card-content>
   </mat-card>
