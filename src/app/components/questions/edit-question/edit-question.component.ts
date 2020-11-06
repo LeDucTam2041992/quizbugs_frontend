@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Answer} from '../../../answer';
+import {Answer} from '../../../model/answer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';

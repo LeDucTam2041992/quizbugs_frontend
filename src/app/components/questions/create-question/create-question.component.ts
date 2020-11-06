@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Answer} from '../../../answer';
+import {Answer} from '../../../model/answer';
 import {QuestionService} from '../../../service/question.service';
 import {Router} from '@angular/router';
-import {Question} from "../../../model/question";
-import {ICategory} from "../../../model/ICategory";
-import {CategoryService} from "../../../service/category.service";
+import {Question} from '../../../model/question';
+import {ICategory} from '../../../model/ICategory';
+import {CategoryService} from '../../../service/category.service';
 
 @Component({
   selector: 'app-create-question',
@@ -66,7 +66,7 @@ export class CreateQuestionComponent implements OnInit {
     });
     this.categoryService.getAllCategories().subscribe(res => {
       this.categories = res;
-    })
+    });
   }
   submit(): void {
     if (!this.questionForm.invalid) {
