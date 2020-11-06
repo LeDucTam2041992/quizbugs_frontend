@@ -1,0 +1,23 @@
+<ng-container *ngIf="question.type == 0">
+  <mat-card >
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question: {{question.question}}</h3>
+      <br>
+      <section class="example-section" *ngFor="let answer of question.answers">
+        <mat-radio-button color="primary" [checked]="answer.status" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+<ng-container *ngIf="question.type == 1">
+  <mat-card >
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question: {{question.question}}</h3>
+    <br>
+    <section class="example-section" *ngFor="let answer of question.answers">
+      <mat-checkbox color="primary" class="example-margin" [checked]="answer.status" [disabled]="!answer.status">{{answer.answer}}</mat-checkbox>
+    </section>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
