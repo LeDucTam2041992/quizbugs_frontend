@@ -14,27 +14,6 @@ import {Validators} from '@angular/forms';
 })
 export class DetailQuestionComponent implements OnInit {
 
-  res = 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inuwas originally bred for hunting.';
-  answer1: Answer = {
-    id: 0,
-    answer: '',
-    status: false
-  };
-  answer2: Answer = {
-    id: 0,
-    answer: '',
-    status: false
-  };
-  answer3: Answer = {
-    id: 0,
-    answer: '',
-    status: false
-  };
-  answer4: Answer = {
-    id: 0,
-    answer: '',
-    status: false
-  };
   typeCheckBox = 1;
   typeSelect = 0;
   question: Question = {
@@ -63,10 +42,6 @@ export class DetailQuestionComponent implements OnInit {
   getQuestion(id: number): void {
     this.service.getQuestion(id).subscribe(res => {
       this.question = res;
-      this.answer1 = this.question.answers[0];
-      this.answer2 = this.question.answers[1];
-      this.answer3 = this.question.answers[2];
-      this.answer4 = this.question.answers[3];
     });
   }
 }
