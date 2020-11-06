@@ -1,42 +1,30 @@
-import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LayoutWithSharedComponent} from './layout-with-shared/layout-with-shared.component';
-import {CategoryModule} from './components/category/category.module';
-import {LoginComponent} from './components/login/login.component';
-import {CreateAccountComponent} from './components/create-account/create-account.component';
-import {QuestionModule} from './components/questions/question.module';
+import {NgModule} from '@angular/core';
 
-
-// @ts-ignore
-const routes: Routes = [
+const appRoutes: Routes = [
   {
-    path: 'login', component: LoginComponent
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
-  {
-    path: 'create_account', component: CreateAccountComponent
+  { path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
     path: '',
-    component: LayoutWithSharedComponent
-  },
-  {
-    path: 'admin',
-    children: [
-      {
-        path: 'categories',
-        loadChildren: (() => import('./components/category/category.module').then(() => CategoryModule))
-      },
-      {
-        path: 'questions',
-        loadChildren: () => import('./components/questions/question.module').then(() => QuestionModule)
-      }
-    ]
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(
+      appRoutes
+    )
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {
 }

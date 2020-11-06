@@ -24,9 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
-              "src/styles.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -125,6 +123,6 @@
   },
   "defaultProject": "material-demo",
   "cli": {
-    "analytics": "c31d0048-03b4-4560-80e0-2965df34a3dc"
+    "analytics": "91673562-7a34-43d1-8582-396a176fa8ef"
   }
 }
