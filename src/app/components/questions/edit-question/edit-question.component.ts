@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Answer} from '../../../answer';
-import {Question} from '../../../model/question';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Category} from '../create-question/create-question.component';
 import {Subscription} from 'rxjs';
+import {Question} from "../../../model/question";
 
 @Component({
   selector: 'app-edit-question',
@@ -13,13 +13,36 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./edit-question.component.css']
 })
 export class EditQuestionComponent implements OnInit {
-  answer1: Answer;
-  answer2: Answer;
-  answer3: Answer;
-  answer4: Answer;
+  answer1: Answer = {
+    id: 0,
+    answer: '',
+    status: false
+  };
+  answer2: Answer = {
+    id: 0,
+    answer: '',
+    status: false
+  };
+  answer3: Answer = {
+    id: 0,
+    answer: '',
+    status: false
+  };
+  answer4: Answer = {
+    id: 0,
+    answer: '',
+    status: false
+  };
   typeCheckBox = 1;
   typeSelect = 0;
-  question: Question;
+  question: Question = {
+    id: 0,
+    question: 'ABC',
+    type: 0,
+    status: 0,
+    category: Category,
+    answers: []
+  };
   categories: Category[];
   count = 0;
   message = '';
@@ -30,12 +53,21 @@ export class EditQuestionComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       this.getQuestion(16);
+    });
+    this.questionForm = this.fb.group({
+      question: ['', Validators.required],
+      answer1: ['', Validators.required],
+      answer2: ['', Validators.required],
+      answer3: ['', Validators.required],
+      answer4: ['', Validators.required],
+      category: [Category, Validators.required]
     });
     this.categories = [
       {id: 1, category: 'Java'},
@@ -46,7 +78,6 @@ export class EditQuestionComponent implements OnInit {
   getQuestion(id: number): void {
     this.service.getQuestion(id).subscribe(qs => {
       this.question = qs;
-      console.log(this.question);
       this.answer1 = this.question.answers[0];
       this.answer2 = this.question.answers[1];
       this.answer3 = this.question.answers[2];
@@ -59,40 +90,7 @@ export class EditQuestionComponent implements OnInit {
         answer4: [this.answer1.answer, Validators.required],
         category: [Category, Validators.required]
       });
-      console.log(this.questionForm.value);
     });
-    // this.question = {
-    //   id: 1,
-    //   question: 'Test Edit',
-    //   type: 1,
-    //   status: 1,
-    //   category: {
-    //     id: 1,
-    //     category: 'Java'
-    //   },
-    //   answers: [
-    //     {
-    //       id: 10,
-    //       answer: 'Test Edit',
-    //       status: false
-    //     },
-    //     {
-    //       id: 11,
-    //       answer: 'Test Edit',
-    //       status: false
-    //     },
-    //     {
-    //       id: 12,
-    //       answer: 'Test Edit',
-    //       status: true
-    //     },
-    //     {
-    //       id: 13,
-    //       answer: 'Test Edit',
-    //       status: true
-    //     }
-    //   ]
-    // };
   }
 
   submit(): void {
@@ -121,12 +119,12 @@ export class EditQuestionComponent implements OnInit {
         this.question.type = this.typeSelect;
       }
       console.log(this.question);
-      this.message = 'Success!';
       this.count = 0;
-      // this.service.updateQuestion(this.question.id, this.question)
-      //   .subscribe(() => {
+      this.service.updateQuestion(this.question.id, this.question)
+        .subscribe(() => {
           // this.router.navigate(['/']);
-        // });
+          this.message = 'Success!';
+        });
     } else {
       this.message = 'UnSuccess!';
       this.count = 0;
