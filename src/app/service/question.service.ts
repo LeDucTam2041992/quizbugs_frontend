@@ -21,11 +21,11 @@ export class QuestionService {
   }
 
   getQuestion(id: number): Observable<Question>{
-    return this.httpClient.get<Question>(environment.urlApi + `/questions/${id}`);
+    return this.httpClient.get<Question>(environment.urlApi + `questions/${id}`);
   }
 
   updateQuestion(id: number, question: Question): Observable<Question>{
-    return this.httpClient.put<Question>(environment.urlApi+ `/questions/${id}`, question);
+    return this.httpClient.put<Question>(environment.urlApi+ `questions/${id}`, question);
   }
 
   deleteQuestion(id: number): Observable<Question>{

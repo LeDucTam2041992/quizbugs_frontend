@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {CategoryService} from "../../../service/category.service";
 import {Router} from "@angular/router";
 import {QuestionService} from "../../../service/question.service";
 
@@ -13,9 +12,10 @@ import {QuestionService} from "../../../service/question.service";
 })
 export class ListQuestionComponent implements OnInit {
 
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  listQuestions: MatTableDataSource<any>;
+  listQuestions: any;
   displayedColumns = ['id', 'question','status','type','category', 'option'];
   searchKey: string;
 
@@ -47,9 +47,7 @@ export class ListQuestionComponent implements OnInit {
             answers: item.answers
           }
         });
-        this.listQuestions = new MatTableDataSource(array);
-        this.listQuestions.paginator = this.paginator;
-        this.listQuestions.sort = this.sort;
+        this.listQuestions = array;
       }
     )
   }

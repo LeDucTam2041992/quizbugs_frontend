@@ -11,6 +11,8 @@ import {CategoryAddComponent} from "../category/category-add/category-add.compon
 import {CategoryEditComponent} from "../category/category-edit/category-edit.component";
 import {CreateQuestionComponent} from "./create-question/create-question.component";
 import {EditQuestionComponent} from "./edit-question/edit-question.component";
+import {MatGridListModule} from "@angular/material/grid-list";
+import { DetailQuestionComponent } from './detail-question/detail-question.component';
 
 
 const routes: Routes = [
@@ -22,16 +24,19 @@ const routes: Routes = [
   },
   {
     path: ':id/edit', component: EditQuestionComponent
+  },
+  {
+    path: ':id/detail', component: DetailQuestionComponent
   }
 ]
 @NgModule({
-  declarations: [ListQuestionComponent,CreateQuestionComponent],
+  declarations: [ListQuestionComponent,CreateQuestionComponent, EditQuestionComponent, DetailQuestionComponent],
   imports: [
     CommonModule,
     MaterialsModule,
     FormsModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class QuestionModule { }

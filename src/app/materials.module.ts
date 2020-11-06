@@ -15,6 +15,7 @@ import {CommonModule} from "@angular/common";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatGridList, MatGridListModule} from "@angular/material/grid-list";
 
 const modules = [
   MatCardModule,
@@ -33,6 +34,7 @@ const modules = [
   MatCheckboxModule,
   MatSelectModule,
   MatRadioModule,
+  MatGridListModule,
   CommonModule
 ];
 
@@ -40,8 +42,6 @@ const modules = [
   declarations: [],
   imports: modules,
   exports: modules,
-
-
 })
 export class MaterialsModule {
 }

@@ -33,15 +33,12 @@ import {QuestionModule} from "./components/questions/question.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
     CategoryModule,
     QuestionModule,
-    HttpClientModule,
-    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
