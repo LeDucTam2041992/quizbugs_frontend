@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {Answer} from '../../../answer';
-import {Question} from '../../../question';
-import {Category} from '../create-question/create-question.component';
-import {Subscription} from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
+import {Question} from '../../../model/question';
+import {FormBuilder} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-detail-question',
@@ -13,36 +11,45 @@ import {Validators} from '@angular/forms';
   styleUrls: ['./detail-question.component.css']
 })
 export class DetailQuestionComponent implements OnInit {
+  @Input()
+  inId: number;
+  @Input()
+  index: number;
 
-  typeCheckBox = 1;
-  typeSelect = 0;
   question: Question = {
-    id: 0,
-    question: 'ABC',
-    type: 0,
-    status: 0,
-    category: Category,
+    id: 1,
+    question: '',
+    type: 1,
+    status: 1,
+    category: {
+      id: 1,
+      category: 'java'
+    },
     answers: []
   };
-  categories: Category[];
-  count = 0;
-  message = '';
+
   sub: Subscription;
-  id: number;
-  constructor(private service: QuestionService,
+  id = 0;
+  constructor(private fb: FormBuilder,
+              private questionService: QuestionService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+    this.sub = this.activatedRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
-      this.getQuestion(16);
+      if (this.id > 0) {
+        this.questionService.getQuestion(this.id).subscribe(res => {
+          this.question = res;
+        });
+      }
     });
-  }
-  getQuestion(id: number): void {
-    this.service.getQuestion(id).subscribe(res => {
-      this.question = res;
-    });
+    if (this.inId > 0) {
+      this.questionService.getQuestion(this.inId).subscribe(res =>
+        this.question = res
+      );
+    }
   }
 }
-

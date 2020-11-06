@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Question} from '../../../question';
 import {Answer} from '../../../answer';
 import {QuestionService} from '../../../service/question.service';
 import {Router} from '@angular/router';
+import {Question} from '../../../model/question';
 
 export class Category {
   id: number;
@@ -67,7 +67,7 @@ export class CreateQuestionComponent implements OnInit {
       {id: 1, category: 'Java'},
       {id: 2, category: 'PHP'},
       {id: 3, category: 'SQL'}
-      ];
+    ];
   }
   submit(): void {
     if (!this.questionForm.invalid) {
@@ -95,12 +95,12 @@ export class CreateQuestionComponent implements OnInit {
         this.question.type = this.typeSelect;
       }
       console.log(this.question);
-      this.message = 'Success!';
       this.count = 0;
-      // this.service.createQuestion(this.question)
-      //   .subscribe(() => {
-      //     this.router.navigate(['/']);
-      //   });
+      this.service.createQuestion(this.question)
+        .subscribe(() => {
+          this.message = 'Success!';
+          this.router.navigate(['/questions']);
+        });
     } else {
       this.message = 'UnSuccess!';
       this.count = 0;

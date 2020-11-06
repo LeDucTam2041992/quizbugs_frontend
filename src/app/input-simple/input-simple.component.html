@@ -1,12 +1,11 @@
-
 <form class="example-form" (ngSubmit)="submit()" [formGroup]="product">
   <mat-form-field class="example-full-width">
-  <mat-label>Name</mat-label>
-  <input matInput type="text" formControlName="name" placeholder="your name">
-  <mat-hint>Errors appear instantly!</mat-hint>
-  <mat-error *ngIf="product.get('name').hasError('required')">
-    name is <strong>required</strong>
-  </mat-error>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name" placeholder="your name">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="product.get('name').hasError('required')">
+      name is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
   <br><br>
   <button mat-raised-button color="primary">Primary</button>
@@ -31,7 +30,7 @@
         <mat-label>Long Last Name That Will Be Truncated</mat-label>
         <input matInput>
       </mat-form-field></td>
-      </tr>
+    </tr>
   </table>
 
   <p>
@@ -63,4 +62,3 @@
     </tr>
   </table>
 </form>
-

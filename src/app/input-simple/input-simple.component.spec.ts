@@ -10,7 +10,7 @@ describe('InputSimpleComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ InputSimpleComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

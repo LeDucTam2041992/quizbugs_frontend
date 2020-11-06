@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Answer} from '../../../answer';
-import {Question} from '../../../question';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Category} from '../create-question/create-question.component';
 import {Subscription} from 'rxjs';
+import {Question} from '../../../model/question';
+import {ICategory} from '../../../model/ICategory';
+import {CategoryService} from '../../../service/category.service';
 
 @Component({
   selector: 'app-edit-question',
@@ -40,7 +42,7 @@ export class EditQuestionComponent implements OnInit {
     question: 'ABC',
     type: 0,
     status: 0,
-    category: Category,
+    category: {},
     answers: []
   };
   categories: Category[];
@@ -53,7 +55,8 @@ export class EditQuestionComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -85,9 +88,9 @@ export class EditQuestionComponent implements OnInit {
       this.questionForm = this.fb.group({
         question: [this.question.question, Validators.required],
         answer1: [this.answer1.answer, Validators.required],
-        answer2: [this.answer1.answer, Validators.required],
-        answer3: [this.answer1.answer, Validators.required],
-        answer4: [this.answer1.answer, Validators.required],
+        answer2: [this.answer2.answer, Validators.required],
+        answer3: [this.answer3.answer, Validators.required],
+        answer4: [this.answer4.answer, Validators.required],
         category: [Category, Validators.required]
       });
     });

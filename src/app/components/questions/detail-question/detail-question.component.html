@@ -1,34 +1,24 @@
-<mat-card *ngIf="question.type==0">
-  <mat-card-header>
-    <h3>{{question.question}}</h3>
-  </mat-card-header>
-  <mat-card-content>
-    <section class="answer" *ngFor="let answer of question.answers">
-      <mat-checkbox [checked]="answer.status">{{answer.answer}}</mat-checkbox>
-    </section>
-  </mat-card-content>
-  <mat-card-actions class="example-button">
-    <button mat-flat-button color="primary" style="margin-right: 20px">Edit</button>
-    <button mat-flat-button color="primary" style="margin-right: 20px">Delete</button>
-  </mat-card-actions>
-  <hr>
-</mat-card>
-
-<mat-card *ngIf="question.type==0">
-  <mat-card-header>
-    <h3>{{question.question}}</h3>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-radio-group>
-      <section class="answer" *ngFor="let answer of question.answers">
-        <mat-radio-button value="{{answer.id}}" [checked]="answer.status">{{answer.answer}}</mat-radio-button>
+<ng-container *ngIf="question.type == 0">
+  <mat-card >
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <section class="example-section" *ngFor="let answer of question.answers">
+        <mat-radio-button [checked]="answer.status" name="{{question.id}}">{{answer.answer}}</mat-radio-button>
       </section>
-    </mat-radio-group>
-  </mat-card-content>
-  <mat-card-actions class="example-button">
-    <button mat-flat-button color="primary" style="margin-right: 20px">Edit</button>
-    <button mat-flat-button color="primary" style="margin-right: 20px">Delete</button>
-  </mat-card-actions>
-  <hr>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<ng-container *ngIf="question.type == 1">
+  <mat-card>
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <mat-radio-group>
+        <section class="example-section" *ngFor="let answer of question.answers">
+          <mat-checkbox class="example-margin" [checked]="answer.status" name="{{question.id}}">{{answer.answer}}</mat-checkbox>
+        </section>
+      </mat-radio-group>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
 

@@ -4,67 +4,41 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputSimpleComponent } from './input-simple/input-simple.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import { TableComponent } from './table/table.component';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
-import { DemoNavComponent } from './demo-nav/demo-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import {MatMenu, MatMenuModule} from '@angular/material/menu';
-import { FooterComponent } from './footer/footer.component';
-import { CreateQuestionComponent } from './components/questions/create-question/create-question.component';
-import {MatCheckbox, MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSelectModule} from '@angular/material/select';
+import {LayoutModule} from '@angular/cdk/layout';
+import {LoginComponent} from './components/login/login.component';
+import {MaterialsModule} from './materials.module';
+import {LayoutWithSharedComponent} from './layout-with-shared/layout-with-shared.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import {CategoryModule} from './components/category/category.module';
 import {HttpClientModule} from '@angular/common/http';
-import { MessageComponent } from './components/message/message.component';
-import { EditQuestionComponent } from './components/questions/edit-question/edit-question.component';
-import { DetailQuestionComponent } from './components/questions/detail-question/detail-question.component';
-import {MatCard, MatCardContent, MatCardModule, MatCardTitle} from '@angular/material/card';
-import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
+import {DemoNavComponent} from './demo-nav/demo-nav.component';
+import {FooterComponent} from './footer/footer.component';
+import {QuestionModule} from './components/questions/question.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    InputSimpleComponent,
-    TableComponent,
+    LoginComponent,
+    LayoutWithSharedComponent,
+    CreateAccountComponent,
     DemoNavComponent,
     FooterComponent,
-    CreateQuestionComponent,
-    MessageComponent,
-    EditQuestionComponent,
-    DetailQuestionComponent,
   ],
   imports: [
+    MaterialsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
     LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    HttpClientModule,
-    MatCardModule,
-    MatRadioModule,
+    CategoryModule,
+    QuestionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
