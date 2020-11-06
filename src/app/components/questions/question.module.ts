@@ -14,6 +14,7 @@ import {EditQuestionComponent} from './edit-question/edit-question.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { DetailQuestionComponent } from './detail-question/detail-question.component';
 import {MessageComponent} from '../message/message.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -31,13 +32,14 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [ListQuestionComponent, CreateQuestionComponent, EditQuestionComponent, DetailQuestionComponent, MessageComponent,],
+  declarations: [ListQuestionComponent, CreateQuestionComponent, EditQuestionComponent, DetailQuestionComponent, MessageComponent],
   imports: [
     CommonModule,
     MaterialsModule,
     FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+    HttpClientModule,
   ]
 })
 export class QuestionModule { }

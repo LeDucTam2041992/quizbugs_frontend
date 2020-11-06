@@ -5,8 +5,6 @@ import {AdminComponent} from './admin.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {QuestionModule} from '../components/questions/question.module';
 import {CategoryModule} from '../components/category/category.module';
-import {ListQuestionComponent} from '../components/questions/list-question/list-question.component';
-import {CategoryListComponent} from '../components/category/category-list/category-list.component';
 
 const routes: Routes = [
   {
@@ -19,11 +17,11 @@ const routes: Routes = [
       },
       {
         path: 'questions',
-        component: ListQuestionComponent,
+        loadChildren: () => import('../components/questions/question.module').then(m => m.QuestionModule)
       },
       {
         path: 'categories',
-        component: CategoryListComponent,
+        loadChildren: () => import('../components/category/category.module').then(m => m.CategoryModule)
       },
       {
         path: '',
