@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import {LoaderService} from "./loader/loader.service";
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +13,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
   sideNavMode: 'side' | 'over' = 'side';
   toolBarHeight = 64;
   private readonly mediaWatcher: Subscription;
-  constructor(media: MediaObserver) {
+
+  constructor(media: MediaObserver,
+              private loaderService: LoaderService) {
     this.mediaWatcher = media.media$.subscribe((change: MediaChange) => {
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         if (this.sideNavOpened) {
