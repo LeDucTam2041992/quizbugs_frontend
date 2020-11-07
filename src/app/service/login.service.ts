@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
-import {IUser} from "../model/user";
+import {IUser} from "../model/IUser";
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +32,9 @@ export class LoginService {
     console.log(this.httpOptions)
     this.http.get(environment.urlApi + 'users/logout', this.httpOptions).subscribe(
       ()=> {
-        this.router.navigate(['']);
-        localStorage.removeItem('token')
+        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     )
   }

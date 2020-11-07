@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {LoginService} from "../../service/login.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {IUser} from "../../model/IUser";
 
 @Component({
   selector: 'app-login',
@@ -8,11 +11,30 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   hide: boolean;
-  constructor(private router: Router) {}
+  loginForm: FormGroup;
 
-  ngOnInit() {}
+  constructor(private router: Router,
+              private loginService: LoginService,
+              private formBuilder: FormBuilder,
+              ) {}
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(6), Validators.pattern('[a-zA-Z0-9]*')]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    })
+  }
   onLogin() {
-    localStorage.setItem('isLoggedin', 'true');
-    this.router.navigate(['/dashboard']);
+    const data: IUser = this.loginForm.value;
+    this.loginService.doLogin(data).subscribe(
+        (response) => {
+          localStorage.setItem('token', response.Authorization);
+          localStorage.setItem('isLoggedin', 'true');
+          this.router.navigate(['dashboard']);
+        },
+        () => {
+          console.log('login fail');
+        });
+
   }
 }
