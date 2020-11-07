@@ -14,16 +14,18 @@ export class CategoryEditComponent implements OnInit {
   updateCategoryForm: FormGroup;
 
 
-  constructor(private router: ActivatedRoute, private categoryService: CategoryService, private formBuilder: FormBuilder, private route: Router) {
+  constructor(private router: ActivatedRoute, private categoryService: CategoryService,
+              private formBuilder: FormBuilder, private route: Router) {
   }
 
-  currentCategory: ICategory;
+  currentCategory: ICategory = {
+    id: 1,
+    category: 'Java'
+  };
   ngOnInit(): void {
     // tslint:disable-next-line:radix
     const id = Number.parseInt(this.router.snapshot.paramMap.get('id'));
-    console.log("now id " + id);
     this.categoryService.findById(id).subscribe(data => {
-      console.log("onInit " + data.category);
       this.currentCategory = data;
     });
     this.updateCategoryForm = this.formBuilder.group({
@@ -35,9 +37,11 @@ export class CategoryEditComponent implements OnInit {
     // @ts-ignore
     console.log(this.currentCategory.category);
     this.categoryService.update(this.currentCategory.id, this.currentCategory).subscribe(e => {
-      console.log(e);
     });
-    this.route.navigate(['questions/categories']);
+    this.route.navigate(['categories/list']);
+  }
+  cancel() {
+    this.route.navigate(['categories/list']);
   }
 
 }

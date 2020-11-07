@@ -64,7 +64,6 @@ export class EditQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
-     // @ts-ignore
       this.question = this.getQuestion(this.id);
     });
     this.questionForm = this.fb.group({
@@ -79,7 +78,7 @@ export class EditQuestionComponent implements OnInit {
         this.categories = res;
     })
   }
-  getQuestion(id: number): void {
+  getQuestion(id: number): any {
     this.service.getQuestion(id).subscribe(qs => {
       this.question = qs;
       this.answer1 = this.question.answers[0];
@@ -126,7 +125,7 @@ export class EditQuestionComponent implements OnInit {
       this.count = 0;
       this.service.updateQuestion(this.question.id, this.question)
         .subscribe(() => {
-          // this.router.navigate(['/']);
+          this.router.navigate(['questions/list']);
           this.message = 'Success!';
         });
     } else {
@@ -147,4 +146,8 @@ export class EditQuestionComponent implements OnInit {
   selectedD(): void{
     this.answer4.status = !this.answer4.status;
   }
+
+    cancel() {
+        this.router.navigate(['questions/list'])
+    }
 }

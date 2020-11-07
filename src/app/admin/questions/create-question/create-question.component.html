@@ -56,12 +56,12 @@
 
     <br><br>
     <label class="example-margin">Choice answers right :</label>
-    <mat-checkbox class="example-margin" [checked]="answer1.status" (change)="selectedA()">A</mat-checkbox>
-    <mat-checkbox class="example-margin" [checked]="answer2.status" (change)="selectedB()">B</mat-checkbox>
-    <mat-checkbox class="example-margin" [checked]="answer3.status" (change)="selectedC()">C</mat-checkbox>
-    <mat-checkbox class="example-margin" [checked]="answer4.status" (change)="selectedD()">D</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer1.status" (change)="selectedA()" color="primary">A</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer2.status" (change)="selectedB()" color="primary">B</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer3.status" (change)="selectedC()" color="primary">C</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer4.status" (change)="selectedD()" color="primary">D</mat-checkbox>
     <br><br>
     <button mat-raised-button color="primary" class="example-margin" [disabled]="questionForm.invalid">Submit</button>
-    <button mat-raised-button color="primary" class="example-margin" routerLink="#" >Cancel</button>
+    <button mat-raised-button color="primary" class="example-margin" (click)="cancel()" >Cancel</button>
   </form>
 </section>

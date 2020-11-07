@@ -55,4 +55,15 @@ export class CategoryListComponent implements OnInit {
       })
     }
   }
+
+    clickEdit(id) {
+        this.router.navigate(['categories/edit/'+id]);
+    }
+
+  add() {
+    this.router.navigate(['categories/add']);
+  }
+  cancel() {
+    this.router.navigate(['categories/list']);
+  }
 }

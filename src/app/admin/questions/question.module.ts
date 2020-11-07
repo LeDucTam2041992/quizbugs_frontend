@@ -25,6 +25,7 @@ import {QuestionRoutingModule} from "./question-routing.module";
 import {SharedModule} from "../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {MatInputModule} from "@angular/material/input";
         SharedModule,
         MatButtonModule,
         MatInputModule,
+        MatIconModule,
     ]
 })
 export class QuestionModule {

@@ -1,5 +1,5 @@
 <div class="search-div">
-  <button mat-raised-button routerLink="add">
+  <button mat-raised-button (click)="add()" >
     <mat-icon>add</mat-icon>Create
   </button>
   <mat-form-field class="search-form-field" floatLabel="never">
@@ -22,7 +22,7 @@
     <ng-container matColumnDef="option">
       <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" [routerLink]="[element.id,'edit']">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEdit(element.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(element.id)">

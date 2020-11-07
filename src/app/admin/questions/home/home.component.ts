@@ -14,9 +14,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.navLinks = [
       new NavLink('list', 'List Questions'),
-      new NavLink('add', 'Create Question'),
-      new NavLink(':id/edit', 'Edit Question'),
-      new NavLink(':id/detail', 'Detail Question'),
+      new NavLink('add', 'Create Question')
     ];
   }
 }

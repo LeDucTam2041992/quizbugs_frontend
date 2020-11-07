@@ -15,8 +15,6 @@ export class HomeComponent implements OnInit {
     this.navLinks = [
       new NavLink('list', 'List Category'),
       new NavLink('add', 'Create Category'),
-      new NavLink(':id/edit', 'Edit Category'),
-      new NavLink(':id/detail', 'Detail Category'),
     ];
   }
 }

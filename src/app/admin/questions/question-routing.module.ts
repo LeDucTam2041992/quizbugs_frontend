@@ -13,20 +13,16 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'list'
-      },
-      {
         path: 'list', component: ListQuestionComponent
       },
       {
         path: 'add', component: CreateQuestionComponent
       },
       {
-        path: ':id/edit', component: EditQuestionComponent
+        path: 'edit/:id', component: EditQuestionComponent
       },
       {
-        path: ':id/detail', component: DetailQuestionComponent
+        path: 'detail/:id', component: DetailQuestionComponent
       },
       {
         path: '**',

@@ -52,4 +52,16 @@ export class DetailQuestionComponent implements OnInit {
       );
     }
   }
+
+  clickEdit(id: any) {
+    this.router.navigate(['questions/edit/'+id])
+  }
+
+  delete(id: any) {
+    if (confirm('Are you sure want to delete?')) {
+      this.questionService.deleteQuestion(id).subscribe(res => {
+
+      })
+    }
+  }
 }

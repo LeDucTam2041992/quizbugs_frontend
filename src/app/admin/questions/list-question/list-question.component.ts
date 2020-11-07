@@ -41,4 +41,7 @@ export class ListQuestionComponent implements OnInit {
       });
     }
   }
+  add() {
+    this.router.navigate(['questions/add']);
+  }
 }

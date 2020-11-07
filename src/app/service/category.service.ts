@@ -25,4 +25,7 @@ export class CategoryService {
   delete(id): Observable<any> {
     return this.http.delete(environment.urlApi + 'categories/' + id);
   }
+  findMaxId(): Observable<any> {
+    return this.http.get(environment.urlApi + 'categories/maxId');
+  }
 }
