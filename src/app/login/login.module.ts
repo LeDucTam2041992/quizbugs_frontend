@@ -9,6 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   imports: [
@@ -18,8 +21,9 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    MatIconModule
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent, RegisterComponent, HomeComponent]
 })
 export class LoginModule {}
