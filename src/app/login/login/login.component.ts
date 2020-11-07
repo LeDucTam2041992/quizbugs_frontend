@@ -10,7 +10,7 @@ import {IUser} from "../../model/IUser";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  hide: boolean;
+  hide: boolean = true;
   loginForm: FormGroup;
 
   constructor(private router: Router,

@@ -10,7 +10,7 @@ import {LoginService} from "../../service/login.service";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  hide: boolean;
+  hide: boolean = true;
   registerForm: FormGroup;
   message: string;
 
