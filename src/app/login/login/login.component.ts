@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {LoginService} from "../../service/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IUser} from "../../model/IUser";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private loginService: LoginService,
               private formBuilder: FormBuilder,
+              public snackBar: MatSnackBar
               ) {}
 
   ngOnInit() {
@@ -34,7 +36,16 @@ export class LoginComponent implements OnInit {
         },
         () => {
           console.log('login fail');
+          this.openSnackBar('login fail','try again')
         });
 
   }
+    openSnackBar(message: string, action: string) {
+        let snackBarRef = this.snackBar.open(message, action, {
+            duration: 2000
+        });
+        snackBarRef.onAction().subscribe(() => {
+            console.log('The snack-bar action was triggered!');
+        });
+    }
 }
