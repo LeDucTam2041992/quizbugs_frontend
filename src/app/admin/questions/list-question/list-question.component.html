@@ -1,10 +1,3 @@
-<!--<ng-select [(ngModel)]="selectedCategory" placeholder="select category" (ngModelChange)="searchCategory()">-->
-<!--    <ng-option>None</ng-option>-->
-<!--    <ng-option *ngFor="let category of listCategories"  [value]="category.category">-->
-<!--        {{category.category}}-->
-<!--    </ng-option>-->
-<!--</ng-select>-->
-<!--<h4>mat-select</h4>-->
 <mat-form-field appearance="fill">
     <mat-label>Category</mat-label>
     <mat-select [(ngModel)]="selectedCategory" placeholder="select category" (ngModelChange)="searchCategory()">
@@ -16,12 +9,12 @@
     <button mat-raised-button (click)="add()">
       <mat-icon>add</mat-icon>Create
     </button>
-      <input matInput [(ngModel)]="questionName" (input)="Search()" placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
+      <input matInput [(ngModel)]="questionName" (input)="SearchTextBox()" placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
       <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
         <mat-icon>close</mat-icon>
       </button>
   </div>
-  <ng-container *ngFor="let question of listQuestions;let i = index">
+  <ng-container *ngFor="let question of filteredListQuestions;let i = index">
     <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)"></app-detail-question>
   </ng-container>
 

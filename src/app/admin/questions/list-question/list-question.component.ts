@@ -11,6 +11,7 @@ import {ICategory} from "../../../model/ICategory";
     styleUrls: ['./list-question.component.css']
 })
 export class ListQuestionComponent implements OnInit {
+    filteredListQuestions: Question[];
     listQuestions: Question[];
     listCategories: ICategory[];
     selectedCategory: any;
@@ -48,6 +49,7 @@ export class ListQuestionComponent implements OnInit {
                     };
                 });
                 this.listQuestions = array;
+            this.filteredListQuestions = this.listQuestions;
             }
         );
     }
@@ -55,7 +57,7 @@ export class ListQuestionComponent implements OnInit {
     delete(id): void {
         if (confirm('Are you sure want to delete?')) {
             this.questionService.deleteQuestion(id).subscribe(() => {
-                this.getAll();
+                this.filteredListQuestions = this.listQuestions;
             });
         }
     }
@@ -64,31 +66,40 @@ export class ListQuestionComponent implements OnInit {
         this.router.navigate(['questions/add']);
     }
 
-    Search() {
-        this.listQuestions = this.listQuestions.filter(res => {
-            if (!this.selectedCategory)
-                return res.question.toLowerCase().match(this.questionName.toLowerCase());
-            else
-                return res.question.toLowerCase().match(this.questionName.toLowerCase()) && res.question.toLowerCase().match(this.questionName.toLowerCase());
+    SearchTextBox() {
+        this.filteredListQuestions = this.listQuestions.filter(res => {
+            if(this.selectedCategory){
+                if(res.question.toLowerCase().match(this.questionName.toLowerCase())){
+                    for (let i in res.categories) {
+                        if (res.categories[i].category === this.selectedCategory)
+                            return true
+                    }
+                    return false;
+                }
+            }
+            return res.question.toLowerCase().match(this.questionName.toLowerCase())
         })
     }
 
     clear() {
         this.questionName = '';
-        this.getAll();
+        this.searchCategory();
     }
 
     searchCategory() {
         console.log("searching category....")
-        if (!this.selectedCategory)
-            this.getAll()
-        else
-            this.listQuestions = this.listQuestions.filter(res => {
+        if (!this.selectedCategory) {
+            this.filteredListQuestions = this.listQuestions;
+        }
+        else {
+            this.questionName = '';
+            this.filteredListQuestions = this.listQuestions.filter(res => {
                 for (let i in res.categories) {
                     if (res.categories[i].category === this.selectedCategory)
                         return true
                 }
                 return false;
             })
+        }
     }
 }
