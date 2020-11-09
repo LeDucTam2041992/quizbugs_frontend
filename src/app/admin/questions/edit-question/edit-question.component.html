@@ -1,0 +1,67 @@
+<section class="body-margin">
+  <h2>Update Question</h2>
+<!--  <app-message [message]="message"></app-message>-->
+  <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Question</mat-label>
+      <textarea matInput rows="4" formControlName="question" placeholder="Enter the question"></textarea>
+      <mat-error *ngIf="questionForm.get('question').hasError('required')">
+        Question is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Answer A</mat-label>
+      <textarea matInput formControlName="answer1" placeholder="Enter the answer"></textarea>
+      <mat-error *ngIf="questionForm.get('answer1').hasError('required')">
+        Answer is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Answer B</mat-label>
+      <textarea matInput formControlName="answer2" placeholder="Enter the answer"></textarea>
+      <mat-error *ngIf="questionForm.get('answer2').hasError('required')">
+        Answer is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Answer C</mat-label>
+      <textarea matInput formControlName="answer3" placeholder="Enter the answer"></textarea>
+      <mat-error *ngIf="questionForm.get('answer3').hasError('required')">
+        Answer is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Answer D</mat-label>
+      <textarea matInput formControlName="answer4" placeholder="Enter the answer"></textarea>
+      <mat-error *ngIf="questionForm.get('answer4').hasError('required')">
+        Answer is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category" >
+        <mat-option *ngFor="let category of categories" [value]="category" >{{category.category}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="questionForm.get('category').hasError('required')">
+        Category is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br><br>
+    <label class="example-margin">Choice answers right :</label>
+    <mat-checkbox class="example-margin" [checked]="answer1.status" (change)="selectedA()" color="primary">A</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer2.status" (change)="selectedB()" color="primary">B</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer3.status" (change)="selectedC()" color="primary">C</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="answer4.status" (change)="selectedD()" color="primary">D</mat-checkbox>
+    <br><br>
+    <button mat-raised-button color="primary" class="example-margin" [disabled]="questionForm.invalid">Update</button>
+    <button mat-raised-button color="primary" class="example-margin" (click)="cancel()" >Cancel</button>
+  </form>
+</section>

@@ -1,0 +1,15 @@
+
+  <div class="search-div">
+    <button mat-raised-button (click)="add()">
+      <mat-icon>add</mat-icon>Create
+    </button>
+      <input matInput  placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>close</mat-icon>
+      </button>
+  </div>
+  <ng-container *ngFor="let question of listQuestions;let i = index">
+    <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)"></app-detail-question>
+  </ng-container>
+
+
