@@ -25,7 +25,7 @@ export class ListQuestionComponent implements OnInit {
             question: item.question,
             type: item.type,
             status: item.status,
-            category: item.category,
+            categories: item.categories,
             answers: item.answers
           };
         });
