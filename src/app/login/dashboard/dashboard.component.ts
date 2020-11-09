@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   public login = "/login";
   public register ='/register';
+  public home ='/home';
 
   constructor() { }
 
