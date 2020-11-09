@@ -29,10 +29,10 @@ export class QuestionService {
   }
 
   deleteQuestion(id: number): Observable<Question>{
-    return this.httpClient.delete<Question>(environment.urlApi + `/questions/${id}`);
+    return this.httpClient.delete<Question>(environment.urlApi + `questions/${id}`);
   }
 
   getAllQuestionByCategory(id: number): Observable<Question[]>{
-    return this.httpClient.get<Question[]>(environment.urlApi + `/category/${id}/questions`);
+    return this.httpClient.get<Question[]>(environment.urlApi + `category/${id}/questions`);
   }
 }
