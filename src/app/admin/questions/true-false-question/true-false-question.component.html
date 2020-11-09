@@ -1,0 +1,36 @@
+<section class="body-margin">
+    <h2>Create True-False Question</h2>
+    <app-message [message]="message"></app-message>
+    <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
+        <mat-form-field class="example-full-width">
+            <mat-label>Question</mat-label>
+            <textarea matInput rows="4" formControlName="question" placeholder="Enter the question"></textarea>
+            <mat-error *ngIf="questionForm.get('question').hasError('required')">
+                Question is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <section>
+            <mat-radio-group formControlName="answer">
+                <mat-radio-button [value]="[trueA]">True</mat-radio-button>
+                <br><br>
+                <mat-radio-button [value]="[falseA]">False</mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <br>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" multiple>
+                <mat-option *ngFor="let category of categories" [value]="category">{{category.category}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="questionForm.get('category').hasError('required')">
+                Category is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <button mat-raised-button color="primary" class="example-margin" [disabled]="questionForm.invalid">Submit</button>
+        <button mat-raised-button color="primary" class="example-margin" (click)="cancel()" >Cancel</button>
+    </form>
+</section>
