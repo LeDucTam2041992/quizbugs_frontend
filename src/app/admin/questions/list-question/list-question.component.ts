@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QuestionService} from '../../../service/question.service';
 import {Question} from '../../../model/question';
@@ -8,7 +8,7 @@ import {Question} from '../../../model/question';
   templateUrl: './list-question.component.html',
   styleUrls: ['./list-question.component.css']
 })
-export class ListQuestionComponent implements OnInit {
+export class ListQuestionComponent implements OnInit{
   listQuestions: Question[];
   constructor(private questionService: QuestionService, private router: Router) {
   }
@@ -44,4 +44,5 @@ export class ListQuestionComponent implements OnInit {
   add() {
     this.router.navigate(['questions/add']);
   }
+
 }
