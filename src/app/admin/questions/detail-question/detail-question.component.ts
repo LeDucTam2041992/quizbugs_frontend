@@ -24,10 +24,7 @@ export class DetailQuestionComponent implements OnInit {
     question: '',
     type: 1,
     status: 1,
-    category: {
-      id: 1,
-      category: 'java'
-    },
+    categories: [],
     answers: []
   };
 

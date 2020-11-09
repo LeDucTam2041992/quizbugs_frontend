@@ -41,10 +41,7 @@ export class EditQuestionComponent implements OnInit {
     question: 'ABC',
     type: 0,
     status: 0,
-    category: {
-      id: 0,
-      category: ''
-    },
+    categories: [],
     answers: []
   };
   categories: ICategory[] = [];
@@ -91,7 +88,7 @@ export class EditQuestionComponent implements OnInit {
         answer2: [this.answer2.answer, Validators.required],
         answer3: [this.answer3.answer, Validators.required],
         answer4: [this.answer4.answer, Validators.required],
-        category: [this.question.category, Validators.required]
+        category: [this.question.categories, Validators.required]
       });
     });
   }
@@ -103,7 +100,7 @@ export class EditQuestionComponent implements OnInit {
       this.answer2.answer = this.questionForm.get('answer2').value;
       this.answer3.answer = this.questionForm.get('answer3').value;
       this.answer4.answer = this.questionForm.get('answer4').value;
-      this.question.category = this.questionForm.get('category').value;
+      this.question.categories = this.questionForm.get('category').value;
       if (this.answer1.status) {
         this.count++;
       }

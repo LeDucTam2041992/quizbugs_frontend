@@ -2,57 +2,93 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QuestionService} from '../../../service/question.service';
 import {Question} from '../../../model/question';
+import {CategoryService} from "../../../service/category.service";
+import {ICategory} from "../../../model/ICategory";
 
 @Component({
-  selector: 'app-list-question',
-  templateUrl: './list-question.component.html',
-  styleUrls: ['./list-question.component.css']
+    selector: 'app-list-question',
+    templateUrl: './list-question.component.html',
+    styleUrls: ['./list-question.component.css']
 })
 export class ListQuestionComponent implements OnInit {
-  listQuestions: Question[];
-  constructor(private questionService: QuestionService, private router: Router) {
-  }
-  questionName: string;
-  ngOnInit(): void {
-    this.getAll();
-  }
+    listQuestions: Question[];
+    listCategories: ICategory[];
+    selectedCategory: any;
 
-  getAll(): void {
-    this.questionService.getAllQuestion().subscribe(list => {
-        const array = list.map(item => {
-          return {
-            id: item.id,
-            question: item.question,
-            type: item.type,
-            status: item.status,
-            category: item.category,
-            answers: item.answers
-          };
-        });
-        this.listQuestions = array;
-      }
-    );
-  }
-
-  delete(id): void {
-    if (confirm('Are you sure want to delete?')) {
-      this.questionService.deleteQuestion(id).subscribe(() => {
-        this.getAll();
-      });
+    constructor(private questionService: QuestionService, private router: Router,
+                private categoryService: CategoryService) {
     }
-  }
-  add() {
-    this.router.navigate(['questions/add']);
-  }
 
-  Search() {
-    this.listQuestions = this.listQuestions.filter( res =>{
-      return res.question.toLowerCase().match(this.questionName.toLowerCase());
-    })
-  }
+    questionName: string;
 
-  clear() {
-    this.questionName = '';
-    this.getAll();
-  }
+    ngOnInit(): void {
+        this.getAll();
+        this.categoryService.getAllCategories().subscribe(list => {
+                const array = list.map(item => {
+                    return {
+                        id: item.id,
+                        category: item.category
+                    };
+                });
+                this.listCategories = array;
+            }
+        )
+    }
+
+    getAll(): void {
+        this.questionService.getAllQuestion().subscribe(list => {
+                const array = list.map(item => {
+                    return {
+                        id: item.id,
+                        question: item.question,
+                        type: item.type,
+                        status: item.status,
+                        categories: item.categories,
+                        answers: item.answers
+                    };
+                });
+                this.listQuestions = array;
+            }
+        );
+    }
+
+    delete(id): void {
+        if (confirm('Are you sure want to delete?')) {
+            this.questionService.deleteQuestion(id).subscribe(() => {
+                this.getAll();
+            });
+        }
+    }
+
+    add() {
+        this.router.navigate(['questions/add']);
+    }
+
+    Search() {
+        this.listQuestions = this.listQuestions.filter(res => {
+            if (!this.selectedCategory)
+                return res.question.toLowerCase().match(this.questionName.toLowerCase());
+            else
+                return res.question.toLowerCase().match(this.questionName.toLowerCase()) && res.question.toLowerCase().match(this.questionName.toLowerCase());
+        })
+    }
+
+    clear() {
+        this.questionName = '';
+        this.getAll();
+    }
+
+    searchCategory() {
+        console.log("searching category....")
+        if (!this.selectedCategory)
+            this.getAll()
+        else
+            this.listQuestions = this.listQuestions.filter(res => {
+                for (let i in res.categories) {
+                    if (res.categories[i].category === this.selectedCategory)
+                        return true
+                }
+                return false;
+            })
+    }
 }

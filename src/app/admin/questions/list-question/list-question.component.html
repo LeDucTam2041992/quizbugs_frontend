@@ -1,4 +1,17 @@
-
+<!--<ng-select [(ngModel)]="selectedCategory" placeholder="select category" (ngModelChange)="searchCategory()">-->
+<!--    <ng-option>None</ng-option>-->
+<!--    <ng-option *ngFor="let category of listCategories"  [value]="category.category">-->
+<!--        {{category.category}}-->
+<!--    </ng-option>-->
+<!--</ng-select>-->
+<!--<h4>mat-select</h4>-->
+<mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="selectedCategory" placeholder="select category" (ngModelChange)="searchCategory()">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let category of listCategories" [value]="category.category">{{category.category}}</mat-option>
+    </mat-select>
+</mat-form-field>
   <div class="search-div">
     <button mat-raised-button (click)="add()">
       <mat-icon>add</mat-icon>Create
