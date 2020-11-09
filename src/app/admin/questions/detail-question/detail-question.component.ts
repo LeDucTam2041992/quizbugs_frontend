@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Question} from '../../../model/question';
 import {FormBuilder} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
@@ -15,6 +15,9 @@ export class DetailQuestionComponent implements OnInit {
   inId: number;
   @Input()
   index: number;
+
+  @Output()
+  deleteId = new EventEmitter<any>();
 
   question: Question = {
     id: 1,
@@ -58,10 +61,6 @@ export class DetailQuestionComponent implements OnInit {
   }
 
   delete(id: any) {
-    if (confirm('Are you sure want to delete?')) {
-      this.questionService.deleteQuestion(id).subscribe(res => {
-
-      })
+      this.deleteId.emit(id);
     }
-  }
 }
