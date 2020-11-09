@@ -12,7 +12,7 @@ export class ListQuestionComponent implements OnInit {
   listQuestions: Question[];
   constructor(private questionService: QuestionService, private router: Router) {
   }
-
+  questionName: string;
   ngOnInit(): void {
     this.getAll();
   }
@@ -43,5 +43,11 @@ export class ListQuestionComponent implements OnInit {
   }
   add() {
     this.router.navigate(['questions/add']);
+  }
+
+  Search() {
+    this.listQuestions = this.listQuestions.filter( res =>{
+      return res.question.toLowerCase().match(this.questionName.toLowerCase());
+    })
   }
 }
