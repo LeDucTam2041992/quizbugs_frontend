@@ -50,4 +50,9 @@ export class ListQuestionComponent implements OnInit {
       return res.question.toLowerCase().match(this.questionName.toLowerCase());
     })
   }
+
+  clear() {
+    this.questionName = '';
+    this.getAll();
+  }
 }

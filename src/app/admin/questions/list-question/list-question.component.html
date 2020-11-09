@@ -4,7 +4,7 @@
       <mat-icon>add</mat-icon>Create
     </button>
       <input matInput [(ngModel)]="questionName" (input)="Search()" placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
         <mat-icon>close</mat-icon>
       </button>
   </div>
