@@ -1,8 +1,17 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" style="float: left">
     <mat-label>Category</mat-label>
-    <mat-select [(ngModel)]="selectedCategory" placeholder="select category" (ngModelChange)="searchCategory()">
+    <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="searchCategory()">
         <mat-option>None</mat-option>
         <mat-option *ngFor="let category of listCategories" [value]="category.category">{{category.category}}</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)]="selectedType" (ngModelChange)="searchTypeQuesiton()">
+        <mat-option>None</mat-option>
+        <mat-option value="0">Radio Button</mat-option>
+        <mat-option value="1">CheckBoxes</mat-option>
+        <mat-option value="2">Input</mat-option>
     </mat-select>
 </mat-form-field>
   <div class="search-div">
