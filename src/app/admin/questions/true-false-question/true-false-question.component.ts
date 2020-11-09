@@ -29,7 +29,7 @@ export class TrueFalseQuestionComponent implements OnInit {
     type: 2,
     status: 1,
     categories: [],
-    answers: []
+    answers: [this.trueA, this.falseA]
   };
   categories: ICategory[];
   message = '';
@@ -54,7 +54,10 @@ export class TrueFalseQuestionComponent implements OnInit {
   submit(): void {
     if (!this.questionForm.invalid) {
       this.question.question = this.questionForm.get('question').value;
-      this.question.answers = this.questionForm.get('answer').value;
+      if(this.questionForm.get('answer').value.answer == 'False') {
+        this.trueA.status = false;
+        this.falseA.status = true;
+      };
       this.question.categories = this.questionForm.get('category').value;
       console.log(this.question);
       this.service.createQuestion(this.question)
