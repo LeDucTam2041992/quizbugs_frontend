@@ -26,6 +26,8 @@ import {SharedModule} from "../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import {MatIconModule} from "@angular/material/icon";
         CreateQuestionComponent,
         EditQuestionComponent,
         DetailQuestionComponent,
-        MessageComponent],
+        MessageComponent,
+    ],
     imports: [
         QuestionRoutingModule,
         CommonModule,
@@ -53,6 +56,8 @@ import {MatIconModule} from "@angular/material/icon";
         MatButtonModule,
         MatInputModule,
         MatIconModule,
+        MatAutocompleteModule,
+        MatChipsModule,
     ]
 })
 export class QuestionModule {
