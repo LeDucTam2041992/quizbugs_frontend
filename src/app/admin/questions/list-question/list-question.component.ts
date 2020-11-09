@@ -37,7 +37,7 @@ export class ListQuestionComponent implements OnInit {
   delete(id): void {
     if (confirm('Are you sure want to delete?')) {
       this.questionService.deleteQuestion(id).subscribe(() => {
-        this.router.navigate(['/questions']);
+        this.getAll();
       });
     }
   }
