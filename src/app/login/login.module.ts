@@ -13,7 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -28,6 +28,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatIconModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, RegisterComponent, HomeComponent, DashboardComponent]
+  declarations: [LoginComponent, RegisterComponent, HomeComponent, ChangePasswordComponent]
 })
 export class LoginModule {}
