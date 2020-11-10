@@ -5,6 +5,7 @@ import {RegisterComponent} from "./register/register.component";
 import {HomeComponent} from "./home/home.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {AuthGuard} from "../core/auth.guard";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login'
+        component:DashboardComponent,
       },
       {
         path: 'login',

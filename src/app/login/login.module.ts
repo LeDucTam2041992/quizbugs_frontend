@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 @NgModule({
   imports: [
@@ -28,6 +29,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     MatIconModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, RegisterComponent, HomeComponent, ChangePasswordComponent]
+  declarations: [LoginComponent, RegisterComponent, HomeComponent, ChangePasswordComponent,DashboardComponent]
 })
 export class LoginModule {}
