@@ -1,1 +1,36 @@
-<p>create-quiz works!</p>
+<div class="list-question">
+    <div class="search-div">
+        <input matInput  placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <ng-container *ngFor="let question of listQuestions; let i = index">
+        <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)" (addId)="add($event)" [isCreateQuiz]="true"></app-detail-question>
+    </ng-container>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = $event">
+    </mat-paginator>
+</div>
+
+<div class="quiz">
+    <h1 style="text-align: center">Create Quiz</h1>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Name : </mat-label>
+            <input type="text" matInput [formControl]="quizFormControl" placeholder="Java pro test">
+            <mat-error *ngIf="quizFormControl.hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+    <label class="number-qs">Number Question Of Quiz : {{quizQuestion.length}}</label>
+    <br><br><br>
+    <h3 style="text-align: center">List Question Of Quiz</h3>
+    <ng-container *ngFor="let q of quizQuestion; let i = index">
+        <app-detail-question [inId]="q.id" [index]="i" (deleteId)="delete($event)" (addId)="add($event)"></app-detail-question>
+<!--        <section class="qs">Question : {{i+1}} {{q.question}}</section>-->
+    </ng-container>
+</div>
