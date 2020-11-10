@@ -50,7 +50,7 @@ export class ListQuestionComponent implements OnInit {
                     };
                 });
                 this.listQuestions = array;
-                this.filteredListQuestions = this.listQuestions;
+                this.filteredListQuestions =  this.listQuestions.slice(0, 5);
             }
         );
     }
@@ -141,5 +141,9 @@ export class ListQuestionComponent implements OnInit {
                 }
             })
         }
+    }
+
+    onPageChange($event) {
+        this.filteredListQuestions =  this.listQuestions.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
     }
 }

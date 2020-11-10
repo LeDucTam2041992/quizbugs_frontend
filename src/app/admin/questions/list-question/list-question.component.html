@@ -2,7 +2,8 @@
     <mat-label>Category</mat-label>
     <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="searchCategory()">
         <mat-option>None</mat-option>
-        <mat-option *ngFor="let category of listCategories" [value]="category.category">{{category.category}}</mat-option>
+        <mat-option *ngFor="let category of listCategories"
+                    [value]="category.category">{{category.category}}</mat-option>
     </mat-select>
 </mat-form-field>
 <mat-form-field appearance="fill">
@@ -14,17 +15,28 @@
         <mat-option value="2">Input</mat-option>
     </mat-select>
 </mat-form-field>
-  <div class="search-div">
+<div class="search-div">
     <button mat-raised-button (click)="add()">
-      <mat-icon>add</mat-icon>Create
+        <mat-icon>add</mat-icon>
+        Create
     </button>
-      <input matInput [(ngModel)]="questionName" (input)="SearchTextBox()" placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+    <input matInput [(ngModel)]="questionName" (input)="SearchTextBox()" placeholder="Search"
+           style="margin:0px 0px 10px 10px;max-width: 87%">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
         <mat-icon>close</mat-icon>
-      </button>
-  </div>
-  <ng-container *ngFor="let question of filteredListQuestions;let i = index">
-    <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)"></app-detail-question>
-  </ng-container>
+    </button>
+</div>
 
+<div>
+
+    <ng-container *ngFor="let question of filteredListQuestions;let i = index">
+        <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)"></app-detail-question>
+    </ng-container>
+    <mat-paginator
+            (page)="onPageChange($event)"
+            [length]="100"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>
 
