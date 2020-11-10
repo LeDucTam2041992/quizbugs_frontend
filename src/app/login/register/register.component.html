@@ -1,0 +1,33 @@
+<div class="login-page">
+    <div class="content px20">
+        <form class="login-form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <div class="text-center">
+                <h2 class="app-name">Sign up</h2>
+            </div>
+            <div fxLayout="row">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="username" formControlName="username">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Password" formControlName="password"
+                               [type]="hide ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Confirm your password" formControlName="confirmPassword"
+                               [type]="hide ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlexFill>
+                    <button type="submit" mat-raised-button color="primary" class="w-100" [disabled]="registerForm.invalid">Sign up</button>
+                    <button type="button" mat-button color="primary" class="w-100" routerLink="/login">Already have an account</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

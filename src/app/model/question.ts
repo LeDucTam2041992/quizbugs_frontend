@@ -1,10 +1,10 @@
-import {ICategory} from "./ICategory";
+import {ICategory} from './ICategory';
 
 export interface Question {
   id: number,
   question: string,
   type: number,
   status: number,
-  category: ICategory,
+  categories: ICategory[],
   answers: any
 }

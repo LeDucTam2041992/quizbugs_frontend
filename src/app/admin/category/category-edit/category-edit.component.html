@@ -1,0 +1,29 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="updateCategoryForm">
+    <table class="table table-bordered">
+      <tr>
+        <td>Category:</td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Input</mat-label>
+            <input matInput class="form-control" type="text" formControlName="category" [(ngModel)]="currentCategory.category">
+          </mat-form-field>
+          <mat-label *ngIf="updateCategoryForm.get('category').hasError('required') && updateCategoryForm.touched" class="text-danger">
+            field require
+          </mat-label>
+          <mat-label *ngIf="updateCategoryForm.get('category').hasError('maxLength')&& updateCategoryForm.touched" class="text-danger">
+            filed max length 50
+          </mat-label>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button class="btn btn-primary mr-2" type="submit" [disabled]="updateCategoryForm.invalid" mat-raised-button color="warn">Update</button>
+          <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</div>

@@ -1,0 +1,41 @@
+<ng-container *ngIf="question.type == 0">
+  <mat-card >
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <section class="example-section" *ngFor="let answer of question.answers">
+        <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
+      </section>
+      <div>
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEdit(question.id)">
+          <mat-icon aria-label="Edit" >edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<ng-container *ngIf="question.type == 1">
+  <mat-card>
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <mat-radio-group>
+        <section class="example-section" *ngFor="let answer of question.answers">
+          <mat-checkbox color="primary" class="example-margin" [checked]="answer.status" [disabled]="!answer.status" name="{{question.id}}">{{answer.answer}}</mat-checkbox>
+        </section>
+      </mat-radio-group>
+      <div>
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEdit(question.id)">
+          <mat-icon aria-label="Edit" >edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+
