@@ -1,1 +1,19 @@
-<p>exam-list works!</p>
+<div class="search-div">
+    <input matInput [(ngModel)]="examName" (input)="SearchTextBox()" placeholder="Search"
+           style="margin:0px 0px 10px 10px;max-width: 87%">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div>
+    <ng-container *ngFor="let exam of filteredListExams;let i = index">
+        {{i}}: <p mat-stroked-button (click)="goDetail(exam.id)">{{exam.name}}</p>
+<!--        <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)"></app-detail-question>-->
+    </ng-container>
+    <mat-paginator
+            (page)="onPageChange($event)"
+            [length]="100"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>
