@@ -60,4 +60,25 @@
   </mat-card>
 </ng-container>
 
+<ng-container *ngIf="question.type == 3">
+  <mat-card>
+    <mat-card-content class="box-card-custom" >
+      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <label class="header">Category : </label><label *ngFor="let category of question.categories">{{category.category}}, </label>
+      <br><br>
+      <section class="example-section">
+        <label>Answer is : </label><label *ngFor="let answer of question.answers">{{answer.answer}}</label>
+      </section>
+      <div>
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEditTrueFalseQuestion(question.id)">
+          <mat-icon aria-label="Edit" >edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
 
