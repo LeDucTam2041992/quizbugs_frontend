@@ -26,11 +26,11 @@
             </mat-error>
         </mat-form-field>
     </form>
+    <h3 style="text-align: center">List Question Of Quiz</h3>
     <label class="number-qs">Number Question Of Quiz : {{quizQuestion.length}}</label>
     <br><br><br>
-    <h3 style="text-align: center">List Question Of Quiz</h3>
     <ng-container *ngFor="let q of quizQuestion; let i = index">
-        <app-detail-question [inId]="q.id" [index]="i" (deleteId)="delete($event)" (addId)="add($event)"></app-detail-question>
-<!--        <section class="qs">Question : {{i+1}} {{q.question}}</section>-->
+        <app-detail-question [inId]="q.id" [index]="i" (deleteId)="delete($event)" (addId)="add($event)" (removeId)="remove($event)" [isQuestionQuiz]="true"></app-detail-question>
     </ng-container>
+    <button mat-raised-button color="primary" style="margin-left: 100px;margin-top: 50px" [disabled]="quizFormControl.invalid">Submit</button>
 </div>

@@ -65,6 +65,14 @@ export class CreateQuizComponent implements OnInit {
     })
   }
 
+  remove(id): void{
+    this.quizQuestion.forEach(q => {
+      if(q.id == id) {
+        this.quizQuestion.splice(this.quizQuestion.indexOf(q),1);
+      }
+    })
+  }
+
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     if (setPageSizeOptionsInput) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
