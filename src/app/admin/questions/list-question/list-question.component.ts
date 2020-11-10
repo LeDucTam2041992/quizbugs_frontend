@@ -15,12 +15,12 @@ export class ListQuestionComponent implements OnInit {
     listQuestions: Question[];
     listCategories: ICategory[];
     selectedCategory: string;
-    selectedType: string;
+    selectedType: number;
     questionName: string;
+
     constructor(private questionService: QuestionService, private router: Router,
                 private categoryService: CategoryService) {
     }
-
 
 
     ngOnInit(): void {
@@ -69,16 +69,25 @@ export class ListQuestionComponent implements OnInit {
 
     SearchTextBox() {
         this.filteredListQuestions = this.listQuestions.filter(res => {
-            if (this.selectedCategory) {
-                if (res.question.toLowerCase().match(this.questionName.toLowerCase())) {
+            if (res.question.toLowerCase().match(this.questionName.toLowerCase())) {
+                if (this.selectedCategory && this.selectedType) {
+                    for (let i in res.categories) {
+                        if (res.categories[i].category === this.selectedCategory && res.type == this.selectedType)
+                            return true
+                    }
+                    return false;
+                } else if (this.selectedCategory && !this.selectedType) {
                     for (let i in res.categories) {
                         if (res.categories[i].category === this.selectedCategory)
                             return true
                     }
                     return false;
+                } else if (!this.selectedCategory && this.selectedType) {
+                    return res.type == this.selectedType
                 }
+                return true;
             }
-            return res.question.toLowerCase().match(this.questionName.toLowerCase())
+            return false;
         })
     }
 
@@ -89,31 +98,48 @@ export class ListQuestionComponent implements OnInit {
 
     searchCategory() {
         if (!this.selectedCategory) {
-            this.filteredListQuestions = this.listQuestions;
+            if (!this.selectedType)
+                this.filteredListQuestions = this.listQuestions;
+            else
+                this.searchTypeQuestion();
         } else {
             this.questionName = '';
             this.filteredListQuestions = this.listQuestions.filter(res => {
-                for (let i in res.categories) {
-                    if (res.categories[i].category === this.selectedCategory)
-                        return true
+                if (!this.selectedType) {
+                    for (let i in res.categories) {
+                        if (res.categories[i].category === this.selectedCategory)
+                            return true
+                    }
+                    return false;
+                } else {
+                    for (let i in res.categories) {
+                        if (res.categories[i].category === this.selectedCategory && res.type == this.selectedType)
+                            return true
+                    }
+                    return false;
                 }
-                return false;
             })
         }
     }
 
-    searchTypeQuesiton() {
-        if (this.selectedType == "0")
+    searchTypeQuestion() {
+        if (!this.selectedType) {
+            if (!this.selectedCategory)
+                this.filteredListQuestions = this.listQuestions;
+            else
+                this.searchCategory()
+        } else {
             this.filteredListQuestions = this.listQuestions.filter(res => {
-                return res.type === 0
+                if (!this.selectedCategory)
+                    return res.type == this.selectedType
+                else {
+                    for (let i in res.categories) {
+                        if (res.categories[i].category === this.selectedCategory && res.type == this.selectedType)
+                            return true
+                    }
+                    return false;
+                }
             })
-        else if(this.selectedType ==='1')
-            this.filteredListQuestions = this.listQuestions.filter(res => {
-                return res.type === 1
-            })
-        else
-            this.filteredListQuestions = this.listQuestions.filter(res => {
-                return res.type === 2
-            })
+        }
     }
 }
