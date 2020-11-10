@@ -47,7 +47,6 @@ export class ChipsAutoCompleteComponent implements OnInit {
     if (input) {
       input.value = '';
     }
-
     this.fruitCtrl.setValue(null);
   }
 

@@ -30,6 +30,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
 import { EditTrueFalseQuestionComponent } from './edit-true-false-question/edit-true-false-question.component';
+import { InputQuestionComponent } from './input-question/input-question.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { EditTrueFalseQuestionComponent } from './edit-true-false-question/edit-
         MessageComponent,
         TrueFalseQuestionComponent,
         EditTrueFalseQuestionComponent,
+        InputQuestionComponent,
     ],
     imports: [
         QuestionRoutingModule,

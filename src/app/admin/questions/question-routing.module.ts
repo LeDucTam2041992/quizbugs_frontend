@@ -7,6 +7,7 @@ import {DetailQuestionComponent} from "./detail-question/detail-question.compone
 import {HomeComponent} from "./home/home.component";
 import {TrueFalseQuestionComponent} from './true-false-question/true-false-question.component';
 import {EditTrueFalseQuestionComponent} from './edit-true-false-question/edit-true-false-question.component';
+import {InputQuestionComponent} from './input-question/input-question.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,9 @@ const routes: Routes = [
       },
       {
         path: 'true-false', component: TrueFalseQuestionComponent
+      },
+      {
+        path: 'input', component: InputQuestionComponent
       },
       {
         path: '**',

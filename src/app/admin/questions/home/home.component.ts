@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
     this.navLinks = [
       new NavLink('list', 'List Questions'),
       new NavLink('add', 'Create Question'),
-      new NavLink('true-false', 'True-False Question')
+      new NavLink('true-false', 'True-False Question'),
+      new NavLink('input', 'Input Question')
     ];
   }
 }
