@@ -20,8 +20,15 @@ export class CreateQuizComponent implements OnInit {
   pageEvent: PageEvent;
 
   quizQuestion: Question[] = [];
+  numberOfCheckbox = 0;
+  numberOfSelect = 0;
+  numberOfTrueFalse = 0;
+  numberOfInput = 0;
 
   quizFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  timeFormControl = new FormControl('', [
     Validators.required,
   ]);
 
@@ -61,6 +68,10 @@ export class CreateQuizComponent implements OnInit {
     this.listQuestions.forEach(q => {
       if(q.id == id) {
         this.quizQuestion.push(q);
+        if(q.type == 0) this.numberOfSelect++;
+        if(q.type == 1) this.numberOfCheckbox++;
+        if(q.type == 2) this.numberOfTrueFalse++;
+        if(q.type == 3) this.numberOfInput++;
       }
     })
   }
@@ -69,6 +80,10 @@ export class CreateQuizComponent implements OnInit {
     this.quizQuestion.forEach(q => {
       if(q.id == id) {
         this.quizQuestion.splice(this.quizQuestion.indexOf(q),1);
+        if(q.type == 0) this.numberOfSelect--;
+        if(q.type == 1) this.numberOfCheckbox--;
+        if(q.type == 2) this.numberOfTrueFalse--;
+        if(q.type == 3) this.numberOfInput--;
       }
     })
   }

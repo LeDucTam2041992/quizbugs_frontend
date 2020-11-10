@@ -25,10 +25,25 @@
                 Name is <strong>required</strong>
             </mat-error>
         </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Time  : </mat-label>
+            <input type="text" matInput [formControl]="timeFormControl" placeholder="Time do quiz">
+            <mat-error *ngIf="timeFormControl.hasError('required')">
+                Time is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
     </form>
-    <h3 style="text-align: center">List Question Of Quiz</h3>
+    <h3 style="text-align: center; margin-bottom: 30px">List Question Of Quiz</h3>
     <label class="number-qs">Number Question Of Quiz : {{quizQuestion.length}}</label>
-    <br><br><br>
+    <br><br>
+    <label class="number-qs">Number Question Type Select : {{numberOfSelect}}</label>
+    <br><br>
+    <label class="number-qs">Number Question Type Checkbox : {{numberOfCheckbox}}</label>
+    <br><br>
+    <label class="number-qs">Number Question Type True False : {{numberOfTrueFalse}}</label>
+    <br><br>
+    <label class="number-qs">Number Question Type Input : {{numberOfInput}}</label>
+    <br><br>
     <ng-container *ngFor="let q of quizQuestion; let i = index">
         <app-detail-question [inId]="q.id" [index]="i" (deleteId)="delete($event)" (addId)="add($event)" (removeId)="remove($event)" [isQuestionQuiz]="true"></app-detail-question>
     </ng-container>
