@@ -1,4 +1,5 @@
 import {ICategory} from './ICategory';
+import {Answer} from "./answer";
 
 export interface Question {
   id: number,
@@ -6,5 +7,6 @@ export interface Question {
   type: number,
   status: number,
   categories: ICategory[],
-  answers: any
+  answers: Answer[],
+  enabled: boolean
 }
