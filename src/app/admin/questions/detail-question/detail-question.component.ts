@@ -54,7 +54,7 @@ export class DetailQuestionComponent implements OnInit {
   }
 
   clickEdit(id: any) {
-    this.router.navigate(['questions/edit/'+id])
+    this.router.navigate(['exam-history/edit/'+id])
   }
 
   delete(id: any) {
