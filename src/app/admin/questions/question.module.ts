@@ -31,6 +31,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
 import { EditTrueFalseQuestionComponent } from './edit-true-false-question/edit-true-false-question.component';
 import { InputQuestionComponent } from './input-question/input-question.component';
+import { EditInputQuestionComponent } from './edit-input-question/edit-input-question.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { InputQuestionComponent } from './input-question/input-question.componen
         TrueFalseQuestionComponent,
         EditTrueFalseQuestionComponent,
         InputQuestionComponent,
+        EditInputQuestionComponent,
     ],
     imports: [
         QuestionRoutingModule,

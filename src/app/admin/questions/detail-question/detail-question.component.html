@@ -7,7 +7,7 @@
         <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
       </section>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEditQuestionType4Answer(question.id)">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editQuestionType4Answer(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
@@ -29,7 +29,7 @@
         </section>
       </mat-radio-group>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEditQuestionType4Answer(question.id)">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editQuestionType4Answer(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
@@ -49,7 +49,7 @@
         <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
       </section>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEditTrueFalseQuestion(question.id)">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editTrueFalseQuestion(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
@@ -67,10 +67,10 @@
       <label class="header">Category : </label><label *ngFor="let category of question.categories">{{category.category}}, </label>
       <br><br>
       <section class="example-section">
-        <label>Answer is : </label><label *ngFor="let answer of question.answers">{{answer.answer}}</label>
+        <label style="font-size: medium">Answer is : </label><label style="font-size: medium" *ngFor="let answer of question.answers">{{answer.answer}}</label>
       </section>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEditTrueFalseQuestion(question.id)">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editInputQuestion(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">

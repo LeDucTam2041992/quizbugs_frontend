@@ -53,7 +53,7 @@ export class DetailQuestionComponent implements OnInit {
     }
   }
 
-  clickEditQuestionType4Answer(id: number) {
+  editQuestionType4Answer(id: number) {
     this.router.navigate(['questions/edit/'+id])
   }
 
@@ -61,7 +61,11 @@ export class DetailQuestionComponent implements OnInit {
       this.deleteId.emit(id);
     }
 
-  clickEditTrueFalseQuestion(id: number) {
+  editTrueFalseQuestion(id: number) {
     this.router.navigate(['questions/edits/'+id])
+  }
+
+  editInputQuestion(id: number) {
+      this.router.navigate(['questions/editi/'+id])
   }
 }
