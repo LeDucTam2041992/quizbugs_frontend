@@ -12,8 +12,9 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
+      { path: '',   redirectTo: 'home'},
       {
-        path: '',
+        path: 'home',
         component:DashboardComponent,
       },
       {
