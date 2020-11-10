@@ -42,6 +42,6 @@ export class ListQuestionComponent implements OnInit {
     }
   }
   add() {
-    this.router.navigate(['questions/add']);
+    this.router.navigate(['exam-history/add']);
   }
 }

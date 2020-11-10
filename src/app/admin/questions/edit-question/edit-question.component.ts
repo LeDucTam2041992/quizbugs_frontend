@@ -125,7 +125,7 @@ export class EditQuestionComponent implements OnInit {
       this.count = 0;
       this.service.updateQuestion(this.question.id, this.question)
         .subscribe(() => {
-          this.router.navigate(['questions/list']);
+          this.router.navigate(['exam-history/list']);
           this.message = 'Success!';
         });
     } else {
@@ -148,6 +148,6 @@ export class EditQuestionComponent implements OnInit {
   }
 
     cancel() {
-        this.router.navigate(['questions/list'])
+        this.router.navigate(['exam-history/list'])
     }
 }
