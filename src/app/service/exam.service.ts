@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Question} from "../model/question";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {Exam} from "../model/exam";
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +11,23 @@ import {HttpClient} from "@angular/common/http";
 export class ExamService {
 
   constructor(private httpClient: HttpClient) { }
-  getAllExams(): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(environment.urlApi + 'questions');
+  getAllExams(): Observable<Exam[]> {
+    return this.httpClient.get<Exam[]>(environment.urlApi + 'exams');
   }
 
-  createQuestion(question: Question): Observable<Question>{
-    return this.httpClient.post<Question>(environment.urlApi + 'questions/', question);
+  createExam(exam: Exam): Observable<Exam>{
+    return this.httpClient.post<Exam>(environment.urlApi + 'exams/', exam);
   }
 
-  getQuestion(id: number): Observable<Question>{
-    return this.httpClient.get<Question>(environment.urlApi + `questions/${id}`);
+  getExamById(id: number): Observable<Exam>{
+    return this.httpClient.get<Exam>(environment.urlApi + `exams/${id}`);
   }
 
-  updateQuestion(id: number, question: Question): Observable<Question>{
-    return this.httpClient.put<Question>(environment.urlApi + `questions/${id}`, question);
+  updateExam(id: number, exam: Exam): Observable<Exam>{
+    return this.httpClient.put<Exam>(environment.urlApi + `exams/${id}`, exam);
   }
 
-  deleteQuestion(id: number): Observable<Question>{
-    return this.httpClient.delete<Question>(environment.urlApi + `questions/${id}`);
-  }
-
-  getAllQuestionByCategory(id: number): Observable<Question[]>{
-    return this.httpClient.get<Question[]>(environment.urlApi + `category/${id}/questions`);
+  deleteExam(id: number): Observable<Exam>{
+    return this.httpClient.delete<Exam>(environment.urlApi + `exams/${id}`);
   }
 }
