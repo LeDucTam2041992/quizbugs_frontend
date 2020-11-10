@@ -40,7 +40,7 @@ export class EditQuestionComponent implements OnInit {
     id: 0,
     question: 'ABC',
     type: 0,
-    status: 0,
+    enabled: true,
     categories: [],
     answers: []
   };

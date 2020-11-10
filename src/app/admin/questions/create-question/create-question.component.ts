@@ -40,7 +40,7 @@ export class CreateQuestionComponent implements OnInit {
     id: 0,
     question: '',
     type: -1,
-    status: 1,
+    enabled: true,
     // @ts-ignore
     category: {},
     answers: [this.answer1, this.answer2, this.answer3, this.answer4]

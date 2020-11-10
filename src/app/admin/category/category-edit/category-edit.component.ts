@@ -20,7 +20,8 @@ export class CategoryEditComponent implements OnInit {
 
   currentCategory: ICategory = {
     id: 1,
-    category: 'Java'
+    category: 'Java',
+    enabled: true
   };
   ngOnInit(): void {
     // tslint:disable-next-line:radix
