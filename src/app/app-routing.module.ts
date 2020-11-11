@@ -6,6 +6,11 @@ import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.comp
 const routes: Routes = [
     {
         path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
+        path: '',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
         canActivate: [AuthGuard]
     },
@@ -20,7 +25,7 @@ const routes: Routes = [
     {
         path: '**',
         component: PageNotFoundComponent
-    }
+    },
 ];
 
 @NgModule({
