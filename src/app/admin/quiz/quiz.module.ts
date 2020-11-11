@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -39,6 +40,7 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
         MatPaginatorModule,
         ReactiveFormsModule,
         FormsModule,
+        MatSelectModule,
     ]
 })
 export class QuizModule { }
