@@ -98,7 +98,7 @@ export class CreateQuestionComponent implements OnInit {
       this.service.createQuestion(this.question)
         .subscribe(() => {
           this.message = 'Success!';
-          this.router.navigate(['/exam-history/list']);
+          this.router.navigate(['/questions/list']);
         });
     } else {
       this.message = 'UnSuccess!';
@@ -119,6 +119,6 @@ export class CreateQuestionComponent implements OnInit {
     this.answer4.status = !this.answer4.status;
   }
   cancel() {
-    this.router.navigate(['exam-history/list'])
+    this.router.navigate(['questions/list'])
   }
 }

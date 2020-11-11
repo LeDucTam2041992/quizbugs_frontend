@@ -53,11 +53,19 @@ export class DetailQuestionComponent implements OnInit {
     }
   }
 
-  clickEdit(id: any) {
-    this.router.navigate(['exam-history/edit/'+id])
+  editQuestionType4Answer(id: number) {
+    this.router.navigate(['questions/edit/'+id])
   }
 
   delete(id: any) {
       this.deleteId.emit(id);
     }
+
+  editTrueFalseQuestion(id: number) {
+    this.router.navigate(['questions/edits/'+id])
+  }
+
+  editInputQuestion(id: number) {
+      this.router.navigate(['questions/editi/'+id])
+  }
 }

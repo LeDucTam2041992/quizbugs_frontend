@@ -2,13 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QuestionService} from '../../../service/question.service';
 import {Question} from '../../../model/question';
-import {CategoryService} from "../../../service/category.service";
-import {ICategory} from "../../../model/ICategory";
 
 @Component({
-    selector: 'app-list-question',
-    templateUrl: './list-question.component.html',
-    styleUrls: ['./list-question.component.css']
+  selector: 'app-list-question',
+  templateUrl: './list-question.component.html',
+  styleUrls: ['./list-question.component.css']
 })
 export class ListQuestionComponent implements OnInit {
     filteredListQuestions: Question[];
@@ -37,23 +35,22 @@ export class ListQuestionComponent implements OnInit {
         )
     }
 
-    getAll(): void {
-        this.questionService.getAllQuestion().subscribe(list => {
-                const array = list.map(item => {
-                    return {
-                        id: item.id,
-                        question: item.question,
-                        type: item.type,
-                        enabled: item.enabled,
-                        categories: item.categories,
-                        answers: item.answers
-                    };
-                });
-                this.listQuestions = array;
-                this.filteredListQuestions =  this.listQuestions.slice(0, 5);
-            }
-        );
-    }
+  getAll(): void {
+    this.questionService.getAllQuestion().subscribe(list => {
+        const array = list.map(item => {
+          return {
+            id: item.id,
+            question: item.question,
+            type: item.type,
+            status: item.status,
+            categories: item.categories,
+            answers: item.answers
+          };
+        });
+        this.listQuestions = array;
+      }
+    );
+  }
 
     delete(id): void {
         if (confirm('Are you sure want to delete?')) {
