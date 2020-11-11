@@ -40,7 +40,7 @@ export class CreateQuestionComponent implements OnInit {
     id: 0,
     question: '',
     type: -1,
-    status: 1,
+    enabled: true,
     // @ts-ignore
     category: {},
     answers: [this.answer1, this.answer2, this.answer3, this.answer4]
@@ -75,7 +75,7 @@ export class CreateQuestionComponent implements OnInit {
       this.answer2.answer = this.questionForm.get('answer2').value;
       this.answer3.answer = this.questionForm.get('answer3').value;
       this.answer4.answer = this.questionForm.get('answer4').value;
-      this.question.category = this.questionForm.get('category').value;
+      this.question.categories = this.questionForm.get('category').value;
       if (this.answer1.status) {
         this.count++;
       }

@@ -23,11 +23,8 @@ export class DetailQuestionComponent implements OnInit {
     id: 1,
     question: '',
     type: 1,
-    status: 1,
-    category: {
-      id: 1,
-      category: 'java'
-    },
+    enabled: true,
+    categories: [],
     answers: []
   };
 

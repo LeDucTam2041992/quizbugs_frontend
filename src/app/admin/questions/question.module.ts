@@ -26,6 +26,8 @@ import {SharedModule} from "../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import {MatIconModule} from "@angular/material/icon";
         MatButtonModule,
         MatInputModule,
         MatIconModule,
+        NgSelectModule,
+        MatPaginatorModule,
     ]
 })
 export class QuestionModule {
