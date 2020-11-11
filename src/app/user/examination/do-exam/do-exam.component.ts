@@ -53,13 +53,17 @@ export class DoExamComponent implements OnInit {
         }
         this.answersArr.forEach(element => {
             this.listUserAnswer.push({
-                answer: element,
-                inputAnswer: ""
+                answer: {
+                    "id": element.id
+                },
+                inputAnswer: null
             })
         })
         this.userExamObj.userAnswers = this.listUserAnswer;
-        this.userExamObj.exam = this.currentExam;
-        this.userExamsService.createUserExam(this.userExamObj);
+        this.userExamObj.exam = {
+            "id": this.currentExam.id
+        }
+        this.userExamsService.createUserExam(this.userExamObj).subscribe(e =>e);
         console.log(this.userExamObj)
     }
 
