@@ -15,6 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { MesDialogComponent } from './mes-dialog/mes-dialog.component';
 
 
 
@@ -23,7 +24,8 @@ import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
       CreateQuizComponent,
-      HomeQuizComponent
+      HomeQuizComponent,
+      MesDialogComponent
   ],
     imports: [
         QuizRoutingModule,
