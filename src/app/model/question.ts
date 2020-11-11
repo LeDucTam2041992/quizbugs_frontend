@@ -5,6 +5,6 @@ export interface Question {
   question: string,
   type: number,
   enabled: boolean,
-  categories: ICategory[],
-  answers: Answer[],
+  categories: any,
+  answers: any
 }

@@ -13,11 +13,11 @@ export class QuestionService {
   }
 
   getAllQuestion(): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(environment.urlApi + 'exam-history');
+    return this.httpClient.get<Question[]>(environment.urlApi + 'questions');
   }
 
   createQuestion(question: Question): Observable<Question>{
-    return this.httpClient.post<Question>(environment.urlApi + 'exam-history/', question);
+    return this.httpClient.post<Question>(environment.urlApi + 'questions', question);
   }
 
   getQuestion(id: number): Observable<Question>{
