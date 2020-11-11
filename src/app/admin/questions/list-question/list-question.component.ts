@@ -4,6 +4,9 @@ import {QuestionService} from '../../../service/question.service';
 import {Question} from '../../../model/question';
 import {ICategory} from '../../../model/ICategory';
 import {CategoryService} from '../../../service/category.service';
+import {MesDialogComponent} from '../../quiz/mes-dialog/mes-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-list-question',
@@ -23,7 +26,8 @@ export class ListQuestionComponent implements OnInit {
 
     constructor(private questionService: QuestionService,
                 private router: Router,
-                private categoryService: CategoryService) {
+                private categoryService: CategoryService,
+                private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -60,17 +64,21 @@ export class ListQuestionComponent implements OnInit {
     }
 
     delete(id): void {
-        if (confirm('Are you sure want to delete?')) {
-            this.questionService.deleteQuestion(id).subscribe(() => {
-                this.listQuestions.forEach(q => {
-                    if(q.id == id) {
-                        this.listQuestions.splice(this.listQuestions.indexOf(q),1);
-                    }
-                })
-                this.searchListQuestion = this.listQuestions;
-                this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
-            });
-        }
+        const dialogRef = this.dialog.open(DeleteDialogComponent);
+        dialogRef.afterClosed().subscribe(result => {
+            if(result == true) {
+                this.questionService.deleteQuestion(id).subscribe(() => {
+                    this.listQuestions.forEach(q => {
+                        if(q.id == id) {
+                            this.listQuestions.splice(this.listQuestions.indexOf(q),1);
+                        }
+                    })
+                    this.searchListQuestion = this.listQuestions;
+                    this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
+                });
+
+            }
+        });
     }
 
     SearchTextBox() {

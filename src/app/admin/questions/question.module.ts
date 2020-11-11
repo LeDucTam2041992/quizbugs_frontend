@@ -26,6 +26,7 @@ import {EditInputQuestionComponent} from './edit-input-question/edit-input-quest
 import {EditTrueFalseQuestionComponent} from './edit-true-false-question/edit-true-false-question.component';
 import {InputQuestionComponent} from './input-question/input-question.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
         MatInputModule,
         MatIconModule,
         MatPaginatorModule,
+        MatDialogModule,
     ]
 })
 export class QuestionModule {
