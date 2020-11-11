@@ -15,9 +15,18 @@ export class DetailQuestionComponent implements OnInit {
   inId: number;
   @Input()
   index: number;
-
+  @Input()
+  isCreateQuiz: boolean;
+  @Input()
+  isQuestionQuiz: boolean;
+  @Input()
+  isListQuestion: boolean;
   @Output()
   deleteId = new EventEmitter<any>();
+  @Output()
+  addId = new EventEmitter<any>();
+  @Output()
+  removeId = new EventEmitter<any>();
 
   question: Question = {
     id: 1,
@@ -53,11 +62,28 @@ export class DetailQuestionComponent implements OnInit {
     }
   }
 
-  clickEdit(id: any) {
-    this.router.navigate(['exam-history/edit/'+id])
+  editQuestionType4Answer(id: number) {
+    this.router.navigate(['admin/questions/edit/'+id])
   }
 
   delete(id: any) {
       this.deleteId.emit(id);
     }
+
+  editTrueFalseQuestion(id: number) {
+    this.router.navigate(['admin/questions/edits/'+id])
+  }
+
+  editInputQuestion(id: number) {
+      this.router.navigate(['admin/questions/editi/'+id])
+  }
+
+  addQuiz(id: number) {
+    this.addId.emit(id);
+  }
+
+  removeQuiz(id: number) {
+    this.removeId.emit(id);
+  }
+
 }

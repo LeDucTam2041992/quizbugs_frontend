@@ -24,8 +24,8 @@ export class DoExamComponent implements OnInit {
     };
     userAnswersExam: FormGroup;
     answersArrMulti = [];
-    answersArr = [];
-    userExamObj: UserExam = {};
+    answersArr =[];
+    userExamObj: UserExam ={};
     listUserAnswer: UserAnswer[] = []
 
     constructor(private examService: ExamService, private route: Router,
@@ -41,27 +41,31 @@ export class DoExamComponent implements OnInit {
         });
         if (this.inId > 0)
             this.examService.getExamById(this.inId).subscribe(res => this.currentExam = res);
-        this.userAnswersExam = this.fb.group([])
+        this.userAnswersExam = this.fb.group([
+
+        ])
     }
 
     submit() {
         this.answersArr = this.answersArr.filter(element => element != null);
-        for (let i in this.answersArrMulti) {
+        for(let i in this.answersArrMulti){
             this.answersArr.push(this.answersArrMulti[i])
         }
         this.answersArr.forEach(element => {
             this.listUserAnswer.push({
-                answer: element,
-                inputAnswer: ""
+                answer: {
+                    "id": element.id
+                },
+                inputAnswer: null
             })
         })
         this.userExamObj.userAnswers = this.listUserAnswer;
-        this.userExamObj.exam = this.currentExam;
-        this.userExamsService.createUserExam(this.userExamObj).subscribe(
-            () => {
-                this.route.navigate(['examination/list'])
-            }
-        );
+        this.userExamObj.exam = {
+            "id": this.currentExam.id
+        }
+        this.userExamsService.createUserExam(this.userExamObj).subscribe(e =>{
+            this.route.navigate(['examination/list'])
+        });
         console.log(this.userExamObj)
     }
 

@@ -2,26 +2,33 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QuestionService} from '../../../service/question.service';
 import {Question} from '../../../model/question';
-import {CategoryService} from "../../../service/category.service";
-import {ICategory} from "../../../model/ICategory";
+import {ICategory} from '../../../model/ICategory';
+import {CategoryService} from '../../../service/category.service';
+import {MesDialogComponent} from '../../quiz/mes-dialog/mes-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 @Component({
-    selector: 'app-list-question',
-    templateUrl: './list-question.component.html',
-    styleUrls: ['./list-question.component.css']
+  selector: 'app-list-question',
+  templateUrl: './list-question.component.html',
+  styleUrls: ['./list-question.component.css']
 })
 export class ListQuestionComponent implements OnInit {
     filteredListQuestions: Question[];
     listQuestions: Question[];
+    searchListQuestion: Question[];
     listCategories: ICategory[];
     selectedCategory: string;
     selectedType: number;
     questionName: string;
 
-    constructor(private questionService: QuestionService, private router: Router,
-                private categoryService: CategoryService) {
-    }
+    pageSize = 5;
 
+    constructor(private questionService: QuestionService,
+                private router: Router,
+                private categoryService: CategoryService,
+                private dialog: MatDialog) {
+    }
 
     ngOnInit(): void {
         this.getAll();
@@ -50,25 +57,32 @@ export class ListQuestionComponent implements OnInit {
                     };
                 });
                 this.listQuestions = array;
-                this.filteredListQuestions =  this.listQuestions.slice(0, 5);
+                this.searchListQuestion = this.listQuestions;
+                this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
             }
         );
     }
 
     delete(id): void {
-        if (confirm('Are you sure want to delete?')) {
-            this.questionService.deleteQuestion(id).subscribe(() => {
-                this.filteredListQuestions = this.listQuestions;
-            });
-        }
-    }
+        const dialogRef = this.dialog.open(DeleteDialogComponent);
+        dialogRef.afterClosed().subscribe(result => {
+            if(result == true) {
+                this.questionService.deleteQuestion(id).subscribe(() => {
+                    this.listQuestions.forEach(q => {
+                        if(q.id == id) {
+                            this.listQuestions.splice(this.listQuestions.indexOf(q),1);
+                        }
+                    })
+                    this.searchListQuestion = this.listQuestions;
+                    this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
+                });
 
-    add() {
-        this.router.navigate(['questions/add']);
+            }
+        });
     }
 
     SearchTextBox() {
-        this.filteredListQuestions = this.listQuestions.filter(res => {
+        this.searchListQuestion = this.listQuestions.filter(res => {
             if (res.question.toLowerCase().match(this.questionName.toLowerCase())) {
                 if (this.selectedCategory && this.selectedType) {
                     for (let i in res.categories) {
@@ -88,7 +102,8 @@ export class ListQuestionComponent implements OnInit {
                 return true;
             }
             return false;
-        })
+        });
+        this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
     }
 
     clear() {
@@ -98,13 +113,15 @@ export class ListQuestionComponent implements OnInit {
 
     searchCategory() {
         if (!this.selectedCategory) {
-            if (!this.selectedType)
-                this.filteredListQuestions = this.listQuestions;
+            if (!this.selectedType) {
+                this.searchListQuestion = this.listQuestions;
+                this.filteredListQuestions = this.searchListQuestion.slice(0, this.pageSize);
+            }
             else
                 this.searchTypeQuestion();
         } else {
             this.questionName = '';
-            this.filteredListQuestions = this.listQuestions.filter(res => {
+            this.searchListQuestion = this.listQuestions.filter(res => {
                 if (!this.selectedType) {
                     for (let i in res.categories) {
                         if (res.categories[i].category === this.selectedCategory)
@@ -118,18 +135,20 @@ export class ListQuestionComponent implements OnInit {
                     }
                     return false;
                 }
-            })
+            });
+            this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
         }
     }
 
     searchTypeQuestion() {
         if (!this.selectedType) {
-            if (!this.selectedCategory)
-                this.filteredListQuestions = this.listQuestions;
-            else
+            if (!this.selectedCategory){
+                this.searchListQuestion = this.listQuestions;
+                this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
+            } else
                 this.searchCategory()
         } else {
-            this.filteredListQuestions = this.listQuestions.filter(res => {
+            this.searchListQuestion = this.listQuestions.filter(res => {
                 if (!this.selectedCategory)
                     return res.type == this.selectedType
                 else {
@@ -139,11 +158,13 @@ export class ListQuestionComponent implements OnInit {
                     }
                     return false;
                 }
-            })
+            });
+            this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
         }
     }
 
     onPageChange($event) {
-        this.filteredListQuestions =  this.listQuestions.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+        this.filteredListQuestions =  this.searchListQuestion.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+        this.pageSize = $event.pageSize;
     }
 }

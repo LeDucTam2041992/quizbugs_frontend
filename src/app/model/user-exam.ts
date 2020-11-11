@@ -4,8 +4,8 @@ import {UserAnswer} from "./user-answer";
 
 export interface UserExam{
     id?: number,
-    user?: IUser,
-    exam?: Exam,
+    user?: any,
+    exam?: any,
     date?: any,
     mark?: any,
     userAnswers?: any[]
