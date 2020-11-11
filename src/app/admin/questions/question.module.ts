@@ -26,12 +26,6 @@ import {SharedModule} from "../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatChipsModule} from '@angular/material/chips';
-import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
-import { EditTrueFalseQuestionComponent } from './edit-true-false-question/edit-true-false-question.component';
-import { InputQuestionComponent } from './input-question/input-question.component';
-import { EditInputQuestionComponent } from './edit-input-question/edit-input-question.component';
 
 
 @NgModule({
@@ -64,8 +58,8 @@ import { EditInputQuestionComponent } from './edit-input-question/edit-input-que
         MatButtonModule,
         MatInputModule,
         MatIconModule,
-        MatAutocompleteModule,
-        MatChipsModule,
+        NgSelectModule,
+        MatPaginatorModule,
     ]
 })
 export class QuestionModule {

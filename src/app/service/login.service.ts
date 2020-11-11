@@ -42,4 +42,9 @@ export class LoginService {
   doRegister(userData: IUser): Observable<any> {
     return this.http.post<any>(environment.urlApi + 'users', userData);
   }
+
+  doUpdate(userData: any): Observable<any> {
+    this.setTokenToHeader();
+    return this.http.put(environment.urlApi + 'users/updatePassword' , userData, this.httpOptions)
+  }
 }

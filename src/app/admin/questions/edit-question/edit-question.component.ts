@@ -40,7 +40,7 @@ export class EditQuestionComponent implements OnInit {
     id: 0,
     question: 'ABC',
     type: 0,
-    status: 0,
+    enabled: true,
     categories: [],
     answers: []
   };
@@ -73,7 +73,6 @@ export class EditQuestionComponent implements OnInit {
     });
     this.categoryService.getAllCategories().subscribe(res => {
         this.categories = res;
-        console.log(this.question);
     })
   }
   getQuestion(id: number): any {

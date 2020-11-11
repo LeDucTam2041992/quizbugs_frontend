@@ -4,7 +4,7 @@ export interface Question {
   id: number,
   question: string,
   type: number,
-  status: number,
+  enabled: boolean,
   categories: ICategory[],
-  answers: any
+  answers: Answer[],
 }
