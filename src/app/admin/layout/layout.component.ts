@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
-import {LoaderService} from "./loader/loader.service";
+import {LoaderService} from "../../core/loader/loader.service";
 
 @Component({
   selector: 'app-layout',
