@@ -79,6 +79,6 @@ export class DoExamComponent implements OnInit {
     }
 
     cancel() {
-
+        this.route.navigate(['user/examination/list'])
     }
 }
