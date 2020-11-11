@@ -31,6 +31,7 @@ export class CreateQuizComponent implements OnInit {
   numberOfInput = 0;
 
   message = '';
+  pageSize = 5;
 
   exam: Exam = {
     id: 0,
@@ -78,7 +79,7 @@ export class CreateQuizComponent implements OnInit {
           });
           this.listQuestions = array;
           this.searchListQuestion = this.listQuestions;
-          this.filteredListQuestions =  this.searchListQuestion.slice(0, 5);
+          this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
         }
     );
   }
@@ -129,7 +130,7 @@ export class CreateQuizComponent implements OnInit {
       }
       return false;
     });
-    this.filteredListQuestions =  this.searchListQuestion.slice(0, 5);
+    this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
   }
 
   clear() {
@@ -141,7 +142,7 @@ export class CreateQuizComponent implements OnInit {
     if (!this.selectedCategory) {
       if (!this.selectedType) {
         this.searchListQuestion = this.listQuestions;
-        this.filteredListQuestions = this.searchListQuestion.slice(0, 5);
+        this.filteredListQuestions = this.searchListQuestion.slice(0, this.pageSize);
       }
       else
         this.searchTypeQuestion();
@@ -162,7 +163,7 @@ export class CreateQuizComponent implements OnInit {
           return false;
         }
       });
-      this.filteredListQuestions =  this.searchListQuestion.slice(0, 5);
+      this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
     }
   }
 
@@ -170,7 +171,7 @@ export class CreateQuizComponent implements OnInit {
     if (!this.selectedType) {
       if (!this.selectedCategory){
         this.searchListQuestion = this.listQuestions;
-        this.filteredListQuestions =  this.searchListQuestion.slice(0, 5);
+        this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
       } else
         this.searchCategory()
     } else {
@@ -185,12 +186,13 @@ export class CreateQuizComponent implements OnInit {
           return false;
         }
       });
-      this.filteredListQuestions =  this.searchListQuestion.slice(0, 5);
+      this.filteredListQuestions =  this.searchListQuestion.slice(0, this.pageSize);
     }
   }
 
   onPageChange($event) {
     this.filteredListQuestions =  this.searchListQuestion.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+    this.pageSize = $event.pageSize;
   }
 
   createQuiz() {
