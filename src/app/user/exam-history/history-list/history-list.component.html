@@ -10,23 +10,28 @@
     </mat-form-field>
 </div>
 <div class="example-container mat-elevation-z8">
-    <mat-table [dataSource]="listCategories" matSort>
+    <mat-table [dataSource]="listHistory" matSort>
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
             <mat-cell *matCellDef="let element; let i = index"> {{i+1}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="category">
+        <ng-container matColumnDef="test-name">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Category</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.exam.name}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="option">
+        <ng-container matColumnDef="score">
+            <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.mark}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date of test">
+            <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="clickEdit(element.id)">
-                    <mat-icon aria-label="Edit" >edit</mat-icon>
-                </button>
-                <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(element.id)">
-                    <mat-icon aria-label="Delete">delete</mat-icon>
+                <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="clickDetail(element.id)">
+                    <mat-icon aria-label="Delete">detail</mat-icon>
                 </button>
             </mat-cell>
         </ng-container>
@@ -43,8 +48,8 @@
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listCategories!=null}"></mat-footer-row>
-        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listCategories!=null && listCategories.data.length==0)}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listHistory!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listHistory!=null && listHistory.data.length==0)}"></mat-footer-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
 </div>
