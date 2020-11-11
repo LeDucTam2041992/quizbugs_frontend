@@ -1,1 +1,8 @@
-<p>mes-dialog works!</p>
+<h2 mat-dialog-title>WARNING</h2>
+<mat-dialog-content class="mat-typography">
+    <h3 style="text-align: center">The Question have got in the quiz!</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add any way</button>
+</mat-dialog-actions>

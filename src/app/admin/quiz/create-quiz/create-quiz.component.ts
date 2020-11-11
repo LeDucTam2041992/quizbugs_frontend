@@ -9,6 +9,8 @@ import {CategoryService} from '../../../service/category.service';
 import {ExamService} from '../../../service/exam.service';
 import {Exam} from '../../../model/exam';
 import {Answer} from '../../../model/answer';
+import {MatDialog} from '@angular/material/dialog';
+import {MesDialogComponent} from '../mes-dialog/mes-dialog.component';
 
 @Component({
   selector: 'app-create-quiz',
@@ -50,7 +52,8 @@ export class CreateQuizComponent implements OnInit {
   constructor(private questionService: QuestionService,
               private router: Router,
               private categoryService: CategoryService,
-              private examService:ExamService) { }
+              private examService:ExamService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -87,11 +90,26 @@ export class CreateQuizComponent implements OnInit {
   add(id): void{
     this.listQuestions.forEach(q => {
       if(q.id == id) {
-        this.quizQuestion.push(q);
-        if(q.type == 0) this.numberOfSelect++;
-        if(q.type == 1) this.numberOfCheckbox++;
-        if(q.type == 2) this.numberOfTrueFalse++;
-        if(q.type == 3) this.numberOfInput++;
+        if(this.quizQuestion.indexOf(q) == -1) {
+          this.quizQuestion.push(q);
+          if(q.type == 0) this.numberOfSelect++;
+          if(q.type == 1) this.numberOfCheckbox++;
+          if(q.type == 2) this.numberOfTrueFalse++;
+          if(q.type == 3) this.numberOfInput++;
+        }
+        else {
+          const dialogRef = this.dialog.open(MesDialogComponent);
+          dialogRef.afterClosed().subscribe(result => {
+            if(result == true) {
+              this.quizQuestion.push(q);
+              if(q.type == 0) this.numberOfSelect++;
+              if(q.type == 1) this.numberOfCheckbox++;
+              if(q.type == 2) this.numberOfTrueFalse++;
+              if(q.type == 3) this.numberOfInput++;
+            }
+          });
+        }
+
       }
     })
   }
