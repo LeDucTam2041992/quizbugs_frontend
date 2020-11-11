@@ -13,16 +13,11 @@ import {UserAnswer} from "../../../model/user-answer";
   styleUrls: ['./history-detail.component.scss']
 })
 export class HistoryDetailComponent implements OnInit {
-  currentExam: Exam = {
-    id: 1,
-    name: 'Java Exam',
-    enabled: true,
-    questionSet: []
-  };
-  answersArrMulti = [];
-  answersArr = [];
-  userExamObj: UserExam = {};
-  listUserAnswer: UserAnswer[] = []
+  currentExam: Exam;
+  userAnswers: UserAnswer[] = [];
+  userAnswerIdArr = [];
+  userExam: UserExam;
+
 
   constructor(private examService: ExamService, private route: Router,
               private router: ActivatedRoute, private fb: FormBuilder,
@@ -31,9 +26,26 @@ export class HistoryDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = Number.parseInt(this.router.snapshot.paramMap.get('id'));
     this.userExamsService.getUserExamById(id).subscribe(data => {
+      this.userExam = data;
       this.currentExam = data.exam;
-      this.answersArr = new Array(this.currentExam.questionSet.length);
+      this.userAnswers = data.userAnswers;
+      console.log(this.userAnswers);
+
+      for (const answer of this.userAnswers) {
+        this.userAnswerIdArr.push(answer.answer.id);
+      }
+
+      for (const question of this.currentExam.questionSet) {
+      }
+      console.log(this.userAnswerIdArr);
     });
   }
 
+  checkInclude(id:any): boolean{
+    return this.userAnswerIdArr.includes(id);
+  }
+
+  reTest(examId:any):void {
+    this.route.navigate([`examination/detail/${examId}`]).then(r => r);
+  }
 }

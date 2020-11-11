@@ -1,25 +1,50 @@
-<form class="example-form" >
+<form class="example-form">
     <mat-card>
-        <mat-card-content class="box-card-custom" >
-            <h4 class="header">Exam Title: {{currentExam.name}}</h4>
+        <mat-card-content class="box-card-custom">
+            <h4 class="header">Exam Title: {{currentExam.name}}
+                <h5 *ngIf="userExam.mark">Mark: {{userExam.mark ? userExam.mark : 'null'}}</h5>
+            </h4>
             <div class="example-section" *ngFor="let question of currentExam.questionSet; let i = index">
                 <ng-container *ngIf="question.type == 0 ||  question.type == 2">
-                    <mat-card >
-                        <mat-card-content class="box-card-custom" >
-                            <h5>Question {{i+1}}: {{question.question}}</h5>
-                            <section class="example-section" *ngFor="let answer of question.answers">
-                                <mat-radio-button color="primary" name="{{question.id}}">{{answer.answer}}</mat-radio-button>
+                    <mat-card>
+                        <mat-card-content class="box-card-custom">
+                            <h5>Question {{i + 1}}: {{question.question}}</h5>
+                            <section [class.example-section]="!checkInclude(answer.id) && answer.status == true"
+                                     *ngFor="let answer of question.answers">
+                                <mat-radio-button [checked]="checkInclude(answer.id)" color="primary"
+                                                  name="{{question.id}}">
+                                    {{answer.answer}}
+                                    <mat-icon class="sidenav-icon" style="color: #43a047"
+                                              *ngIf="checkInclude(answer.id) && answer.status == true">
+                                        check_circle
+                                    </mat-icon>
+                                    <mat-icon class="sidenav-icon" style="color: #ffaa00"
+                                              *ngIf="!checkInclude(answer.id) && answer.status == true">
+                                        check_circle
+                                    </mat-icon>
+                                </mat-radio-button>
                             </section>
                         </mat-card-content>
                     </mat-card>
                 </ng-container>
                 <ng-container *ngIf="question.type == 1">
                     <mat-card>
-                        <mat-card-content class="box-card-custom" >
-                            <h5>Question {{i+1}}: {{question.question}}</h5>
+                        <mat-card-content class="box-card-custom">
+                            <h5>Question {{i + 1}}: {{question.question}}</h5>
                             <mat-radio-group>
                                 <section class="example-section" *ngFor="let answer of question.answers">
-                                    <mat-checkbox color="primary" class="example-margin" name="{{question.id}}" >{{answer.answer}}</mat-checkbox>
+                                    <mat-checkbox [checked]="checkInclude(answer.id)" color="primary"
+                                                  class="example-margin" name="{{question.id}}">
+                                        {{answer.answer}}
+                                        <mat-icon class="sidenav-icon" style="color: #43a047"
+                                                  *ngIf="checkInclude(answer.id) && answer.status == true">
+                                            check_circle
+                                        </mat-icon>
+                                        <mat-icon class="sidenav-icon" style="color: #ffaa00"
+                                                  *ngIf="!checkInclude(answer.id) && answer.status == true">
+                                            check_circle
+                                        </mat-icon>
+                                    </mat-checkbox>
                                 </section>
                             </mat-radio-group>
                         </mat-card-content>
@@ -27,9 +52,12 @@
                 </ng-container>
             </div>
         </mat-card-content>
+        <div class="button-sub">
+            <button mat-raised-button color="basic" class="example-margin" [routerLink]="['/history/list']">Back
+            </button>
+            <button mat-raised-button color="warn" class="example-margin" (click)="reTest(currentExam.id)">Test again
+            </button>
+        </div>
     </mat-card>
-    <div class="button-sub">
-        <button mat-raised-button color="warn" class="example-margin" [routerLink]="['/history/list']" >Back</button>
-    </div>
 </form>
 
