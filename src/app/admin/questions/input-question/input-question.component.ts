@@ -23,7 +23,7 @@ export class InputQuestionComponent implements OnInit {
     id: 0,
     question: '',
     type: 3,
-    status: 1,
+    enabled: true,
     categories: [],
     answers: [this.answer]
   };
@@ -55,7 +55,7 @@ export class InputQuestionComponent implements OnInit {
       this.service.createQuestion(this.question)
           .subscribe(() => {
             this.message = 'Success!';
-            this.router.navigate(['/questions/list']);
+            // this.router.navigate(['/admin/questions/list']);
           });
     } else {
       this.message = 'UnSuccess!';
@@ -63,7 +63,7 @@ export class InputQuestionComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['questions/list'])
+    this.router.navigate(['admin/questions/list'])
   }
 
 }

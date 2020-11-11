@@ -7,11 +7,17 @@
         <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
       </section>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editQuestionType4Answer(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editQuestionType4Answer(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <button *ngIf="isCreateQuiz" mat-icon-button matTooltip="Click to add Quiz" class="iconbutton" color="primary" (click)="addQuiz(question.id)">
+          Add to Quiz <mat-icon aria-label="Add">add</mat-icon>
+        </button>
+        <button *ngIf="isQuestionQuiz" mat-icon-button matTooltip="Click to remove Question" class="iconbutton" color="primary" (click)="removeQuiz(question.id)">
+          Remove Question <mat-icon aria-label="Remove">remove</mat-icon>
         </button>
       </div>
     </mat-card-content>
@@ -29,11 +35,17 @@
         </section>
       </mat-radio-group>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editQuestionType4Answer(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editQuestionType4Answer(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <button *ngIf="isCreateQuiz" mat-icon-button matTooltip="Click to add Quiz" class="iconbutton" color="primary" (click)="addQuiz(question.id)">
+          Add to Quiz <mat-icon aria-label="Add">add</mat-icon>
+        </button>
+        <button *ngIf="isQuestionQuiz" mat-icon-button matTooltip="Click to remove Question" class="iconbutton" color="primary" (click)="removeQuiz(question.id)">
+          Remove Question <mat-icon aria-label="Remove">remove</mat-icon>
         </button>
       </div>
     </mat-card-content>
@@ -49,11 +61,17 @@
         <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
       </section>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editTrueFalseQuestion(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editTrueFalseQuestion(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <button *ngIf="isCreateQuiz" mat-icon-button matTooltip="Click to add Quiz" class="iconbutton" color="primary" (click)="addQuiz(question.id)">
+          Add to Quiz <mat-icon aria-label="Add">add</mat-icon>
+        </button>
+        <button *ngIf="isQuestionQuiz" mat-icon-button matTooltip="Click to remove Question" class="iconbutton" color="primary" (click)="removeQuiz(question.id)">
+          Remove Question <mat-icon aria-label="Remove">remove</mat-icon>
         </button>
       </div>
     </mat-card-content>
@@ -70,11 +88,17 @@
         <label style="font-size: medium">Answer is : </label><label style="font-size: medium" *ngFor="let answer of question.answers">{{answer.answer}}</label>
       </section>
       <div>
-        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editInputQuestion(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editInputQuestion(question.id)">
           <mat-icon aria-label="Edit" >edit</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
+        <button *ngIf="isListQuestion" mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(question.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <button *ngIf="isCreateQuiz" mat-icon-button matTooltip="Click to add Quiz" class="iconbutton" color="primary" (click)="addQuiz(question.id)">
+          Add to Quiz <mat-icon aria-label="Add">add</mat-icon>
+        </button>
+        <button *ngIf="isQuestionQuiz" mat-icon-button matTooltip="Click to remove Question" class="iconbutton" color="primary" (click)="removeQuiz(question.id)">
+          Remove Question <mat-icon aria-label="Remove">remove</mat-icon>
         </button>
       </div>
     </mat-card-content>

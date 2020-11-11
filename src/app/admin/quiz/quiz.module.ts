@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { MesDialogComponent } from './mes-dialog/mes-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -43,6 +44,7 @@ import { MesDialogComponent } from './mes-dialog/mes-dialog.component';
         ReactiveFormsModule,
         FormsModule,
         MatSelectModule,
+        MatDialogModule,
     ]
 })
 export class QuizModule { }

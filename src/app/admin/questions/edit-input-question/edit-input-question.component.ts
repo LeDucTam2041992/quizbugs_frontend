@@ -24,7 +24,7 @@ export class EditInputQuestionComponent implements OnInit {
     id: 0,
     question: '',
     type: 3,
-    status: 1,
+    enabled: true,
     categories: [],
     answers: [this.answer]
   };
@@ -74,7 +74,7 @@ export class EditInputQuestionComponent implements OnInit {
       console.log(this.question);
       this.service.updateQuestion(this.question.id, this.question)
           .subscribe(() => {
-            this.router.navigate(['questions/list']);
+            // this.router.navigate(['admin/questions/list']);
             this.message = 'Success!';
           });
     } else {
@@ -83,7 +83,7 @@ export class EditInputQuestionComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['questions/list'])
+    this.router.navigate(['admin/questions/list'])
   }
 
 

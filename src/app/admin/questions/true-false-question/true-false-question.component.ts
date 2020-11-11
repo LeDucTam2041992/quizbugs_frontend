@@ -27,7 +27,7 @@ export class TrueFalseQuestionComponent implements OnInit {
     id: 0,
     question: '',
     type: 2,
-    status: 1,
+    enabled: true,
     categories: [],
     answers: [this.trueA, this.falseA]
   };
@@ -63,13 +63,13 @@ export class TrueFalseQuestionComponent implements OnInit {
       this.service.createQuestion(this.question)
           .subscribe(() => {
             this.message = 'Success!';
-            this.router.navigate(['/questions/list']);
+            // this.router.navigate(['/admin/questions/list']);
           });
     } else {
       this.message = 'UnSuccess!';
     }
   }
   cancel() {
-    this.router.navigate(['questions/list'])
+    this.router.navigate(['admin/questions/list'])
   }
 }
