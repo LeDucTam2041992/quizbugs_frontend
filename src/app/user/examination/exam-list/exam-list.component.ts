@@ -43,8 +43,6 @@ export class ExamListComponent implements OnInit {
         )
     }
 
-
-
     onSearchClear() {
         this.searchKey = "";
         this.applyFilter();
@@ -53,7 +51,7 @@ export class ExamListComponent implements OnInit {
         this.filteredListExams.filter = this.searchKey.trim().toLowerCase();
     }
     goDetail(id) {
-        this.router.navigate([`user/examination/detail/${id}`]).then(r => r);
+        this.router.navigate([`examination/detail/${id}`]).then(r => r);
     }
 
 }

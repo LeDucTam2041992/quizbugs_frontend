@@ -3,7 +3,7 @@
     *ngFor="let item of routes"
     mat-list-item
     [routerLinkActive]="'active'"
-    [routerLink]="['/user', item.path]"
+    [routerLink]="['/', item.path]"
   >
     <mat-icon class="sidenav-icon">{{ item.data.icon }}</mat-icon>
     {{ item.data.text }}

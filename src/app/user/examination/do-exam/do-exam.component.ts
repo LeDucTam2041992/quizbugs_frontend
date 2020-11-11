@@ -63,26 +63,28 @@ export class DoExamComponent implements OnInit {
         this.userExamObj.exam = {
             "id": this.currentExam.id
         }
-        this.userExamsService.createUserExam(this.userExamObj).subscribe(e =>e);
+        this.userExamsService.createUserExam(this.userExamObj).subscribe(e =>{
+            this.route.navigate(['examination/list'])
+        });
         console.log(this.userExamObj)
     }
 
     selectAnswers(answer, questionType, index) {
         console.log("answer id " + answer.id)
-        if(questionType == 0 || questionType==2) {
+        if (questionType == 0 || questionType == 2) {
             this.answersArr[index] = answer;
         }
-        if( questionType == 1) {
+        if (questionType == 1) {
             let index = this.answersArrMulti.indexOf(answer);
-            if(index>-1){
-                this.answersArrMulti.splice(index,1);
-            }else  {
+            if (index > -1) {
+                this.answersArrMulti.splice(index, 1);
+            } else {
                 this.answersArrMulti.push(answer);
             }
         }
     }
 
     cancel() {
-        this.route.navigate(['user/examination/list'])
+        this.route.navigate(['examination/list'])
     }
 }

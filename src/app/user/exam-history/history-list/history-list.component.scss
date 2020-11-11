@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+.example-container {
+  max-height: 500px;
+  overflow: auto;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.hide {
+  display: none;
+}
+mat-footer-row mat-footer-cell{
+  justify-content: center;
+  font-style: italic;
+}
+
+/* filter controls */
+.search-div{
+  margin: 10px;
+}
+

@@ -6,7 +6,7 @@ import {childRoutes} from "./child-routes";
 
 const routes: Routes = [
     {
-        path: 'user',
+        path: '',
         component: LayoutComponent,
         children: [
             {

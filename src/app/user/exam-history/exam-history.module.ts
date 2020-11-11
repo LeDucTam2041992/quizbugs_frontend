@@ -5,6 +5,15 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {SharedModule} from "../../shared/shared.module";
 import {HomeComponent} from "./home/home.component";
 import {ExamHistoryRoutingModule} from "./exam-history-routing.module";
+import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -15,7 +24,16 @@ import {ExamHistoryRoutingModule} from "./exam-history-routing.module";
     imports: [
         ExamHistoryRoutingModule,
         MatTabsModule,
-        SharedModule
+        SharedModule,
+        MatIconModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTooltipModule
     ]
 })
 export class ExamHistoryModule {
