@@ -4,7 +4,6 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {CategoryService} from "../../../service/category.service";
 import {Router} from "@angular/router";
-import {UserExamService} from "../../../service/user-exam.service";
 
 @Component({
     selector: 'app-history-list',
@@ -14,11 +13,11 @@ import {UserExamService} from "../../../service/user-exam.service";
 export class HistoryListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    listHistory: MatTableDataSource<any>;
-    displayedColumns = ['id', 'test-name', 'score', 'date of test','action'];
+    listCategories: MatTableDataSource<any>;
+    displayedColumns = ['id', 'category', 'option'];
     searchKey: string;
 
-    constructor(private userExamService: UserExamService, private router: Router) {
+    constructor(private categoryService: CategoryService, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -31,36 +30,41 @@ export class HistoryListComponent implements OnInit {
     }
 
     applyFilter() {
-        this.listHistory.filter = this.searchKey.trim().toLowerCase();
+        this.listCategories.filter = this.searchKey.trim().toLowerCase();
     }
 
     getAll() {
-        this.userExamService.getAllExamOfUser().subscribe(list => {
+        this.categoryService.getAllCategories().subscribe(list => {
                 let array = list.map(item => {
                     return {
                         id: item.id,
-                        user: item.user,
-                        exam: item.exam,
-                        date: item.date,
-                        mark: item.mark,
-                        userAnswers: item.userAnswers,
+                        category: item.category
                     }
                 });
-                console.log('array -> ' + array);
-                this.listHistory = new MatTableDataSource(array);
-                this.listHistory.paginator = this.paginator;
-                this.listHistory.sort = this.sort;
+                this.listCategories = new MatTableDataSource(array);
+                this.listCategories.paginator = this.paginator;
+                this.listCategories.sort = this.sort;
             }
         )
     }
 
-    clickDetail(id) {
+    delete(id) {
         if (confirm('Are you sure want to delete?')) {
-            this.userExamService.getUserExamById(id).subscribe(res => {
+            this.categoryService.delete(id).subscribe(res => {
                 this.getAll();
             })
         }
     }
 
+    clickEdit(id) {
+        this.router.navigate(['categories/edit/' + id]);
+    }
 
+    add() {
+        this.router.navigate(['categories/add']);
+    }
+
+    cancel() {
+        this.router.navigate(['categories/list']);
+    }
 }
