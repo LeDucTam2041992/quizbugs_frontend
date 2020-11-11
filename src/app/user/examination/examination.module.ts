@@ -6,18 +6,25 @@ import { DoExamComponent } from './do-exam/do-exam.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {SharedModule} from "../../shared/shared.module";
 import {HomeComponent} from "./home/home.component";
+import {MaterialsModule} from "../../materials.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 @NgModule({
     declarations: [
         HomeComponent,
         ExamListComponent,
-        DoExamComponent],
+        DoExamComponent,],
     imports: [
         ExaminationRoutingModule,
         MatTabsModule,
         CommonModule,
         SharedModule,
+        MaterialsModule,
+        FormsModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
     ]
 })
 export class ExaminationModule {

@@ -1,1 +1,36 @@
-<p>do-exam works!</p>
+<form class="example-form" (ngSubmit)="submit()" [formGroup]="userAnswersExam">
+<mat-card>
+    <mat-card-content class="box-card-custom" >
+        <h4 class="header">Exam Title: {{currentExam.name}}</h4>
+        <div class="example-section" *ngFor="let question of currentExam.questionSet; let i = index">
+            <ng-container *ngIf="question.type == 0 ||  question.type == 2">
+                <mat-card >
+                    <mat-card-content class="box-card-custom" >
+                        <h5>Question {{i+1}}: {{question.question}}</h5>
+                        <section class="example-section" *ngFor="let answer of question.answers">
+                            <mat-radio-button color="primary" name="{{question.id}}" (change)="selectAnswers(answer,question.type,i)">{{answer.answer}}</mat-radio-button>
+                        </section>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+            <ng-container *ngIf="question.type == 1">
+                <mat-card>
+                    <mat-card-content class="box-card-custom" >
+                        <h5>Question {{i+1}}: {{question.question}}</h5>
+                        <mat-radio-group>
+                            <section class="example-section" *ngFor="let answer of question.answers">
+                                <mat-checkbox color="primary" class="example-margin" name="{{question.id}}" (change)="selectAnswers(answer,question.type,i)">{{answer.answer}}</mat-checkbox>
+                            </section>
+                        </mat-radio-group>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+    </mat-card-content>
+</mat-card>
+    <div class="button-sub">
+    <button mat-raised-button color="primary" class="example-margin" type="submit">Submit</button>
+    <button mat-raised-button color="warn" class="example-margin" (click)="cancel()" >Cancel</button>
+    </div>
+</form>
+
