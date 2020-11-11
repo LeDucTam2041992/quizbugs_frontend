@@ -9,6 +9,7 @@ export class DashboardComponent implements OnInit {
   public login = "/login";
   public register ='/register';
   public home ='/home';
+  public dashboard = '/dashboard';
 
   constructor() { }
 
