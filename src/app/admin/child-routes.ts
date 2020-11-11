@@ -13,5 +13,10 @@ export const childRoutes = [
     path: 'quizs',
     loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule),
     data: { icon: 'insert_drive_file', text: 'Quiz' }
-  }
+  },
+    {
+        path: 'management-user',
+        loadChildren: () => import('./management-user/management-user.module').then(m =>m.ManagementUserModule),
+        data: {icon: 'supervisor_account', text: 'Management Users'}
+    }
 ];
