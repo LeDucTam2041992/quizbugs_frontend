@@ -46,7 +46,6 @@ export class HistoryListComponent implements OnInit {
                         userAnswers: item.userAnswers,
                     }
                 });
-                console.log(array);
                 this.listHistory = new MatTableDataSource(array);
                 this.listHistory.paginator = this.paginator;
                 this.listHistory.sort = this.sort;

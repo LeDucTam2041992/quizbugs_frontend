@@ -24,8 +24,8 @@ export class DoExamComponent implements OnInit {
     };
     userAnswersExam: FormGroup;
     answersArrMulti = [];
-    answersArr =[];
-    userExamObj: UserExam ={};
+    answersArr = [];
+    userExamObj: UserExam = {};
     listUserAnswer: UserAnswer[] = []
 
     constructor(private examService: ExamService, private route: Router,
@@ -41,14 +41,12 @@ export class DoExamComponent implements OnInit {
         });
         if (this.inId > 0)
             this.examService.getExamById(this.inId).subscribe(res => this.currentExam = res);
-        this.userAnswersExam = this.fb.group([
-
-        ])
+        this.userAnswersExam = this.fb.group([])
     }
 
     submit() {
         this.answersArr = this.answersArr.filter(element => element != null);
-        for(let i in this.answersArrMulti){
+        for (let i in this.answersArrMulti) {
             this.answersArr.push(this.answersArrMulti[i])
         }
         this.answersArr.forEach(element => {
@@ -59,26 +57,30 @@ export class DoExamComponent implements OnInit {
         })
         this.userExamObj.userAnswers = this.listUserAnswer;
         this.userExamObj.exam = this.currentExam;
-        this.userExamsService.createUserExam(this.userExamObj);
+        this.userExamsService.createUserExam(this.userExamObj).subscribe(
+            () => {
+                this.route.navigate(['examination/list'])
+            }
+        );
         console.log(this.userExamObj)
     }
 
     selectAnswers(answer, questionType, index) {
         console.log("answer id " + answer.id)
-        if(questionType == 0 || questionType==2) {
+        if (questionType == 0 || questionType == 2) {
             this.answersArr[index] = answer;
         }
-        if( questionType == 1) {
+        if (questionType == 1) {
             let index = this.answersArrMulti.indexOf(answer);
-            if(index>-1){
-                this.answersArrMulti.splice(index,1);
-            }else  {
+            if (index > -1) {
+                this.answersArrMulti.splice(index, 1);
+            } else {
                 this.answersArrMulti.push(answer);
             }
         }
     }
 
     cancel() {
-        this.route.navigate(['user/examination/list'])
+        this.route.navigate(['examination/list'])
     }
 }
