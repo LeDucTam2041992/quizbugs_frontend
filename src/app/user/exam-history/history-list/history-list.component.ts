@@ -41,12 +41,12 @@ export class HistoryListComponent implements OnInit {
                         id: item.id,
                         user: item.user,
                         exam: item.exam,
-                        date: item.date,
+                        date: new Date(item.date),
                         mark: item.mark,
                         userAnswers: item.userAnswers,
                     }
                 });
-                console.log('array -> ' + array);
+                console.log(array);
                 this.listHistory = new MatTableDataSource(array);
                 this.listHistory.paginator = this.paginator;
                 this.listHistory.sort = this.sort;

@@ -13,23 +13,22 @@
             <mat-cell *matCellDef="let element; let i = index"> {{i+1}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="test-name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Category</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Test Name</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.exam.name}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="score">
-            <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.mark}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef > Mark </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.mark ? element.mark : "null"}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="date of test">
-            <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef >Date of Test </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.date | date:'HH:mm dd-MM-yyyy '}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
-            <mat-header-cell *matHeaderCellDef >Option </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef >Action </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="clickDetail(element.id)">
-                    <mat-icon aria-label="Delete">detail</mat-icon>
-                </button>
+                <button matTooltip="Click to Details" mat-stroked-button (click)="clickDetail(element.id)">Detail</button>
+
             </mat-cell>
         </ng-container>
 

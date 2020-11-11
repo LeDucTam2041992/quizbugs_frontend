@@ -13,8 +13,6 @@ export class HomeComponent implements OnInit {
   constructor() {}
   ngOnInit() {
     this.navLinks = [
-      new NavLink('list', 'History Exams'),
-      new NavLink('detail', 'History Exams'),
     ];
   }
 }
