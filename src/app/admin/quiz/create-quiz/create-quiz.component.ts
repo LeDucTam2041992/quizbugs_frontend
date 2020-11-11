@@ -6,6 +6,9 @@ import {PageEvent} from '@angular/material/paginator';
 import {FormControl, Validators} from '@angular/forms';
 import {ICategory} from '../../../model/ICategory';
 import {CategoryService} from '../../../service/category.service';
+import {ExamService} from '../../../service/exam.service';
+import {Exam} from '../../../model/exam';
+import {Answer} from '../../../model/answer';
 
 @Component({
   selector: 'app-create-quiz',
@@ -27,6 +30,15 @@ export class CreateQuizComponent implements OnInit {
   numberOfTrueFalse = 0;
   numberOfInput = 0;
 
+  message = '';
+
+  exam: Exam = {
+    id: 0,
+    name: '',
+    enabled: true,
+    questionSet: []
+  }
+
   quizFormControl = new FormControl('', [
     Validators.required,
   ]);
@@ -36,7 +48,8 @@ export class CreateQuizComponent implements OnInit {
 
   constructor(private questionService: QuestionService,
               private router: Router,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private examService:ExamService) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -181,7 +194,21 @@ export class CreateQuizComponent implements OnInit {
   }
 
   createQuiz() {
-
+    if(this.quizFormControl.valid) {
+      this.exam.name = this.quizFormControl.value;
+      this.exam.questionSet = this.quizQuestion;
+      this.exam.questionSet.forEach(q => {
+        q.answers = [];
+      })
+      this.examService.createExam(this.exam)
+          .subscribe(() => {
+            this.message = 'Create Quiz Success!';
+            this.quizQuestion = [];
+          },
+                  err => {
+            this.message = 'UnSuccess! Please try again!'
+          });
+    }
   }
 
   delete($event: any) {
