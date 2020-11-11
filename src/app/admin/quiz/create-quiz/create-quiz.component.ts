@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Question} from '../../../model/question';
 import {QuestionService} from '../../../service/question.service';
 import {Router} from '@angular/router';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {PageEvent} from '@angular/material/paginator';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -51,7 +50,6 @@ export class CreateQuizComponent implements OnInit {
           });
           this.listQuestions = array;
           this.length = this.listQuestions.length;
-          this.setData();
         }
     );
   }
@@ -91,17 +89,6 @@ export class CreateQuizComponent implements OnInit {
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     if (setPageSizeOptionsInput) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-    }
-  }
-
-  setData(): void{
-    this.filterQuestion = [];
-    let page = this.pageEvent.pageIndex-1;
-    let size = this.pageEvent.pageSize;
-    let fQuestion = page*size;
-    while (fQuestion<this.length && this.filterQuestion.length<size) {
-      this.filterQuestion.push(this.listQuestions[fQuestion]);
-      fQuestion++
     }
   }
 }
