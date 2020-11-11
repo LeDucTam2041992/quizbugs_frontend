@@ -19,7 +19,7 @@
                         <h5>Question {{i+1}}: {{question.question}}</h5>
                         <mat-radio-group>
                             <section class="example-section" *ngFor="let answer of question.answers">
-                                <mat-checkbox color="primary" class="example-margin" name="{{question.id}}" (change)="selectAnswers(answer.id,question.type,i)">{{answer.answer}}</mat-checkbox>
+                                <mat-checkbox color="primary" class="example-margin" name="{{question.id}}" (change)="selectAnswers(answer,question.type,i)">{{answer.answer}}</mat-checkbox>
                             </section>
                         </mat-radio-group>
                     </mat-card-content>
