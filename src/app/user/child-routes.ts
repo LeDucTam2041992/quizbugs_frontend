@@ -12,7 +12,7 @@ export const childRoutes = [
     data: { icon: 'event_note', text: 'Examination' }
   },
   {
-    path: 'history',
+      path: 'history',
     loadChildren: () =>
         import('./exam-history/exam-history.module').then(m => m.ExamHistoryModule),
     data: { icon: 'history', text: 'Exam Records' }
