@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ExamListComponent} from "./exam-list/exam-list.component";
-import {DoExamComponent} from "./do-exam/do-exam.component";
 import {HomeComponent} from "./home/home.component";
-import {DetailQuestionComponent} from "../../admin/questions/detail-question/detail-question.component";
+import {DoExamComponent} from "./do-exam/do-exam.component";
 
 
 const routes: Routes = [
@@ -15,7 +14,7 @@ const routes: Routes = [
         path: 'list', component: ExamListComponent,
       },
       {
-        path: 'detail/:id', component: DetailQuestionComponent,
+        path: 'detail/:id', component: DoExamComponent,
       },
       {
         path: '**',

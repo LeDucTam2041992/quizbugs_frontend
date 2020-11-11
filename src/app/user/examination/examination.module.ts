@@ -6,9 +6,8 @@ import { DoExamComponent } from './do-exam/do-exam.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {SharedModule} from "../../shared/shared.module";
 import {HomeComponent} from "./home/home.component";
-import { DetailExamComponent } from './detail-exam/detail-exam.component';
 import {MaterialsModule} from "../../materials.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
@@ -16,8 +15,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     declarations: [
         HomeComponent,
         ExamListComponent,
-        DoExamComponent,
-        DetailExamComponent],
+        DoExamComponent,],
     imports: [
         ExaminationRoutingModule,
         MatTabsModule,
@@ -26,6 +24,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
         MaterialsModule,
         FormsModule,
         MatButtonToggleModule,
+        ReactiveFormsModule,
     ]
 })
 export class ExaminationModule {

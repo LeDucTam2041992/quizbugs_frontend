@@ -18,7 +18,7 @@ export class UserExamService {
     return this.httpClient.get<UserExam[]>(environment.urlApi + 'userExams/getAll');
   }
   createUserExam(userExam: UserExam): Observable<UserExam>{
-    return this.httpClient.post<UserExam>(environment.urlApi + 'userExams/', userExam);
+    return this.httpClient.post<UserExam>(environment.urlApi + 'userExams', userExam);
   }
 
   getUserExamById(id: number): Observable<Exam>{

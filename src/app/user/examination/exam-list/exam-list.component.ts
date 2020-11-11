@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Exam} from "../../../model/exam";
 import {ExamService} from "../../../service/exam.service";
 import {Router} from "@angular/router";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
     selector: 'app-exam-list',
@@ -9,38 +12,48 @@ import {Router} from "@angular/router";
     styleUrls: ['./exam-list.component.scss']
 })
 export class ExamListComponent implements OnInit {
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+    displayedColumns = ['id', 'name', 'option'];
+    filteredListExams: MatTableDataSource<any>;
+    searchKey: string;
 
-    listExams: Exam[];
-    filteredListExams: Exam[];
-    examName: string;
 
-    constructor(private examService: ExamService, private router:Router) {
+    constructor(private examService: ExamService, private router: Router) {
     }
 
     ngOnInit(): void {
-        this.examService.getAllExams().subscribe(res => {
-                this.listExams = res;
-                this.filteredListExams = this.listExams.slice(0,5)
+        this.getAll();
+    }
+
+    getAll() {
+        this.examService.getAllExams().subscribe(list => {
+                let array = list.map(item => {
+                    return {
+                        id: item.id,
+                        name: item.name,
+                        enabled: item.enabled,
+                        questionSet: item.questionSet
+                    }
+                });
+                this.filteredListExams = new MatTableDataSource(array);
+                this.filteredListExams.paginator = this.paginator;
+                this.filteredListExams.sort = this.sort;
             }
         )
     }
 
-    onPageChange($event) {
-        this.filteredListExams = this.listExams.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+
+
+    onSearchClear() {
+        this.searchKey = "";
+        this.applyFilter();
+    }
+    applyFilter() {
+        this.filteredListExams.filter = this.searchKey.trim().toLowerCase();
+    }
+    goDetail(id) {
+        this.router.navigate([`user/examination/detail/${id}`]).then(r => r);
     }
 
-    SearchTextBox() {
-        this.filteredListExams = this.listExams.filter(element => {
-            return element.name.includes(this.examName)
-        })
-    }
-
-    clear() {
-        this.examName = '';
-        this.filteredListExams = this.listExams;
-    }
-
-    goDetail(id: number) {
-        this.router.navigate([`examination/detail/${id}`]);
-    }
 }
