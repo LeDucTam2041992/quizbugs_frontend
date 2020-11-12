@@ -103,6 +103,7 @@ export class CreateQuestionComponent implements OnInit {
       this.message = 'UnSuccess!';
       this.count = 0;
     }
+    this.clearInputMethod1() ;
   }
 
   selectedA(): void{
@@ -119,5 +120,9 @@ export class CreateQuestionComponent implements OnInit {
   }
   cancel() {
     this.router.navigate(['admin/questions/list'])
+  }
+
+  private clearInputMethod1() {
+    this.questionForm.reset()
   }
 }
