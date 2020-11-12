@@ -54,11 +54,7 @@ export class HistoryListComponent implements OnInit {
     }
 
     clickDetail(id) {
-        if (confirm('Are you sure want to delete?')) {
-            this.userExamService.getUserExamById(id).subscribe(res => {
-                this.getAll();
-            })
-        }
+        this.router.navigate([`history/detail/${id}`]).then(r => r);
     }
 
 

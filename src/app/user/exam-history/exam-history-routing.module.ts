@@ -15,7 +15,7 @@ const routes: Routes = [
         path: 'list', component: HistoryListComponent,
       },
       {
-        path: 'detail', component: HistoryDetailComponent,
+        path: 'detail/:id', component: HistoryDetailComponent,
       },
       {
         path: '**',
