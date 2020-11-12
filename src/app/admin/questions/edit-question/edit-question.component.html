@@ -1,6 +1,8 @@
 <section class="body-margin">
   <h2>Update Question</h2>
-<!--  <app-message [message]="message"></app-message>-->
+  <label>Category : </label>
+  <label *ngFor="let category of question.categories">{{category.category}}, </label>
+  <app-message [message]="message"></app-message>
   <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
     <mat-form-field class="example-full-width">
       <mat-label>Question</mat-label>
@@ -46,8 +48,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="category" >
-        <mat-option *ngFor="let category of categories" [value]="category" >{{category.category}}</mat-option>
+      <mat-select formControlName="category" multiple>
+        <mat-option *ngFor="let category of categories" [value]="category">{{category.category}}</mat-option>
       </mat-select>
       <mat-error *ngIf="questionForm.get('category').hasError('required')">
         Category is <strong>required</strong>

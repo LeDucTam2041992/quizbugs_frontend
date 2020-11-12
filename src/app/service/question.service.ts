@@ -17,7 +17,7 @@ export class QuestionService {
   }
 
   createQuestion(question: Question): Observable<Question>{
-    return this.httpClient.post<Question>(environment.urlApi + 'questions/', question);
+    return this.httpClient.post<Question>(environment.urlApi + 'questions', question);
   }
 
   getQuestion(id: number): Observable<Question>{

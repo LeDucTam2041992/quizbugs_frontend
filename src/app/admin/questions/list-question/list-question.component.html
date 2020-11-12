@@ -1,15 +1,37 @@
-
-  <div class="search-div">
-    <button mat-raised-button (click)="add()">
-      <mat-icon>add</mat-icon>Create
-    </button>
-      <input matInput  placeholder="Search" style="margin:0px 0px 10px 10px;max-width: 87%">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear">
+<mat-form-field appearance="fill" style="float: left">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="searchCategory()">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let category of listCategories"
+                    [value]="category.category">{{category.category}}</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)]="selectedType" (ngModelChange)="searchTypeQuestion()">
+        <mat-option>None</mat-option>
+        <mat-option value="0">Radio Button</mat-option>
+        <mat-option value="1">Checkbox</mat-option>
+        <mat-option value="2">True-False</mat-option>
+    </mat-select>
+</mat-form-field>
+<div class="search-div">
+    <input matInput [(ngModel)]="questionName" (input)="SearchTextBox()" placeholder="Search"
+           style="margin:0px 0px 10px 10px;max-width: 87%">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
         <mat-icon>close</mat-icon>
-      </button>
-  </div>
-  <ng-container *ngFor="let question of listQuestions;let i = index">
-    <app-detail-question [inId]="question.id" [index]="i" (deleteId)="delete($event)"></app-detail-question>
-  </ng-container>
+    </button>
+</div>
 
+<div>
+    <ng-container *ngFor="let question of filteredListQuestions">
+        <app-detail-question [isListQuestion]="true" [inId]="question.id" [index]="searchListQuestion.indexOf(question)" (deleteId)="delete($event)"></app-detail-question>
+    </ng-container>
+    <mat-paginator
+            (page)="onPageChange($event)"
+            [length]="searchListQuestion.length"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
 

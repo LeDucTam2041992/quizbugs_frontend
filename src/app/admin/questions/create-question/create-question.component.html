@@ -1,5 +1,5 @@
 <section class="body-margin">
-  <h2>Create New Question</h2>
+  <h2>Select or Checkbox Question</h2>
   <app-message [message]="message"></app-message>
   <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
     <mat-form-field class="example-full-width">
@@ -46,7 +46,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="category">
+      <mat-select formControlName="category" multiple>
         <mat-option *ngFor="let category of categories" [value]="category">{{category.category}}</mat-option>
       </mat-select>
       <mat-error *ngIf="questionForm.get('category').hasError('required')">

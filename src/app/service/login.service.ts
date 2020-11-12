@@ -10,17 +10,9 @@ import {IUser} from "../model/IUser";
 })
 export class LoginService {
 
-  httpOptions:any;
 
   constructor(private http: HttpClient,
               private router: Router) {
-  }
-
-  setTokenToHeader(){
-    const headers_object = new HttpHeaders().set("Authorization", localStorage.getItem('token'));
-    this.httpOptions = {
-      headers: headers_object
-    };
   }
 
   doLogin(userData: IUser): Observable<any> {
@@ -28,9 +20,7 @@ export class LoginService {
   }
 
   doLogout(): void {
-    this.setTokenToHeader();
-    console.log(this.httpOptions)
-    this.http.get(environment.urlApi + 'users/logout', this.httpOptions).subscribe(
+    this.http.get(environment.urlApi + 'users/logout').subscribe(
       ()=> {
         localStorage.removeItem('isLoggedin');
         localStorage.removeItem('token');
@@ -40,11 +30,10 @@ export class LoginService {
   }
 
   doRegister(userData: IUser): Observable<any> {
-    return this.http.post<any>(environment.urlApi + 'users', userData);
+    return this.http.post<any>(environment.urlApi + 'users/register', userData);
   }
 
   doUpdate(userData: any): Observable<any> {
-    this.setTokenToHeader();
-    return this.http.put(environment.urlApi + 'users/updatePassword' , userData, this.httpOptions)
+    return this.http.put(environment.urlApi + 'users/updatePassword' , userData)
   }
 }

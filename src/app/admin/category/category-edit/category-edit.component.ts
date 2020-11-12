@@ -20,7 +20,8 @@ export class CategoryEditComponent implements OnInit {
 
   currentCategory: ICategory = {
     id: 1,
-    category: 'Java'
+    category: 'Java',
+    enabled: true
   };
   ngOnInit(): void {
     // tslint:disable-next-line:radix
@@ -38,10 +39,10 @@ export class CategoryEditComponent implements OnInit {
     console.log(this.currentCategory.category);
     this.categoryService.update(this.currentCategory.id, this.currentCategory).subscribe(e => {
     });
-    this.route.navigate(['categories/list']);
+    this.route.navigate(['admin/categories/list']);
   }
   cancel() {
-    this.route.navigate(['categories/list']);
+    this.route.navigate(['admin/categories/list']);
   }
 
 }

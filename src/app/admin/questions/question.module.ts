@@ -2,15 +2,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ListQuestionComponent} from './list-question/list-question.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppRoutingModule} from '../../app-routing.module';
-import {CategoryModule} from '../category/category.module';
 import {RouterModule, Routes} from '@angular/router';
-import {CategoryListComponent} from '../category/category-list/category-list.component';
-import {CategoryAddComponent} from '../category/category-add/category-add.component';
-import {CategoryEditComponent} from '../category/category-edit/category-edit.component';
 import {CreateQuestionComponent} from './create-question/create-question.component';
 import {EditQuestionComponent} from './edit-question/edit-question.component';
-import {MatGridListModule} from '@angular/material/grid-list';
 import {DetailQuestionComponent} from './detail-question/detail-question.component';
 import {MessageComponent} from '../message/message.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -26,6 +20,13 @@ import {SharedModule} from "../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {TrueFalseQuestionComponent} from './true-false-question/true-false-question.component';
+import {EditInputQuestionComponent} from './edit-input-question/edit-input-question.component';
+import {EditTrueFalseQuestionComponent} from './edit-true-false-question/edit-true-false-question.component';
+import {InputQuestionComponent} from './input-question/input-question.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -35,7 +36,17 @@ import {MatIconModule} from "@angular/material/icon";
         CreateQuestionComponent,
         EditQuestionComponent,
         DetailQuestionComponent,
-        MessageComponent],
+        MessageComponent,
+        TrueFalseQuestionComponent,
+        EditTrueFalseQuestionComponent,
+        InputQuestionComponent,
+        EditInputQuestionComponent,
+        DeleteDialogComponent,
+    ],
+    exports: [
+        DetailQuestionComponent,
+        MessageComponent
+    ],
     imports: [
         QuestionRoutingModule,
         CommonModule,
@@ -53,6 +64,8 @@ import {MatIconModule} from "@angular/material/icon";
         MatButtonModule,
         MatInputModule,
         MatIconModule,
+        MatPaginatorModule,
+        MatDialogModule,
     ]
 })
 export class QuestionModule {

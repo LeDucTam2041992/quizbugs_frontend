@@ -40,11 +40,8 @@ export class EditQuestionComponent implements OnInit {
     id: 0,
     question: 'ABC',
     type: 0,
-    status: 0,
-    category: {
-      id: 0,
-      category: ''
-    },
+    enabled: true,
+    categories: [],
     answers: []
   };
   categories: ICategory[] = [];
@@ -91,7 +88,7 @@ export class EditQuestionComponent implements OnInit {
         answer2: [this.answer2.answer, Validators.required],
         answer3: [this.answer3.answer, Validators.required],
         answer4: [this.answer4.answer, Validators.required],
-        category: [this.question.category, Validators.required]
+        category: [this.question.categories, Validators.required]
       });
     });
   }
@@ -103,7 +100,7 @@ export class EditQuestionComponent implements OnInit {
       this.answer2.answer = this.questionForm.get('answer2').value;
       this.answer3.answer = this.questionForm.get('answer3').value;
       this.answer4.answer = this.questionForm.get('answer4').value;
-      this.question.category = this.questionForm.get('category').value;
+      this.question.categories = this.questionForm.get('category').value;
       if (this.answer1.status) {
         this.count++;
       }
@@ -125,7 +122,7 @@ export class EditQuestionComponent implements OnInit {
       this.count = 0;
       this.service.updateQuestion(this.question.id, this.question)
         .subscribe(() => {
-          this.router.navigate(['questions/list']);
+          // this.router.navigate(['admin/questions/list']);
           this.message = 'Success!';
         });
     } else {
@@ -148,6 +145,6 @@ export class EditQuestionComponent implements OnInit {
   }
 
     cancel() {
-        this.router.navigate(['questions/list'])
+        this.router.navigate(['admin/questions/list'])
     }
 }
