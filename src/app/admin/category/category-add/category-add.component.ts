@@ -27,10 +27,10 @@ export class CategoryAddComponent implements OnInit {
     this.categoryService.createCategory(data).subscribe(e => {
       console.log("create " + e);
     });
-    this.route.navigate(['categories/list']);
+    this.route.navigate(['admin/categories/list']);
   }
 
   cancel() {
-    this.route.navigate(['categories/list']);
+    this.route.navigate(['admin/categories/list']);
   }
 }
