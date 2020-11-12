@@ -13,7 +13,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LoginComponent implements OnInit {
     hide: boolean = true;
     loginForm: FormGroup;
-
+    public static isAdmin = false;
     constructor(private router: Router,
                 private loginService: LoginService,
                 private formBuilder: FormBuilder,
@@ -34,8 +34,10 @@ export class LoginComponent implements OnInit {
             (response) => {
                 localStorage.setItem('token', response.Authorization);
                 localStorage.setItem('isLoggedin', 'true');
-                if (response.ROLE.includes("ROLE_ADMIN"))
+                if (response.ROLE.includes("ROLE_ADMIN")) {
+                    LoginComponent.isAdmin = true;
                     this.router.navigate(['admin'])
+                }
                 else
                     this.router.navigate(['dashboard']);
             },

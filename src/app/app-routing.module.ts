@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AuthGuard} from './core/auth.guard';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
+import {AdminGuard} from "./core/admin.guard";
 
 const routes: Routes = [
     {
@@ -12,7 +13,7 @@ const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-        canActivate: [AuthGuard]
+        canActivate: [AdminGuard]
     },
     {
         path: '',
