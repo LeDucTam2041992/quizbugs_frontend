@@ -1,14 +1,14 @@
-
 <body id="top">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <a href="contact.html" id="contact-button" class="mdl-button mdl-button--fab mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--4dp">
+    <a href="contact.html" id="contact-button"
+       class="mdl-button mdl-button--fab mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--4dp">
         <i class="material-icons">mail</i>
     </a>
     <header class="mdl-layout__header mdl-layout__header--waterfall site-header">
         <div class="mdl-layout__header-row site-logo-row">
             <span class="mdl-layout__title">
             <div class="site-logo"></div>
-            <span class="site-description">HM2T Team Developer's Quizz Site</span>
+            <span class="site-description">HM2T Team Developer's QuizBugs Site</span>
             </span>
         </div>
         <div class="mdl-layout__header-row site-navigation-row mdl-layout--large-screen-only">
@@ -16,76 +16,65 @@
                 <a class="mdl-navigation__link" [routerLink]="home">Home</a>
                 <a class="mdl-navigation__link" [routerLink]="dashboard">Dashboard</a>
                 <a class="mdl-navigation__link" [routerLink]="login">Login</a>
-                <a class="mdl-navigation__link" [routerLink]="register" >Register</a>
+                <a class="mdl-navigation__link" [routerLink]="register">Register</a>
             </nav>
         </div>
     </header>
     <main class="mdl-layout__content">
         <div class="site-content">
-            <div class="container">
-                <div class="mdl-grid site-max-width">
-                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp welcome-card portfolio-card">
+            <section class="section--center mdl-grid site-max-width">
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+
+
+                        <img class="article-image" src="../../../assets/img/3.png" border="0" alt="">
+                    </div>
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Welcome</h2>
+                        <h2 class="mdl-card__title-text">Quiz Quiz</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                       Do you have ever do quizz?
+                        The most entertaining and informative quizzes to test your knowledge of Java.
                     </div>
-
                 </div>
-            </div>
-
-
-                <section class="section--center mdl-grid site-max-width">
-                    <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                        <div class="mdl-card__media">
-
-
-                            <img class="article-image" src="../../../assets/img/3.png" border="0" alt="">
-                        </div>
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Quiz Quiz</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            The most entertaining and informative quizzes to test your knowledge of Java.
-                        </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="../../../assets/img/quizz2.jpg" border="0" alt="">
                     </div>
-                    <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                        <div class="mdl-card__media">
-                            <img class="article-image" src="../../../assets/img/quizz2.jpg" border="0" alt="">
-                        </div>
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Quiz Game</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Play thousands of free online trivia quiz games. There is a fun quiz about virtually every topic imaginable: Geography, History, Sports, Music, TV and more!
-                        </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Quiz Game</h2>
                     </div>
-                    <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                        <div class="mdl-card__media">
-                            <img class="article-image" src="../../../assets/img/img1.png" border="0" alt="">
-                        </div>
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Testing Knowledge</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Free gamified quizzes for every subject to play in class and at home. Pick an existing quiz or create your own for review, formative assessment, and more.
-                        </div>
+                    <div class="mdl-card__supporting-text">
+                        Play thousands of free online trivia quiz games. There is a fun quiz about virtually every topic
+                        imaginable: Geography, History, Sports, Music, TV and more!
                     </div>
-                </section>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="../../../assets/img/img1.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Testing Knowledge</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        Free gamified quizzes for every subject to play in class and at home. Pick an existing quiz or
+                        create your own for review, formative assessment, and more.
+                    </div>
+                </div>
+            </section>
 
-                <section class="section--center mdl-grid site-max-width homepage-portfolio">
-                    <a class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" [routerLink]="register">Register</a>
-                </section>
+            <section class="section--center mdl-grid site-max-width homepage-portfolio">
+                <a class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                   [routerLink]="register">Register</a>
+            </section>
 
-                <div class="homepage-footer">
-                    <section class="mdl-grid site-max-width">
-                        <div class="mdl-cell mdl-card mdl-cell--8-col mdl-cell--4-col-tablet  mdl-shadow--4dp portfolio-card">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Top Ranking</h2>
-                            </div>
-                            <ul class="demo-list-three mdl-list">
-                                <li class="mdl-list__item mdl-list__item--three-line">
+            <div class="homepage-footer">
+                <section class="mdl-grid site-max-width">
+                    <div class="mdl-cell mdl-card mdl-cell--8-col mdl-cell--4-col-tablet  mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Top Ranking</h2>
+                        </div>
+                        <ul class="demo-list-three mdl-list">
+                            <li class="mdl-list__item mdl-list__item--three-line">
               <span class="mdl-list__item-primary-content">
                 <i class="material-icons mdl-list__item-avatar">person</i>
                 <span>Amazing questing size</span>
@@ -93,8 +82,8 @@
                  Minh Vu 1000pts!
                 </span>
               </span>
-                                </li>
-                                <li class="mdl-list__item mdl-list__item--three-line">
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
               <span class="mdl-list__item-primary-content">
                 <i class="material-icons  mdl-list__item-avatar">person</i>
                 <span>Awesome work, they can do almost anything..</span>
@@ -102,36 +91,36 @@
                 Huy Nguyen 985pts! , Student , Codegym.vn .
                 </span>
               </span>
-                                </li>
-                            </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="demo-card-event mdl-cell mdl-card mdl-shadow--4dp event-card portfolio-card">
+                        <div class="mdl-card__title mdl-card--expand">
+                            <h4>
+                                Featured event:<br>
+                                Community Meetup
+                                May 24, 2018<br>
+                                7-11pm
+                            </h4>
                         </div>
-                        <div class="demo-card-event mdl-cell mdl-card mdl-shadow--4dp event-card portfolio-card">
-                            <div class="mdl-card__title mdl-card--expand">
-                                <h4>
-                                    Featured event:<br>
-                                    Community Meetup
-                                    May 24, 2018<br>
-                                    7-11pm
-                                </h4>
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                                    Add to Calendar
-                                </a>
-                                <div class="mdl-layout-spacer"></div>
-                                <i class="material-icons">event</i>
-                            </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                                Add to Calendar
+                            </a>
+                            <div class="mdl-layout-spacer"></div>
+                            <i class="material-icons">event</i>
                         </div>
-                    </section>
-                </div></div>
+                    </div>
+                </section>
+            </div>
         </div>
+
         <footer class="mdl-mini-footer">
             <div class="footer-container">
-                <div class="mdl-logo">&copy; Unitiled. Design: <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
+                </div>
                 <ul class="mdl-mini-footer__link-list">
                     <li><a href="#">Privacy & Terms</a></li>
                 </ul>
-            </div>
         </footer>
     </main>
     <script src="https://code.getmdl.io/1.3.0/material.min.js" defer></script>

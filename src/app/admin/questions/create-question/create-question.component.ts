@@ -97,7 +97,7 @@ export class CreateQuestionComponent implements OnInit {
           this.message = 'Success!';
           const dialogRef = this.dialog.open(SuccessDialogComponent);
           dialogRef.afterClosed().subscribe();
-          this.createForm();
+         this.questionForm.reset();
         });
     } else {
       this.message = 'UnSuccess!';
