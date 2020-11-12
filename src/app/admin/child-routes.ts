@@ -18,5 +18,10 @@ export const childRoutes = [
         path: 'management-user',
         loadChildren: () => import('./management-user/management-user.module').then(m => m.ManagementUserModule),
         data: {icon: 'supervisor_account', text: 'Management Users'}
+    },
+    {
+        path: 'exam-results',
+        loadChildren: () => import('./exam-results/exam-results.module').then(m => m.ExamResultsModule),
+        data: {icon: 'grading',text: 'Exam Results'}
     }
 ];

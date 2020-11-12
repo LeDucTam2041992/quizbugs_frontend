@@ -2,9 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {CategoryService} from "../../../service/category.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserExamService} from "../../../service/user-exam.service";
+import {UserExam} from "../../../model/user-exam";
 
 @Component({
     selector: 'app-history-list',
@@ -14,15 +14,26 @@ import {UserExamService} from "../../../service/user-exam.service";
 export class HistoryListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    listHistory: MatTableDataSource<any>;
-    displayedColumns = ['id', 'test-name', 'score', 'date of test','action'];
+    listHistory = new MatTableDataSource<UserExam>([]);
+    displayedColumns = ['id', 'test-name', 'score', 'date of test', 'action'];
     searchKey: string;
-
-    constructor(private userExamService: UserExamService, private router: Router) {
+    id=0;
+    constructor(private userExamService: UserExamService, private router: Router,
+                private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.getAll()
+        this.listHistory.paginator = this.paginator;
+        this.listHistory.sort = this.sort;
+        this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+            this.id = +paramMap.get('id');
+            this.userExamService.getAllExamsOfUserById(this.id).subscribe(data => {
+                this.listHistory.data = data;
+            });
+        });
+
+        if (!this.id)
+            this.getAll()
     }
 
     onSearchClear() {
@@ -36,19 +47,7 @@ export class HistoryListComponent implements OnInit {
 
     getAll() {
         this.userExamService.getAllExamOfUser().subscribe(list => {
-                let array = list.map(item => {
-                    return {
-                        id: item.id,
-                        user: item.user,
-                        exam: item.exam,
-                        date: new Date(item.date),
-                        mark: item.mark,
-                        userAnswers: item.userAnswers,
-                    }
-                });
-                this.listHistory = new MatTableDataSource(array);
-                this.listHistory.paginator = this.paginator;
-                this.listHistory.sort = this.sort;
+                this.listHistory.data = list;
             }
         )
     }
