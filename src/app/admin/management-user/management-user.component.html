@@ -17,8 +17,10 @@
             <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="roles">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> UserName</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.roles.toString()}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Roles</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <div *ngFor="let obj of element.roles"> {{obj.name}}&nbsp;&nbsp;</div>
+            </mat-cell>
         </ng-container>
         <ng-container matColumnDef="option">
             <mat-header-cell *matHeaderCellDef >Upgrade Role</mat-header-cell>
