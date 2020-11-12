@@ -27,6 +27,7 @@ import {EditTrueFalseQuestionComponent} from './edit-true-false-question/edit-tr
 import {InputQuestionComponent} from './input-question/input-question.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {MatDialogModule} from '@angular/material/dialog';
         InputQuestionComponent,
         EditInputQuestionComponent,
         DeleteDialogComponent,
+        SuccessDialogComponent,
     ],
     exports: [
         DetailQuestionComponent,
