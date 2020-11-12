@@ -25,7 +25,7 @@
     </div>
 
     <ng-container *ngFor="let question of filteredListQuestions">
-        <app-detail-question [inId]="question.id" [index]="searchListQuestion.indexOf(question)" (deleteId)="delete($event)" (addId)="add($event)" [isCreateQuiz]="true"></app-detail-question>
+        <app-detail-question [inQ]="question" [index]="searchListQuestion.indexOf(question)" (deleteId)="delete($event)" (addId)="add($event)" [isCreateQuiz]="true"></app-detail-question>
     </ng-container>
     <mat-paginator
             (page)="onPageChange($event)"
@@ -68,7 +68,7 @@
     <label class="number-qs">Number Question Type Input : {{numberOfInput}}</label>
     <br><br>
     <ng-container *ngFor="let q of quizQuestion; let i = index">
-        <app-detail-question [inId]="q.id" [index]="i" (addId)="add($event)" (deleteId)="delete($event)" (removeId)="remove($event)" [isQuestionQuiz]="true"></app-detail-question>
+        <app-detail-question [inQ]="q" [index]="i" (addId)="add($event)" (deleteId)="delete($event)" (removeId)="remove($event)" [isQuestionQuiz]="true"></app-detail-question>
     </ng-container>
     <button mat-raised-button color="primary" style="margin-left: 100px;margin-top: 50px" [disabled]="quizFormControl.invalid" (click)="createQuiz()">Submit</button>
 </div>

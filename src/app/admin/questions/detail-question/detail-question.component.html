@@ -1,7 +1,7 @@
 <ng-container *ngIf="question.type == 0">
   <mat-card >
     <mat-card-content class="box-card-custom" >
-      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <h4 class="header">Question {{index+1}}: {{question.question}}</h4>
       <label class="header">Category : </label><label *ngFor="let category of question.categories">{{category.category}}, </label>
       <section class="example-section" *ngFor="let answer of question.answers">
         <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
@@ -27,7 +27,7 @@
 <ng-container *ngIf="question.type == 1">
   <mat-card>
     <mat-card-content class="box-card-custom" >
-      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <h4 class="header">Question {{index+1}}: {{question.question}}</h4>
       <label class="header">Category : </label><label *ngFor="let category of question.categories">{{category.category}}, </label>
       <mat-radio-group>
         <section class="example-section" *ngFor="let answer of question.answers">
@@ -55,7 +55,7 @@
 <ng-container *ngIf="question.type == 2">
   <mat-card>
     <mat-card-content class="box-card-custom" >
-      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <h4 class="header">Question {{index+1}}: {{question.question}}</h4>
       <label class="header">Category : </label><label *ngFor="let category of question.categories">{{category.category}}, </label>
       <section class="example-section" *ngFor="let answer of question.answers">
         <mat-radio-button color="primary" [checked]="answer.status" name="{{question.id}}" [disabled]="!answer.status">{{answer.answer}}</mat-radio-button>
@@ -81,7 +81,7 @@
 <ng-container *ngIf="question.type == 3">
   <mat-card>
     <mat-card-content class="box-card-custom" >
-      <h3 class="header">Question {{index+1}}: {{question.question}}</h3>
+      <h4 class="header">Question {{index+1}}: {{question.question}}</h4>
       <label class="header">Category : </label><label *ngFor="let category of question.categories">{{category.category}}, </label>
       <br><br>
       <section class="example-section">

@@ -7,6 +7,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {QuestionService} from "../../../service/question.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {CategoryService} from "../../../service/category.service";
+import {EditSuccessDialogComponent} from '../edit-success-dialog/edit-success-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-question',
@@ -55,7 +57,8 @@ export class EditQuestionComponent implements OnInit {
               private service: QuestionService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -124,6 +127,8 @@ export class EditQuestionComponent implements OnInit {
         .subscribe(() => {
           // this.router.navigate(['admin/questions/list']);
           this.message = 'Success!';
+          const dialogRef = this.dialog.open(EditSuccessDialogComponent);
+          dialogRef.afterClosed().subscribe();
         });
     } else {
       this.message = 'UnSuccess!';
