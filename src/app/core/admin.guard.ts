@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import {LoginComponent} from "../login/login/login.component";
+import {AdminModule} from "../admin/admin.module";
+import {LoginService} from "../service/login.service";
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +20,7 @@ export class AdminGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
         if (localStorage.getItem('isLoggedin') && localStorage.getItem('token')) {
-            if(LoginComponent.isAdmin)
+            if(sessionStorage.getItem('isAdmin'))
                 return true;
         }
 
