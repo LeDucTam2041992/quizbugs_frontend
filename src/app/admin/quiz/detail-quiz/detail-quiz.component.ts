@@ -13,7 +13,7 @@ import {ExamService} from '../../../service/exam.service';
   styleUrls: ['./detail-quiz.component.scss']
 })
 export class DetailQuizComponent implements OnInit {
-  listQuestions: Question[];
+  listQuestions: Question[]=[];
   currentExam: Exam = {
     id: 1,
     name: 'Java Exam',
@@ -33,6 +33,7 @@ export class DetailQuizComponent implements OnInit {
     this.examService.getExamById(id).subscribe(data => {
       this.currentExam = data;
       this.listQuestions = this.currentExam.questionSet;
+      console.log(this.listQuestions);
     });
   }
   delete(id): void {

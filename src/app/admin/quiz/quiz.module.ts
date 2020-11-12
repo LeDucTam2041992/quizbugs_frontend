@@ -22,6 +22,9 @@ import {MatTableModule} from '@angular/material/table';
 import { DetailQuizComponent } from './detail-quiz/detail-quiz.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -55,6 +58,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatTableModule,
         MatSortModule,
         MatTooltipModule,
+        MatCardModule,
+        MatRadioModule,
+        MatCheckboxModule,
     ]
 })
 export class QuizModule { }
