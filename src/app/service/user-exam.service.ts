@@ -21,7 +21,7 @@ export class UserExamService {
     return this.httpClient.post<UserExam>(environment.urlApi + 'userExams', userExam);
   }
 
-  getUserExamById(id: number): Observable<Exam>{
+  getUserExamById(id: number): Observable<UserExam>{
     return this.httpClient.get<Exam>(environment.urlApi + `userExams/${id}`);
   }
 

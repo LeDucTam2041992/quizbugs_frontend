@@ -30,7 +30,7 @@ export class LoginService {
   }
 
   doRegister(userData: IUser): Observable<any> {
-    return this.http.post<any>(environment.urlApi + 'users', userData);
+    return this.http.post<any>(environment.urlApi + 'users/register', userData);
   }
 
   doUpdate(userData: any): Observable<any> {

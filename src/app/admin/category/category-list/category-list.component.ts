@@ -57,13 +57,13 @@ export class CategoryListComponent implements OnInit {
   }
 
     clickEdit(id) {
-        this.router.navigate(['categories/edit/'+id]);
+        this.router.navigate(['admin/categories/edit/'+id]);
     }
 
   add() {
-    this.router.navigate(['categories/add']);
+    this.router.navigate(['admin/categories/add']);
   }
   cancel() {
-    this.router.navigate(['categories/list']);
+    this.router.navigate(['admin/categories/list']);
   }
 }

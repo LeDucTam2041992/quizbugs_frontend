@@ -64,7 +64,7 @@ export class DoExamComponent implements OnInit {
             "id": this.currentExam.id
         }
         this.userExamsService.createUserExam(this.userExamObj).subscribe(e =>{
-            this.route.navigate(['examination/list'])
+            this.route.navigate(['history/detail/'+e.id])
         });
         console.log(this.userExamObj)
     }

@@ -9,11 +9,7 @@ class NavLink {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  navLinks: NavLink[] = [];
   constructor() {}
   ngOnInit() {
-    this.navLinks = [
-      new NavLink('list', 'List Exam'),
-    ];
   }
 }
