@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {AuthGuard} from './core/auth.guard';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 import {AdminGuard} from "./core/admin.guard";
+import {LoginGuard} from "./core/login.guard";
 
 const routes: Routes = [
     {
@@ -17,7 +18,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+        loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
     },
     {
         path: '',

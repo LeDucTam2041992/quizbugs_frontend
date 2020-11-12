@@ -14,7 +14,7 @@ export class HomeQuizComponent implements OnInit {
   ngOnInit(): void {
     this.navLinks = [
       new NavLink('list', 'List Quiz'),
-      new NavLink('add', 'Create Quiz'),
+      new NavLink('create', 'Create Quiz'),
     ];
   }
 }

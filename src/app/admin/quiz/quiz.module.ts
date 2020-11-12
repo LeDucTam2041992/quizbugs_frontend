@@ -17,6 +17,14 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { MesDialogComponent } from './mes-dialog/mes-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ListQuizComponent } from './list-quiz/list-quiz.component';
+import {MatTableModule} from '@angular/material/table';
+import { DetailQuizComponent } from './detail-quiz/detail-quiz.component';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -26,7 +34,9 @@ import {MatDialogModule} from '@angular/material/dialog';
   declarations: [
       CreateQuizComponent,
       HomeQuizComponent,
-      MesDialogComponent
+      MesDialogComponent,
+      ListQuizComponent,
+      DetailQuizComponent
   ],
     imports: [
         QuizRoutingModule,
@@ -45,6 +55,12 @@ import {MatDialogModule} from '@angular/material/dialog';
         FormsModule,
         MatSelectModule,
         MatDialogModule,
+        MatTableModule,
+        MatSortModule,
+        MatTooltipModule,
+        MatCardModule,
+        MatRadioModule,
+        MatCheckboxModule,
     ]
 })
 export class QuizModule { }

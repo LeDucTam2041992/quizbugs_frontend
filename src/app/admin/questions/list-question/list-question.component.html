@@ -25,7 +25,7 @@
 
 <div>
     <ng-container *ngFor="let question of filteredListQuestions">
-        <app-detail-question [isListQuestion]="true" [inId]="question.id" [index]="searchListQuestion.indexOf(question)" (deleteId)="delete($event)"></app-detail-question>
+        <app-detail-question [isListQuestion]="true" [inQ]="question" [index]="searchListQuestion.indexOf(question)" (deleteId)="delete($event)"></app-detail-question>
     </ng-container>
     <mat-paginator
             (page)="onPageChange($event)"
