@@ -2,7 +2,7 @@
     <mat-card>
         <mat-card-content class="box-card-custom">
             <h4 class="header">Exam Title: {{currentExam.name}}
-                <h5 *ngIf="userExam.mark">Mark: {{userExam.mark ? userExam.mark : 'null'}}</h5>
+                <h5 *ngIf="userExam.mark != null">Mark: {{userExam.mark}}</h5>
             </h4>
             <div class="example-section" *ngFor="let question of currentExam.questionSet; let i = index">
                 <ng-container *ngIf="question.type == 0 ||  question.type == 2">
