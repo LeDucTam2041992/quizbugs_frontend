@@ -7,6 +7,8 @@ import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {CategoryService} from '../../../service/category.service';
 import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {EditSuccessDialogComponent} from '../edit-success-dialog/edit-success-dialog.component';
 
 @Component({
   selector: 'app-edit-true-false-question',
@@ -47,7 +49,8 @@ export class EditTrueFalseQuestionComponent implements OnInit {
               private service: QuestionService,
               private router: Router,
               private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
@@ -91,6 +94,8 @@ export class EditTrueFalseQuestionComponent implements OnInit {
           .subscribe(() => {
             // this.router.navigate(['admin/questions/list']);
             this.message = 'Success!';
+            const dialogRef = this.dialog.open(EditSuccessDialogComponent);
+            dialogRef.afterClosed().subscribe();
           });
     } else {
       this.message = 'UnSuccess!';
