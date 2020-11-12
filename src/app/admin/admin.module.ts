@@ -13,7 +13,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import { SearchQuestionComponent } from './search-question/search-question.component';
 
 @NgModule({
     imports: [
@@ -28,6 +27,6 @@ import { SearchQuestionComponent } from './search-question/search-question.compo
         MatListModule,
         MatProgressBarModule
     ],
-  declarations: [LayoutComponent, TopNavComponent, SideNavComponent, SearchQuestionComponent]
+  declarations: [LayoutComponent, TopNavComponent, SideNavComponent]
 })
 export class AdminModule {}
