@@ -86,13 +86,13 @@ export class ListQuestionComponent implements OnInit {
             if (res.question.toLowerCase().match(this.questionName.toLowerCase())) {
                 if (this.selectedCategory && this.selectedType) {
                     for (let i in res.categories) {
-                        if (res.categories[i].category === this.selectedCategory && res.type == this.selectedType)
+                        if (res.categories[i].category == this.selectedCategory && res.type == this.selectedType)
                             return true
                     }
                     return false;
                 } else if (this.selectedCategory && !this.selectedType) {
                     for (let i in res.categories) {
-                        if (res.categories[i].category === this.selectedCategory)
+                        if (res.categories[i].category == this.selectedCategory)
                             return true
                     }
                     return false;
@@ -124,13 +124,13 @@ export class ListQuestionComponent implements OnInit {
             this.searchListQuestion = this.listQuestions.filter(res => {
                 if (!this.selectedType) {
                     for (let i in res.categories) {
-                        if (res.categories[i].category === this.selectedCategory)
+                        if (res.categories[i].category == this.selectedCategory)
                             return true
                     }
                     return false;
                 } else {
                     for (let i in res.categories) {
-                        if (res.categories[i].category === this.selectedCategory && res.type == this.selectedType)
+                        if (res.categories[i].category == this.selectedCategory && res.type == this.selectedType)
                             return true
                     }
                     return false;
@@ -153,7 +153,7 @@ export class ListQuestionComponent implements OnInit {
                     return res.type == this.selectedType
                 else {
                     for (let i in res.categories) {
-                        if (res.categories[i].category === this.selectedCategory && res.type == this.selectedType)
+                        if (res.categories[i].category == this.selectedCategory && res.type == this.selectedType)
                             return true
                     }
                     return false;

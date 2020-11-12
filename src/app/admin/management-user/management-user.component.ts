@@ -4,6 +4,8 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
+import {Exam} from "../../model/exam";
+import {IUser} from "../../model/IUser";
 
 @Component({
     selector: 'app-management-user',
@@ -15,7 +17,7 @@ export class ManagementUserComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     displayedColumns = ['id', 'username', 'roles', 'option'];
-    filteredListExams: MatTableDataSource<any>;
+    filteredListExams = new MatTableDataSource<IUser>([]);
     searchKey: string;
 
 
@@ -24,20 +26,13 @@ export class ManagementUserComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAll();
+        this.filteredListExams.paginator = this.paginator;
+        this.filteredListExams.sort = this.sort;
     }
 
     getAll() {
-        this.userService.getAllUser().subscribe(list => {
-                let array = list.map(item => {
-                    return {
-                        id: item.id,
-                        username: item.username,
-                        roles: item.roles
-                    }
-                });
-                this.filteredListExams = new MatTableDataSource(array);
-                this.filteredListExams.paginator = this.paginator;
-                this.filteredListExams.sort = this.sort;
+        this.userService.getAllUser().subscribe((list: IUser[]) => {
+                this.filteredListExams.data = list;
             }
         )
     }
@@ -54,9 +49,11 @@ export class ManagementUserComponent implements OnInit {
     updateRole(id: any) {
         if(confirm("Are you sure want to upgrade")) {
             this.userService.updateRoleAdminUser(id).subscribe(res => {
-                    this.getAll()
-                }
+                },
+                () => {},
+                () => this.getAll()
             )
+            this.getAll();
         }
     }
 }

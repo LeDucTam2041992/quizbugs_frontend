@@ -12,7 +12,7 @@ import {Subscription} from 'rxjs';
 })
 export class DetailQuestionComponent implements OnInit {
   @Input()
-  inId: number;
+  inQ: Question;
   @Input()
   index: number;
   @Input()
@@ -47,19 +47,7 @@ export class DetailQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.id = +paramMap.get('id');
-      if (this.id > 0) {
-        this.questionService.getQuestion(this.id).subscribe(res => {
-          this.question = res;
-        });
-      }
-    });
-    if (this.inId > 0) {
-      this.questionService.getQuestion(this.inId).subscribe(res =>
-        this.question = res
-      );
-    }
+    this.question = this.inQ;
   }
 
   editQuestionType4Answer(id: number) {

@@ -6,6 +6,7 @@ import {HomeComponent} from "./home/home.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {AuthGuard} from "../core/auth.guard";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {LoginGuard} from "../core/login.guard";
 
 const routes: Routes = [
   {
@@ -16,14 +17,17 @@ const routes: Routes = [
       {
         path: 'home',
         component:DashboardComponent,
+        canActivate: [LoginGuard]
       },
       {
         path: 'login',
         component: LoginComponent,
+        canActivate: [LoginGuard]
       },
       {
         path: 'register',
         component: RegisterComponent,
+        canActivate: [LoginGuard]
       },
       {
         path: 'changePassword',

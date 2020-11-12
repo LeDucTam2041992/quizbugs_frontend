@@ -6,6 +6,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {Router} from '@angular/router';
 import {CategoryService} from '../../../service/category.service';
+import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-true-false-question',
@@ -39,7 +41,8 @@ export class TrueFalseQuestionComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
@@ -59,10 +62,11 @@ export class TrueFalseQuestionComponent implements OnInit {
         this.falseA.status = true;
       };
       this.question.categories = this.questionForm.get('category').value;
-      console.log(this.question);
       this.service.createQuestion(this.question)
           .subscribe(() => {
             this.message = 'Success!';
+            const dialogRef = this.dialog.open(SuccessDialogComponent);
+            dialogRef.afterClosed().subscribe();
             // this.router.navigate(['/admin/questions/list']);
           });
     } else {

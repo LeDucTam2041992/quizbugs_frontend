@@ -6,6 +6,9 @@ import {Router} from '@angular/router';
 import {Question} from '../../../model/question';
 import {ICategory} from '../../../model/ICategory';
 import {CategoryService} from '../../../service/category.service';
+import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
+import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-question',
@@ -53,17 +56,11 @@ export class CreateQuestionComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.questionForm = this.fb.group({
-      question: ['', Validators.required],
-      answer1: ['', Validators.required],
-      answer2: ['', Validators.required],
-      answer3: ['', Validators.required],
-      answer4: ['', Validators.required],
-      category: ['', Validators.required]
-    });
+    this.createForm();
     this.categoryService.getAllCategories().subscribe(res => {
       this.categories = res;
     });
@@ -98,12 +95,14 @@ export class CreateQuestionComponent implements OnInit {
       this.service.createQuestion(this.question)
         .subscribe(() => {
           this.message = 'Success!';
+          const dialogRef = this.dialog.open(SuccessDialogComponent);
+          dialogRef.afterClosed().subscribe();
+         this.questionForm.reset();
         });
     } else {
       this.message = 'UnSuccess!';
       this.count = 0;
     }
-    this.clearInputMethod1() ;
   }
 
   selectedA(): void{
@@ -121,8 +120,14 @@ export class CreateQuestionComponent implements OnInit {
   cancel() {
     this.router.navigate(['admin/questions/list'])
   }
-
-  private clearInputMethod1() {
-    this.questionForm.reset()
+  createForm() {
+    this.questionForm = this.fb.group({
+      question: ['', Validators.required],
+      answer1: ['', Validators.required],
+      answer2: ['', Validators.required],
+      answer3: ['', Validators.required],
+      answer4: ['', Validators.required],
+      category: ['', Validators.required]
+    });
   }
 }

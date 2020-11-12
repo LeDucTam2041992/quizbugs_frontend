@@ -7,6 +7,9 @@ import {QuestionService} from '../../../service/question.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {CategoryService} from '../../../service/category.service';
 import {Subscription} from 'rxjs';
+import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {EditSuccessDialogComponent} from '../edit-success-dialog/edit-success-dialog.component';
 
 @Component({
   selector: 'app-edit-input-question',
@@ -39,7 +42,8 @@ export class EditInputQuestionComponent implements OnInit {
               private service: QuestionService,
               private router: Router,
               private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.sub = this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
@@ -76,6 +80,8 @@ export class EditInputQuestionComponent implements OnInit {
           .subscribe(() => {
             // this.router.navigate(['admin/questions/list']);
             this.message = 'Success!';
+            const dialogRef = this.dialog.open(EditSuccessDialogComponent);
+            dialogRef.afterClosed().subscribe();
           });
     } else {
       this.message = 'UnSuccess!';

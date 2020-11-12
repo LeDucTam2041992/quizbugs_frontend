@@ -224,6 +224,7 @@ export class CreateQuizComponent implements OnInit {
           .subscribe(() => {
             this.message = 'Create Quiz Success!';
             this.quizQuestion = [];
+
           },
                   err => {
             this.message = 'UnSuccess! Please try again!'

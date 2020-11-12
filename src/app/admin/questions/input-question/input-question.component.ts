@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../service/question.service';
 import {Router} from '@angular/router';
 import {CategoryService} from '../../../service/category.service';
+import {MatDialog} from '@angular/material/dialog';
+import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-input-question',
@@ -34,7 +36,8 @@ export class InputQuestionComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
@@ -55,6 +58,8 @@ export class InputQuestionComponent implements OnInit {
       this.service.createQuestion(this.question)
           .subscribe(() => {
             this.message = 'Success!';
+            const dialogRef = this.dialog.open(SuccessDialogComponent);
+            dialogRef.afterClosed().subscribe();
             // this.router.navigate(['/admin/questions/list']);
           });
     } else {

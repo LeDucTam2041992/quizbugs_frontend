@@ -24,6 +24,7 @@ export class LoginService {
       ()=> {
         localStorage.removeItem('isLoggedin');
         localStorage.removeItem('token');
+        sessionStorage.removeItem("isAdmin");
         this.router.navigate(['/login']);
       }
     )

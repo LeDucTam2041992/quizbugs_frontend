@@ -1,0 +1,7 @@
+<h2 style="text-align: center">{{currentExam.name}}</h2>
+<ng-container *ngFor="let question of listQuestions">
+    <app-detail-question [inQ]="question" [index]="listQuestions.indexOf(question)" (deleteId)="delete($event)"></app-detail-question>
+</ng-container>
+<section>
+    <button mat-raised-button color="primary" style="margin-left: 100px;margin-top: 50px;margin-bottom: 50px" (click)="back()">Back to List</button>
+</section>
