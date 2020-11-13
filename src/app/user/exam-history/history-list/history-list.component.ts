@@ -5,7 +5,6 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserExamService} from "../../../service/user-exam.service";
 import {UserExam} from "../../../model/user-exam";
-import {url} from "inspector";
 
 @Component({
     selector: 'app-history-list',

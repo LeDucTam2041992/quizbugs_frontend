@@ -9,11 +9,12 @@ const routes: Routes = [
     path: 'admin',
     component: LayoutComponent,
     children: [
+      ...childRoutes,
       {
         path: '',
-        redirectTo: 'dashboard'
+        redirectTo: 'management-user',
+        pathMatch: 'full'
       },
-      ...childRoutes
     ]
   }
 ];

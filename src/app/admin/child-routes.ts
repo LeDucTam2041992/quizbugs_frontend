@@ -1,13 +1,13 @@
 export const childRoutes = [
     {
-        path: 'questions',
-        loadChildren: () => import('./questions/question.module').then(m => m.QuestionModule),
-        data: {icon: 'question_answer', text: 'Question'}
-    },
-    {
         path: 'categories',
         loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
         data: {icon: 'category', text: 'Category'}
+    },
+    {
+        path: 'questions',
+        loadChildren: () => import('./questions/question.module').then(m => m.QuestionModule),
+        data: {icon: 'question_answer', text: 'Question'}
     },
     {
         path: 'quizs',
