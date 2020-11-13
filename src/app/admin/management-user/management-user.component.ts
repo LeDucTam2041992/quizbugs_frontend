@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {Exam} from "../../model/exam";
 import {IUser} from "../../model/IUser";
@@ -59,5 +59,23 @@ export class ManagementUserComponent implements OnInit {
 
     goHistoryExam(id: any) {
         this.router.navigate([`history/list/${id}`]);
+    }
+
+    checkRoleAdmin(element: any): boolean {
+        for (const e of element) {
+            if (e.name == 'ROLE_ADMIN'){
+                return true;
+            }
+        }
+        return false;
+    };
+
+    checkRoleUser(element: any): boolean {
+        for (const e of element) {
+            if (e.name == 'ROLE_USER'){
+                return true;
+            }
+        }
+        return false;
     }
 }

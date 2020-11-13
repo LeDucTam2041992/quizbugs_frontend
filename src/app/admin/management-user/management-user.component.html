@@ -19,14 +19,15 @@
         <ng-container matColumnDef="roles">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Roles</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <div *ngFor="let obj of element.roles"> {{obj.name}}&nbsp;&nbsp;</div>
+                    <mat-icon *ngIf="checkRoleUser(element.roles)">account_circle</mat-icon>&nbsp;
+                    <mat-icon *ngIf="checkRoleAdmin(element.roles)" color="accent">admin_panel_settings</mat-icon>
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="option">
             <mat-header-cell *matHeaderCellDef >Upgrade Role</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-icon-button matTooltip="Click to start" class="iconbutton" color="primary" (click)="updateRole(element.id)">
-                    <mat-icon aria-label="Start" >admin_panel_settings</mat-icon>
+                <button *ngIf="!checkRoleAdmin(element.roles)" mat-icon-button matTooltip="Upgrade to Admin" (click)="updateRole(element.id)">
+                    <mat-icon color="primary" >verified_user</mat-icon>
                 </button>
             </mat-cell>
         </ng-container>
