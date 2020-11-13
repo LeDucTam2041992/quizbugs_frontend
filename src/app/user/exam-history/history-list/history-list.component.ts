@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserExamService} from "../../../service/user-exam.service";
 import {UserExam} from "../../../model/user-exam";
+import {url} from "inspector";
 
 @Component({
     selector: 'app-history-list',
@@ -54,7 +55,14 @@ export class HistoryListComponent implements OnInit {
     }
 
     clickDetail(id) {
-        this.router.navigate([`history/detail/${id}`]).then(r => r);
+        let lastSlash = this.router.url.lastIndexOf("/");
+        let number =+ this.router.url.slice(lastSlash+1);
+        if(!isNaN(number)){
+            let url = this.router.url.substring(0,lastSlash+1) + `detail/${id}`;
+            console.log(url)
+            this.router.navigate([url]);
+        }else
+            this.router.navigate([this.router.url+`/detail/${id}`]).then(r => r);
     }
 
 
