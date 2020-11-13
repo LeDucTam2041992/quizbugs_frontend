@@ -38,7 +38,7 @@ export class ExamResultsComponent implements OnInit {
                         id: item.id,
                         name: item.name,
                         enabled: item.enabled,
-                        times: 0``
+                        times: 0
                     }
                 });
                 for (let i in array) {
