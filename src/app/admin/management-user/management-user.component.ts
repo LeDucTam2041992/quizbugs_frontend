@@ -56,4 +56,22 @@ export class ManagementUserComponent implements OnInit {
             this.getAll();
         }
     }
+
+    checkRoleAdmin(element: any): boolean {
+        for (const e of element) {
+            if (e.name == 'ROLE_ADMIN'){
+                return true;
+            }
+        }
+        return false;
+    };
+
+    checkRoleUser(element: any): boolean {
+        for (const e of element) {
+            if (e.name == 'ROLE_USER'){
+                return true;
+            }
+        }
+        return false;
+    }
 }
