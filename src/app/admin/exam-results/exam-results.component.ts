@@ -27,8 +27,6 @@ export class ExamResultsComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAll();
-        this.filteredListExams.paginator = this.paginator;
-        this.filteredListExams.sort = this.sort;
     }
 
     getAll() {
@@ -48,6 +46,8 @@ export class ExamResultsComponent implements OnInit {
                     )
                     this.filteredListExams.data = array;
                 }
+                this.filteredListExams.paginator = this.paginator;
+                this.filteredListExams.sort = this.sort;
             }
         )
     }

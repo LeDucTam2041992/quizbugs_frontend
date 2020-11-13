@@ -17,15 +17,14 @@ export class HistoryListComponent implements OnInit {
     listHistory = new MatTableDataSource<UserExam>([]);
     displayedColumns = ['id', 'test-name', 'score', 'date of test', 'action'];
     searchKey: string;
-    id=0;
+    id = 0;
+
     constructor(private userExamService: UserExamService, private router: Router,
                 private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.listHistory.paginator = this.paginator;
-        this.listHistory.sort = this.sort;
-        this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+        this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
             this.id = +paramMap.get('id');
             this.userExamService.getAllExamsOfUserById(this.id).subscribe(data => {
                 this.listHistory.data = data;
@@ -48,6 +47,8 @@ export class HistoryListComponent implements OnInit {
     getAll() {
         this.userExamService.getAllExamOfUser().subscribe(list => {
                 this.listHistory.data = list;
+                this.listHistory.paginator = this.paginator;
+                this.listHistory.sort = this.sort;
             }
         )
     }
