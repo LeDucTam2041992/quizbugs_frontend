@@ -1,4 +1,4 @@
-<h2 style="text-align: center">Exam Results</h2>
+<h2 style="text-align: center">Exam result detail </h2>
 <div class="search-div">
     <mat-form-field class="search-form-field" floatLabel="never">
         <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
@@ -8,33 +8,37 @@
     </mat-form-field>
 </div>
 <div class="example-container mat-elevation-z8">
-    <mat-table [dataSource]="filteredListExams" matSort>
+    <mat-table [dataSource]="listHistory" matSort>
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
             <mat-cell *matCellDef="let element; let i = index"> {{i+1}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="exam-name">
+        <ng-container matColumnDef="test-name">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Exam Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.exam.name}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="valid">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Valid</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.enabled}}
-            </mat-cell>
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> User Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.user.username}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="times">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Times</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.times}}
-            </mat-cell>
+        <ng-container matColumnDef="score">
+            <mat-header-cell *matHeaderCellDef > Mark </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.mark ? element.mark : "null"}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date of test">
+            <mat-header-cell *matHeaderCellDef >Date of Exam </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.date | date:'HH:mm dd-MM-yyyy '}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Action</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef >History </mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <button mat-icon-button>
-                    <mat-icon (click)="clickDetail(element.id)" matTooltip="Show exam detail">low_priority</mat-icon>
+                    <mat-icon (click)="clickDetail(element.id)" matTooltip="Show detail exam history">query_builder</mat-icon>
+
                 </button>
             </mat-cell>
         </ng-container>
+
         <ng-container matColumnDef="loading">
             <mat-footer-cell *matFooterCellDef colspan="6">
                 Loading data...
@@ -47,8 +51,8 @@
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':filteredListExams!=null}"></mat-footer-row>
-        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(filteredListExams!=null && filteredListExams.data.length==0)}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listHistory!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listHistory!=null && listHistory.data.length==0)}"></mat-footer-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
 </div>

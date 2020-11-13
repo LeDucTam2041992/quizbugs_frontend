@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Exam} from "../../model/exam";
 import {UserExamService} from "../../service/user-exam.service";
 import {ExamService} from "../../service/exam.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-exam-results',
@@ -16,13 +17,15 @@ export class ExamResultsComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    displayedColumns = ['id', 'exam-name', 'valid', 'times'];
+    displayedColumns = ['id', 'exam-name', 'valid', 'times', 'action'];
     filteredListExams = new MatTableDataSource<any>([]);
     searchKey: string;
 
 
     constructor(public userExamService: UserExamService,
-                private examService: ExamService) {
+                private examService: ExamService,
+                private router: Router
+    ) {
     }
 
     ngOnInit(): void {
@@ -61,4 +64,7 @@ export class ExamResultsComponent implements OnInit {
         this.filteredListExams.filter = this.searchKey.trim().toLowerCase();
     }
 
+    clickDetail(id: any) {
+        this.router.navigate(['/admin/exam-results/detail/' + id]);
+    }
 }
