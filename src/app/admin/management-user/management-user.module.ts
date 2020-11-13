@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ManagementUserRoutingModule } from './management-user-routing.module';
 import { ManagementUserComponent } from './management-user.component';
 import {MaterialsModule} from "../../materials.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatTooltipModule} from "@angular/material/tooltip";
 
 
@@ -14,6 +14,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CommonModule,
     ManagementUserRoutingModule,
     MaterialsModule,
+    ReactiveFormsModule,
     FormsModule,
     MatTooltipModule
   ]

@@ -6,6 +6,7 @@ import {UserExamService} from "../../../service/user-exam.service";
 import {Exam} from "../../../model/exam";
 import {UserExam} from "../../../model/user-exam";
 import {UserAnswer} from "../../../model/user-answer";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-history-detail',
@@ -21,7 +22,8 @@ export class HistoryDetailComponent implements OnInit {
 
   constructor(private examService: ExamService, private route: Router,
               private router: ActivatedRoute, private fb: FormBuilder,
-              private userExamsService: UserExamService) { }
+              private userExamsService: UserExamService,
+              private _location: Location) { }
 
   ngOnInit(): void {
     const id = Number.parseInt(this.router.snapshot.paramMap.get('id'));
@@ -47,5 +49,9 @@ export class HistoryDetailComponent implements OnInit {
 
   reTest(examId:any):void {
     this.route.navigate([`examination/detail/${examId}`]).then(r => r);
+  }
+
+  goBack() {
+    this._location.back();
   }
 }

@@ -15,10 +15,7 @@ const routes: Routes = [
         path: 'list', component: HistoryListComponent,
       },
       {
-        path: 'list/:id', component: HistoryListComponent,
-      },
-      {
-        path: 'detail/:id', component: HistoryDetailComponent,
+        path: 'list/detail/:id', component: HistoryDetailComponent,
       },
       {
         path: '**',

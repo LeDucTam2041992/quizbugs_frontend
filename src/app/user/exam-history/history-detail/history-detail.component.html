@@ -53,7 +53,7 @@
             </div>
         </mat-card-content>
         <div class="button-sub">
-            <button mat-raised-button color="basic" class="example-margin" [routerLink]="['/history/list']">Back
+            <button mat-raised-button color="basic" class="example-margin" (click)="goBack()">Back
             </button>
             <button mat-raised-button color="warn" class="example-margin" (click)="reTest(currentExam.id)">Test again
             </button>
