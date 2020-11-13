@@ -53,6 +53,7 @@ export class CreateQuestionComponent implements OnInit {
   message = '';
 
   questionForm: FormGroup;
+  private formDirective: any;
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
@@ -98,6 +99,9 @@ export class CreateQuestionComponent implements OnInit {
           const dialogRef = this.dialog.open(SuccessDialogComponent);
           dialogRef.afterClosed().subscribe();
          this.questionForm.reset();
+          Object.keys(this.questionForm.controls).forEach(key => {
+            this.questionForm.controls[key].setErrors(null)
+          });
         });
     } else {
       this.message = 'UnSuccess!';

@@ -7,7 +7,7 @@
     </mat-form-field>
 </div>
 <div class="example-container mat-elevation-z8">
-    <mat-table [dataSource]="filteredListExams" matSort>
+    <mat-table [dataSource]="filteredListUsers" matSort>
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
             <mat-cell *matCellDef="let element; let i = index"> {{i+1}} </mat-cell>
@@ -19,14 +19,23 @@
         <ng-container matColumnDef="roles">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Roles</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <div *ngFor="let obj of element.roles"> {{obj.name}}&nbsp;&nbsp;</div>
+                    <mat-icon *ngIf="checkRoleUser(element.roles)">account_circle</mat-icon>&nbsp;
+                    <mat-icon *ngIf="checkRoleAdmin(element.roles)" color="accent">admin_panel_settings</mat-icon>
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="option">
             <mat-header-cell *matHeaderCellDef >Upgrade Role</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-icon-button matTooltip="Click to start" class="iconbutton" color="primary" (click)="updateRole(element.id)">
-                    <mat-icon aria-label="Start" >admin_panel_settings</mat-icon>
+                <button *ngIf="!checkRoleAdmin(element.roles)" mat-icon-button matTooltip="Upgrade to Admin" (click)="updateRole(element.id)">
+                    <mat-icon color="primary" >verified_user</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="history">
+            <mat-header-cell *matHeaderCellDef >History</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Click to watch history" class="iconbutton" color="primary" (click)="goHistoryExam(element.id)">
+                    <mat-icon aria-label="Start" >query_builder</mat-icon>
                 </button>
             </mat-cell>
         </ng-container>
@@ -43,8 +52,8 @@
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':filteredListExams!=null}"></mat-footer-row>
-        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(filteredListExams!=null && filteredListExams.data.length==0)}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':filteredListUsers!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(filteredListUsers!=null && filteredListUsers.data.length==0)}"></mat-footer-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
 </div>

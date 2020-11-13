@@ -1,7 +1,7 @@
 <section class="body-margin">
   <h2>Select or Checkbox Question</h2>
   <app-message [message]="message"></app-message>
-  <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm">
+  <form class="example-form" (ngSubmit)="submit()" [formGroup]="questionForm" #formDirective="ngForm">
     <mat-form-field class="example-full-width">
       <mat-label>Question</mat-label>
       <textarea matInput rows="4" formControlName="question" placeholder="Enter the question"></textarea>

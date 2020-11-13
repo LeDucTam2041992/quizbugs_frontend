@@ -4,7 +4,6 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
-import {Exam} from "../../model/exam";
 import {IUser} from "../../model/IUser";
 
 @Component({
@@ -16,23 +15,23 @@ export class ManagementUserComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    displayedColumns = ['id', 'username', 'roles', 'option'];
-    filteredListExams = new MatTableDataSource<IUser>([]);
+    displayedColumns = ['id', 'username', 'roles', 'option', 'history'];
+    filteredListUsers = new MatTableDataSource<any>([]);
     searchKey: string;
 
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private router: Router) {
     }
 
     ngOnInit(): void {
         this.getAll();
-        this.filteredListExams.paginator = this.paginator;
-        this.filteredListExams.sort = this.sort;
     }
 
     getAll() {
-        this.userService.getAllUser().subscribe((list: IUser[]) => {
-                this.filteredListExams.data = list;
+        this.userService.getAllUser().subscribe(list => {
+                this.filteredListUsers.data = list;
+                this.filteredListUsers.paginator = this.paginator;
+                this.filteredListUsers.sort = this.sort;
             }
         )
     }
@@ -43,17 +42,40 @@ export class ManagementUserComponent implements OnInit {
     }
 
     applyFilter() {
-        this.filteredListExams.filter = this.searchKey.trim().toLowerCase();
+        this.filteredListUsers.filter = this.searchKey.trim().toLowerCase();
     }
 
     updateRole(id: any) {
-        if(confirm("Are you sure want to upgrade")) {
+        if (confirm("Are you sure want to upgrade")) {
             this.userService.updateRoleAdminUser(id).subscribe(res => {
                 },
-                () => {},
+                () => {
+                },
                 () => this.getAll()
             )
             this.getAll();
         }
+    }
+
+    goHistoryExam(id: any) {
+        this.router.navigate([`admin/management-user/${id}`]);
+    }
+
+    checkRoleAdmin(element: any): boolean {
+        for (const e of element) {
+            if (e.name == 'ROLE_ADMIN') {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    checkRoleUser(element: any): boolean {
+        for (const e of element) {
+            if (e.name == 'ROLE_USER') {
+                return true;
+            }
+        }
+        return false;
     }
 }
