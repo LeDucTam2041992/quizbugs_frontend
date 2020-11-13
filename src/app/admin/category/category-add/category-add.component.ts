@@ -25,9 +25,9 @@ export class CategoryAddComponent implements OnInit {
   onSubmit() {
     let data = this.newCategoryForm.value;
     this.categoryService.createCategory(data).subscribe(e => {
-      console.log("create " + e);
+      this.route.navigate(['admin/categories/list'])
     });
-    this.route.navigate(['admin/categories/list']);
+
   }
 
   cancel() {

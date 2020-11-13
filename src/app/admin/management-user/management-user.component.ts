@@ -58,7 +58,7 @@ export class ManagementUserComponent implements OnInit {
     }
 
     goHistoryExam(id: any) {
-        this.router.navigate([`history/list/${id}`]);
+        this.router.navigate([`admin/management-user/${id}`]);
     }
 
     checkRoleAdmin(element: any): boolean {

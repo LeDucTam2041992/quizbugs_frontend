@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 export class CategoryListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  listCategories: MatTableDataSource<any>;
+  listCategories = new MatTableDataSource<any>([]);
   displayedColumns = ['id', 'category', 'option'];
   searchKey: string;
 
@@ -21,6 +21,8 @@ export class CategoryListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.listCategories.paginator = this.paginator;
+    this.listCategories.sort = this.sort;
     this.getAll()
   }
 
@@ -35,24 +37,19 @@ export class CategoryListComponent implements OnInit {
 
   getAll() {
     this.categoryService.getAllCategories().subscribe(list => {
-        let array = list.map(item => {
-          return {
-            id: item.id,
-            category: item.category
-          }
-        });
-        this.listCategories = new MatTableDataSource(array);
-        this.listCategories.paginator = this.paginator;
-        this.listCategories.sort = this.sort;
+        this.listCategories.data = list;
       }
     )
   }
 
   delete(id) {
-    if (confirm('Are you sure want to delete?')) {
+    if(confirm("Are you sure want to delete?")) {
       this.categoryService.delete(id).subscribe(res => {
-          this.getAll();
-      })
+          },
+          () => {},
+          () => this.getAll()
+      )
+      this.getAll();
     }
   }
 
