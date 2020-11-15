@@ -65,8 +65,14 @@ export class TrueFalseQuestionComponent implements OnInit {
       this.service.createQuestion(this.question)
           .subscribe(() => {
             this.message = 'Success!';
+
             const dialogRef = this.dialog.open(SuccessDialogComponent);
-            dialogRef.afterClosed().subscribe();
+            dialogRef.afterClosed().subscribe(()=> {
+              this.questionForm.reset();
+              Object.keys(this.questionForm.controls).forEach(key => {
+                this.questionForm.controls[key].setErrors(null)
+              })
+            });
             // this.router.navigate(['/admin/questions/list']);
           });
     } else {
