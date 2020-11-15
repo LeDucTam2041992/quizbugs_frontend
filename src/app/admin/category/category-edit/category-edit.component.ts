@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryService} from "../../../service/category.service";
 import {ICategory} from "../../../model/ICategory";
+import {MessageService} from "../../../service/message.service";
 
 @Component({
   selector: 'app-category-edit',
@@ -15,7 +16,8 @@ export class CategoryEditComponent implements OnInit {
 
 
   constructor(private router: ActivatedRoute, private categoryService: CategoryService,
-              private formBuilder: FormBuilder, private route: Router) {
+              private formBuilder: FormBuilder, private route: Router,
+              private messageService: MessageService) {
   }
 
   currentCategory: ICategory = {
@@ -36,10 +38,15 @@ export class CategoryEditComponent implements OnInit {
 
   onSubmit() {
     // @ts-ignore
-    console.log(this.currentCategory.category);
-    this.categoryService.update(this.currentCategory.id, this.currentCategory).subscribe(e => {
-    });
-    this.route.navigate(['admin/categories/list']);
+    this.categoryService.update(this.currentCategory.id, this.currentCategory).subscribe(
+        e => {
+          this.route.navigate(['admin/categories/list']);
+          this.messageService.openSnackBar('Update category success', 'Close');
+        },
+        ()=> {
+          this.messageService.showError('Update false')
+        });
+
   }
   cancel() {
     this.route.navigate(['admin/categories/list']);
