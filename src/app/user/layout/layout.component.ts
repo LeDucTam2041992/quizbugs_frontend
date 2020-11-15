@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private readonly mediaWatcher: Subscription;
 
   constructor(media: MediaObserver,
-              public loaderService: LoaderService) {
+              ) {
     this.mediaWatcher = media.media$.subscribe((change: MediaChange) => {
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         if (this.sideNavOpened) {

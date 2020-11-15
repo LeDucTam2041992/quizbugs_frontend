@@ -11,6 +11,7 @@ import {Exam} from '../../../model/exam';
 import {Answer} from '../../../model/answer';
 import {MatDialog} from '@angular/material/dialog';
 import {MesDialogComponent} from '../mes-dialog/mes-dialog.component';
+import {MessageService} from "../../../service/message.service";
 
 @Component({
   selector: 'app-create-quiz',
@@ -53,7 +54,8 @@ export class CreateQuizComponent implements OnInit {
               private router: Router,
               private categoryService: CategoryService,
               private examService:ExamService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              public messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -222,13 +224,16 @@ export class CreateQuizComponent implements OnInit {
       })
       this.examService.createExam(this.exam)
           .subscribe(() => {
-            this.message = 'Create Quiz Success!';
+            this.messageService.openSnackBar('Create Exam Success','Close')
             this.quizQuestion = [];
-
+            this.quizFormControl.reset();
+            Object.keys(this.quizFormControl).forEach(key => {
+                  this.quizFormControl[key].setErrors(null)
+                });
           },
                   err => {
-            this.message = 'UnSuccess! Please try again!'
-          });
+                    this.messageService.showError('Create Exam False')
+                  });
     }
   }
 

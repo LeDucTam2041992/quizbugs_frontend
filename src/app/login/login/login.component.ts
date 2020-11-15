@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {LoginService} from "../../service/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IUser} from "../../model/IUser";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MessageService} from "../../service/message.service";
 
 @Component({
     selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     constructor(private router: Router,
                 private loginService: LoginService,
                 private formBuilder: FormBuilder,
-                public snackBar: MatSnackBar
+                private messageService: MessageService
     ) {
     }
 
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         const data: IUser = this.loginForm.value;
         this.loginService.doLogin(data).subscribe(
             (response) => {
+                this.messageService.openSnackBar('Login Success','OK')
                 localStorage.setItem('token', response.Authorization);
                 localStorage.setItem('isLoggedin', 'true');
                 if (response.ROLE.includes("ROLE_ADMIN")) {
@@ -41,18 +42,10 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['dashboard']);
             },
             () => {
-                console.log('login fail');
-                this.openSnackBar('login fail', 'try again')
+                this.messageService.showError('login fail')
             });
 
     }
 
-    openSnackBar(message: string, action: string) {
-        let snackBarRef = this.snackBar.open(message, action, {
-            duration: 2000
-        });
-        snackBarRef.onAction().subscribe(() => {
-            console.log('The snack-bar action was triggered!');
-        });
-    }
+
 }

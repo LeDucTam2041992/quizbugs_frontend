@@ -4,6 +4,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
+import {MessageService} from "../../../service/message.service";
 
 @Component({
     selector: 'app-category-list',
@@ -17,7 +18,9 @@ export class CategoryListComponent implements OnInit {
     displayedColumns = ['id', 'category', 'option'];
     searchKey: string;
 
-    constructor(private categoryService: CategoryService, private router: Router) {
+    constructor(private categoryService: CategoryService,
+                private router: Router,
+                private messageService: MessageService,) {
     }
 
     ngOnInit(): void {
@@ -45,8 +48,11 @@ export class CategoryListComponent implements OnInit {
     delete(id) {
         if (confirm("Are you sure want to delete?")) {
             this.categoryService.delete(id).subscribe(res => {
+                this.messageService.openSnackBar('Delete success','Close')
                 },
                 () => {
+                    this.messageService.showError('Delete false')
+
                 },
                 () => this.getAll()
             )

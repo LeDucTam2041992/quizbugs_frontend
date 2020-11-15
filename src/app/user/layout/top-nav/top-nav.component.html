@@ -1,3 +1,6 @@
+<div class="loader-container" *ngIf="loaderService.isLoading | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <mat-toolbar color="primary" class="fix-nav">
   <button type="button" mat-icon-button class="visible-md" (click)="toggleSidebar()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>

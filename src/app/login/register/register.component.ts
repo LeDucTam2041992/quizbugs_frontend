@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginService} from "../../service/login.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MessageService} from "../../service/message.service";
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: LoginService,
               private route: Router,
-              public snackBar: MatSnackBar
+              private messageService: MessageService
               ) {
   }
 
@@ -49,21 +50,12 @@ export class RegisterComponent implements OnInit {
     }
     this.userService.doRegister(data).subscribe(
         () => {
+          this.messageService.openSnackBar('Creating Account success','Close')
           this.route.navigate(['login'])
         },
         () => {
-          this.openSnackBar('create user false','try again');
-          console.log("username da ton tai");
+          this.messageService.showError('Create user false')
         }
     )
-  }
-
-  openSnackBar(message: string, action: string) {
-    let snackBarRef = this.snackBar.open(message, action, {
-      duration: 2000
-    });
-    snackBarRef.onAction().subscribe(() => {
-      console.log('The snack-bar action was triggered!');
-    });
   }
 }
