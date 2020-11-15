@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import {InterceptorService} from "./core/loader/interceptor.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

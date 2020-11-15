@@ -12,13 +12,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {MatIconModule} from "@angular/material/icon";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 
 @NgModule({
   imports: [
-    MatSnackBarModule,
     CommonModule,
     FormsModule,
     FlexLayoutModule,
