@@ -1,4 +1,6 @@
 <div class="list-question">
+    <h2 style="text-align: center">List Questions</h2>
+
     <mat-form-field appearance="fill" style="margin-right: 20px">
         <mat-label>Category</mat-label>
         <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="searchCategory()">
@@ -36,7 +38,7 @@
 </div>
 
 <div class="quiz">
-    <h1 style="text-align: center">Create Quiz</h1>
+    <h2 style="text-align: center">Create Quiz</h2>
     <section style="margin-left: 50px">
         <app-message [message]="message"></app-message>
     </section>
@@ -70,5 +72,5 @@
     <ng-container *ngFor="let q of quizQuestion; let i = index">
         <app-detail-question [inQ]="q" [index]="i" (addId)="add($event)" (deleteId)="delete($event)" (removeId)="remove($event)" [isQuestionQuiz]="true"></app-detail-question>
     </ng-container>
-    <button mat-raised-button color="primary" style="margin-left: 100px;margin-top: 50px" [disabled]="quizFormControl.invalid" (click)="createQuiz()">Submit</button>
+    <button mat-raised-button color="primary" style="margin-left: 100px;margin-top: 50px; margin-bottom: 50px" [disabled]="quizFormControl.invalid" (click)="createQuiz()">Submit</button>
 </div>
