@@ -54,6 +54,7 @@ export class CreateQuestionComponent implements OnInit {
 
   questionForm: FormGroup;
   private formDirective: any;
+  cateadd = "/admin/categories/add" ;
   constructor(private fb: FormBuilder,
               private service: QuestionService,
               private router: Router,
