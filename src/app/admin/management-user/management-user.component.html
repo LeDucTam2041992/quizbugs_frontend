@@ -19,8 +19,8 @@
         <ng-container matColumnDef="roles">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Roles</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                    <mat-icon *ngIf="checkRoleUser(element.roles)">account_circle</mat-icon>&nbsp;
-                    <mat-icon *ngIf="checkRoleAdmin(element.roles)" color="accent">admin_panel_settings</mat-icon>
+                    <mat-icon *ngIf="checkRoleUser(element.roles)" matTooltip="ROLE USER">account_circle</mat-icon>&nbsp;
+                    <mat-icon *ngIf="checkRoleAdmin(element.roles)" color="accent" matTooltip="ROLE ADMIN">admin_panel_settings</mat-icon>
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="option">

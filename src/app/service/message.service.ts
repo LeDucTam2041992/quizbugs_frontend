@@ -10,7 +10,7 @@ export class MessageService {
 
   openSnackBar(message: string, action: string) {
     let snackBarRef = this.snackBar.open(message, action, {
-      duration: 1000,
+      duration: 1500,
     });
     snackBarRef.onAction().subscribe(() => {
     });
@@ -19,7 +19,7 @@ export class MessageService {
   showError(message: string) {
     const config = new MatSnackBarConfig();
     config.panelClass = ['background-red'];
-    config.duration = 1000;
+    config.duration = 1500;
     this.snackBar.open(message, null, config);
   }
 }
